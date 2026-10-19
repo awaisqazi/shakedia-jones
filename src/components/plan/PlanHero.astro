@@ -47,8 +47,8 @@ const laneNames = t.lanes as Record<string, { name: string }>;
 
 <style>
   .plan-hero { padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-4xl); background: var(--chalk); overflow: hidden; }
-  .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--space-3xl); align-items: center; }
-  .hero-title { font-size: var(--text-5xl); line-height: 0.92; margin-bottom: var(--space-lg); overflow-wrap: anywhere; }
+  .hero-grid { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: var(--space-3xl); align-items: center; }
+  .hero-title { font-size: clamp(3rem, 1.8rem + 4.2vw, 5.6rem); line-height: 0.92; margin-bottom: var(--space-lg); overflow-wrap: anywhere; }
   .hero-title span { display: block; }
   .hero-clock { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-xl); }
   .hero-date { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--navy); font-size: var(--text-sm); max-width: 22ch; line-height: 1.3; }

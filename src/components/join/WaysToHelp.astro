@@ -43,6 +43,7 @@ const six = ways.length === 6;
 
 <style>
   .wth-lanes { margin-top: var(--space-2xl); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); counter-reset: none; }
+  .wth-lane:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .wth-lane {
     position: relative; display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg);
     background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--line);

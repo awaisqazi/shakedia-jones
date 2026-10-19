@@ -83,5 +83,9 @@ const wa = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
   .sb-dark .sb-secondary:hover, .sb-dark .btn-outline:hover { background: var(--white); color: var(--navy); }
   .sb-toast { min-height: 1.2em; font-size: var(--text-sm); font-weight: 600; color: var(--track-deep); max-width: none; }
   .sb-dark .sb-toast { color: var(--gold); }
-  @media (max-width: 480px) { .sb-row .btn { flex: 1 1 calc(50% - var(--space-sm)); white-space: normal; } }
+  @media (max-width: 480px) {
+    .sb-row { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .sb-row .btn { font-size: 0.95rem; letter-spacing: 0.04em; padding: 0.6rem 0.7rem; border-radius: 14px; min-height: 48px; white-space: normal; }
+    .sb-native, .sb-cal { grid-column: 1 / -1; }
+  }
 </style>

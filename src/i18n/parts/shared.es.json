@@ -16,7 +16,7 @@
   "bar": {
     "volunteer": "Únase",
     "donate": "Donar",
-    "share": "Cuéntele a un vecino"
+    "share": "Compartir"
   },
   "ui": {
     "sign_label": "El letrero honorario tal como se dedicó el 14 de julio de 2024: Shakedia Jones Olympic Way, George Avenue.",
@@ -44,10 +44,10 @@
   "share": {
     "label": "Funciona ahora mismo, sin inscribirse",
     "native": "Cuéntele a un vecino",
-    "sms": "Envíe un texto a un vecino",
+    "sms": "Mándele un texto a un vecino",
     "whatsapp": "WhatsApp",
     "copy": "Copiar enlace",
-    "calendar": "Agregar el 6 de abril a mi calendario"
+    "calendar": "Agregar a mi calendario"
   },
   "meta": {
     "home": {

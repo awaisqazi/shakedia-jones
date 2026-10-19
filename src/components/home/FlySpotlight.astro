@@ -28,7 +28,7 @@ const items = [
         {items.map((it) => (<li data-i18n={`home.fly.${it.key}`}>{it.text}</li>))}
       </ul>
       <blockquote class="fly-quote">
-        <p lang="en" data-i18n="home.fly.quote">"So this, in essence, is the program I would have been part of had it existed when I was younger."</p>
+        <p lang="en" data-i18n="home.fly.quote">“So this, in essence, is the program I would have been part of had it existed when I was younger.”</p>
         <p class="tr-line" data-i18n="home.fly.quote_tr"></p>
         <footer data-i18n="home.fly.quote_cite">Shakedia Jones, Chicago Tribune, 2016</footer>
       </blockquote>
@@ -41,8 +41,8 @@ const items = [
 
 <style>
   .fly { background: linear-gradient(180deg, var(--chalk) 0%, var(--fly-soft) 100%); }
-  .fly-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: var(--space-3xl); align-items: center; }
-  .fly-photo { width: 100%; aspect-ratio: 4 / 3; box-shadow: var(--shadow-lg); border: 5px solid var(--white); transform: rotate(-2deg); }
+  .fly-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: var(--space-3xl); align-items: start; }
+  .fly-photo { position: sticky; top: calc(var(--nav-height) + var(--space-xl)); width: 100%; aspect-ratio: 4 / 3; box-shadow: var(--shadow-lg); border: 5px solid var(--white); transform: rotate(-2deg); }
   .fly-label { color: var(--fly-deep); }
   .fly-copy .section-title { display: flex; flex-direction: column; }
   .fly-accent { color: var(--fly-deep); }

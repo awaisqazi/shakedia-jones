@@ -108,6 +108,7 @@ const current = Astro.url.pathname;
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
     background: linear-gradient(90deg, var(--track) 0 78%, var(--gold) 78% 100%);
   }
+  .navbar:has(.mobile-drawer.open) { background: var(--chalk); }
   .navbar.scrolled { background: rgba(247, 242, 234, 0.97); box-shadow: 0 2px 18px rgba(13, 27, 62, 0.08); border-color: var(--line); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; gap: var(--space-md); }
   .nav-logo { display: flex; align-items: center; flex-shrink: 0; transition: transform var(--duration-fast); }
@@ -148,7 +149,7 @@ const current = Astro.url.pathname;
   .mobile-links { display: flex; flex-direction: column; }
   .mobile-links a:not(.btn) {
     display: flex; align-items: center; gap: var(--space-md);
-    font-family: var(--font-display); font-weight: 800; font-size: var(--text-3xl); text-transform: uppercase; color: var(--navy);
+    font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 8vw, 3.4rem); line-height: 1; text-transform: uppercase; color: var(--navy);
     padding: var(--space-md) 0; border-bottom: 2px solid var(--line);
   }
   .m-lane { display: inline-grid; place-items: center; width: 2.1rem; height: 2.1rem; border: 2px solid var(--track); color: var(--track); border-radius: 5px; font-size: 1.2rem; flex-shrink: 0; }

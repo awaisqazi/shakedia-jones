@@ -112,10 +112,15 @@ const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
     /* Her face before the pitch on phones */
     .hero-visual { order: -1; }
     /* The track slab sits behind the photo, which now comes first */
-    .hero-track { top: 0; bottom: auto; height: 44%; width: 100%; clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%); }
+    .hero-track { top: 0; bottom: auto; height: calc(var(--nav-height) + var(--space-3xl) + min(290px, 74vw) * 1.55); width: 100%; clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%); }
     .hero-visual { width: min(290px, 74%); }
     .bib { left: -40px; width: 124px; bottom: auto; top: 28px; }
     .bib-num { font-size: 4.2rem; }
+  }
+  @media (min-width: 600px) and (max-width: 960px) {
+    .hero-inner { grid-template-columns: 1fr 260px; gap: var(--space-xl); align-items: start; }
+    .hero-visual { order: 0; width: 100%; }
+    .hero-track { height: 100%; width: 40%; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); }
   }
   @media (max-width: 420px) {
     .hero-headline { font-size: 2.8rem; }

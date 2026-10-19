@@ -42,6 +42,7 @@ const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
     text-transform: uppercase; letter-spacing: 0.08em; padding: 12px 10px 11px; border-radius: 999px;
   }
   .bar-volunteer { background: var(--navy); color: var(--white); }
+  @media (max-width: 400px) { .bar-btn { font-size: 0.92rem; letter-spacing: 0.04em; padding-inline: 6px; white-space: nowrap; } }
   .bar-donate { background: var(--track); color: var(--white); }
   @media (max-width: 1024px) { :global(body) { padding-bottom: 74px; } }
   /* At 200% zoom on a short screen the two fixed bars would eat a third of the viewport */

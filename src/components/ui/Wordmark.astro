@@ -22,6 +22,7 @@ const { light = false, size = 'md' } = Astro.props;
   .wm-sm .wm-name { font-size: 1.3rem; }
   .wm-lg .wm-name { font-size: 2.2rem; }
   .wm-lg .wm-sub { font-size: 0.8rem; }
+  @media (max-width: 300px) { .wm-mark { width: 28px; height: 28px; } }
   .wm-light .wm-name { color: var(--white); }
   .wm-light .wm-last { color: var(--gold); }
   .wm-light .wm-sub { color: rgba(255, 255, 255, 0.7); }

@@ -331,4 +331,6 @@ const img = (f: string) => `${base}/images/${f}`;
     .anchor-card { padding: var(--space-lg); }
     .results { padding: var(--space-md); }
   }
+  @media (max-width: 480px) { .anchor-card .leg-title { font-size: var(--text-3xl); } }
+  @media (max-width: 860px) { .leg-word { display: none; } }
 </style>
