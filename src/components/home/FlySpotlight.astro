@@ -42,7 +42,7 @@ const items = [
 <style>
   .fly { background: linear-gradient(180deg, var(--chalk) 0%, var(--fly-soft) 100%); }
   .fly-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: var(--space-3xl); align-items: start; }
-  .fly-photo { position: sticky; top: calc(var(--nav-height) + var(--space-xl)); width: 100%; aspect-ratio: 4 / 3; box-shadow: var(--shadow-lg); border: 5px solid var(--white); transform: rotate(-2deg); }
+  .fly-photo { width: 100%; aspect-ratio: 4 / 3; box-shadow: var(--shadow-lg); border: 5px solid var(--white); transform: rotate(-2deg); }
   .fly-label { color: var(--fly-deep); }
   .fly-copy .section-title { display: flex; flex-direction: column; }
   .fly-accent { color: var(--fly-deep); }
@@ -59,6 +59,8 @@ const items = [
   .fly-quote footer { font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-xs); color: var(--muted); margin-top: var(--space-xs); }
   .fly-note { margin-top: var(--space-2xl); padding-top: var(--space-md); border-top: 1px solid var(--line); font-size: var(--text-sm); color: var(--muted); max-width: 70ch; }
 
+  /* On wide screens the photo rides along beside the long copy */
+  @media (min-width: 961px) { .fly-photo { position: sticky; top: calc(var(--nav-height) + var(--space-xl)); } }
   @media (max-width: 960px) {
     .fly-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
     .fly-photo { max-width: 560px; transform: rotate(-1.5deg); }
