@@ -1,0 +1,126 @@
+---
+import RaceClock from '../ui/RaceClock.astro';
+import { DATES, donateHref, isExternalDonate, canDonate } from '../../data/campaign.js';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
+---
+
+<section class="hero" id="hero">
+  <div class="hero-track" aria-hidden="true">
+    <svg viewBox="0 0 600 900" preserveAspectRatio="xMaxYMid slice">
+      <g fill="none" stroke="#fff" stroke-width="5" opacity="0.9">
+        <path d="M600 40 H330 a290 290 0 0 0 0 580 H600" />
+        <path d="M600 110 H330 a220 220 0 0 0 0 440 H600" />
+        <path d="M600 180 H330 a150 150 0 0 0 0 300 H600" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="hero-kicker animate-in" style="--reveal-delay: 0s">
+        <span class="lane-chip" aria-hidden="true">1</span>
+        <span data-i18n="home.hero.kicker">Waukegan · 1st Ward Alderperson · April 6, 2027</span>
+      </span>
+
+      <h1 class="hero-headline">
+        <span class="hl-1 animate-in" style="--reveal-delay: 0.08s" data-i18n="home.hero.headline_1">She ran for Team USA.</span>
+        <span class="hl-2 animate-in" style="--reveal-delay: 0.18s" data-i18n="home.hero.headline_2">Now she's running for the 1st Ward.</span>
+      </h1>
+
+      <p class="hero-sub animate-in" style="--reveal-delay: 0.28s" data-i18n="home.hero.sub">
+        Shakedia Jones is a 2000 U.S. Olympic Team member (4x100m relay pool), a nine-time Illinois state champion, a UCLA graduate with an MBA, and the founder of FLY, which by her 2024 count has helped more than 600 young people. She came home to Waukegan in 2013 and has worked for its kids ever since. Now she wants to work for its neighbors.
+      </p>
+
+      <div class="hero-ctas animate-in" style="--reveal-delay: 0.36s">
+        <a href={`${base}/join/#signup`} class="btn btn-track btn-massive" data-i18n="home.hero.cta_join">Join the team</a>
+        <a href={`${base}/meet/`} class="btn btn-outline" data-i18n="home.hero.cta_meet">Meet Shakedia</a>
+      </div>
+
+      <div class="hero-clock animate-in" style="--reveal-delay: 0.44s">
+        <RaceClock date={DATES.election} labelKey="home.hero.countdown" label="days to Election Day" />
+        {canDonate() && <a href={donateHref(base)} class="hero-chip" data-i18n="home.hero.chip_in" {...ext}>Chip in</a>}
+      </div>
+    </div>
+
+    <div class="hero-visual animate-in" style="--reveal-delay: 0.2s">
+      <figure class="hero-photo">
+        <img
+          src={`${base}/images/olympic-way-sign-portrait.webp`}
+          width="440" height="1100" alt="Two women stand under the street sign for Shakedia Jones Olympic Way on George Avenue; one points up at it."
+          data-i18n-attr="alt:home.hero.photo_alt" fetchpriority="high" decoding="async"
+        />
+        <figcaption data-i18n="home.hero.photo_caption">Dedication day on George Avenue, July 14, 2024.</figcaption>
+      </figure>
+
+      <div class="bib" aria-hidden="true">
+        <span class="pin pin-tl"></span><span class="pin pin-tr"></span><span class="pin pin-bl"></span><span class="pin pin-br"></span>
+        <span class="bib-top" data-i18n="home.hero.bib_top">Waukegan · Ward</span>
+        <span class="bib-num">1</span>
+        <span class="bib-name">Jones</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative; overflow: hidden;
+    padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-4xl);
+    background: var(--chalk);
+  }
+  .hero-track {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 46%;
+    background: var(--track);
+    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .hero-track svg { width: 100%; height: 100%; display: block; }
+
+  .hero-inner { position: relative; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-3xl); align-items: center; }
+  .hero-kicker { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-sm); color: var(--track-deep); margin-bottom: var(--space-lg); }
+  .hero-headline { display: flex; flex-direction: column; gap: 0.08em; font-size: clamp(2.8rem, 1.6rem + 4.2vw, 5.4rem); line-height: 0.9; margin-bottom: var(--space-lg); }
+  .hl-1 { color: var(--navy); }
+  .hero-headline span { text-wrap: balance; }
+  .hl-2 { color: var(--track); }
+  .hero-sub { font-size: var(--text-lg); color: var(--ink-soft); max-width: 58ch; margin-bottom: var(--space-xl); }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: var(--space-md); margin-bottom: var(--space-xl); }
+  .hero-clock { display: flex; align-items: center; gap: var(--space-lg); flex-wrap: wrap; }
+  .hero-chip { position: relative; z-index: 1; font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--track-deep); background: var(--chalk); border: 2px solid currentColor; border-radius: 999px; padding: 0.45rem 1rem 0.4rem; }
+  .hero-chip:hover { color: var(--navy); }
+
+  .hero-visual { position: relative; justify-self: center; width: min(340px, 100%); }
+  .hero-photo { position: relative; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-xl); border: 6px solid var(--white); transform: rotate(1.5deg); background: var(--chalk-2); }
+  .hero-photo img { width: 100%; aspect-ratio: 440 / 1000; object-fit: cover; object-position: center 35%; }
+  .hero-photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.5rem 1rem 0.8rem; background: linear-gradient(180deg, transparent, rgba(13, 27, 62, 0.94)); color: var(--white); font-family: var(--font-label); font-weight: 600; font-size: var(--text-sm); letter-spacing: 0.04em; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
+
+  .bib {
+    position: absolute; left: -54px; bottom: 108px; width: 150px;
+    background: var(--white); border-radius: 10px; padding: 14px 12px 10px;
+    box-shadow: var(--shadow-lg); transform: rotate(-7deg);
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    border: 1px solid var(--line);
+  }
+  .pin { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--chalk-2); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25); }
+  .pin-tl { top: 7px; left: 7px; } .pin-tr { top: 7px; right: 7px; } .pin-bl { bottom: 7px; left: 7px; } .pin-br { bottom: 7px; right: 7px; }
+  .bib-top { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.68rem; color: var(--track-deep); }
+  .bib-num { font-family: var(--font-display); font-weight: 900; font-size: 5.2rem; line-height: 0.85; color: var(--navy); margin: 2px 0; }
+  .bib-name { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.3rem; letter-spacing: 0.08em; color: var(--white); background: var(--track); width: 100%; border-radius: 4px; line-height: 1.2; padding-top: 2px; }
+
+  @media (max-width: 960px) {
+    .hero { padding-bottom: var(--space-3xl); }
+    .hero-inner { grid-template-columns: 1fr; gap: var(--space-2xl); }
+    /* Her face before the pitch on phones */
+    .hero-visual { order: -1; }
+    /* The track slab sits behind the photo, which now comes first */
+    .hero-track { top: 0; bottom: auto; height: 44%; width: 100%; clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%); }
+    .hero-visual { width: min(290px, 74%); }
+    .bib { left: -40px; width: 124px; bottom: auto; top: 28px; }
+    .bib-num { font-size: 4.2rem; }
+  }
+  @media (max-width: 420px) {
+    .hero-headline { font-size: 2.8rem; }
+    .bib { left: -24px; width: 108px; }
+    .bib-num { font-size: 3.6rem; }
+    .bib-name { font-size: 1.05rem; }
+  }
+</style>

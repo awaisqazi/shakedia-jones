@@ -1,0 +1,48 @@
+---
+import ShareBar from '../ui/ShareBar.astro';
+// Closing call to action: send readers to /join/. The Donate button renders only once
+// DONATE_URL is set (no solicitation before the committee exists).
+import en from '../../i18n/parts/plan.en.json';
+import { canDonate, donateHref, isExternalDonate } from '../../data/campaign.js';
+
+const t = en.plan;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const DONATE = donateHref(base);
+const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
+---
+
+<section class="plan-cta section-padding">
+  <div class="container cta-inner">
+    <div class="finish-rule cta-rule" aria-hidden="true"></div>
+    <span class="section-label animate-in"><span data-i18n="plan.cta_label">{t.cta_label}</span></span>
+    <h2 class="section-title animate-in">
+      <span data-i18n="plan.cta_title_1">{t.cta_title_1}</span>
+      <span class="accent" data-i18n="plan.cta_title_2">{t.cta_title_2}</span>
+    </h2>
+    <p class="section-lede animate-in" data-i18n="plan.cta_text">{t.cta_text}</p>
+    <div class="cta-buttons animate-in">
+      <a href={`${base}/join/`} class="btn btn-track btn-massive" data-i18n="plan.cta_join">{t.cta_join}</a>
+      {canDonate() && (
+        <a href={DONATE} class="btn btn-outline btn-massive" data-i18n="plan.cta_donate" {...ext}>{t.cta_donate}</a>
+      )}
+    </div>
+    <ShareBar class="cta-share" />
+  </div>
+</section>
+
+<style>
+  .plan-cta { background: var(--chalk); }
+  .cta-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .cta-rule { width: min(320px, 100%); margin-bottom: var(--space-2xl); }
+  .section-title span { display: block; }
+  .section-title { overflow-wrap: anywhere; }
+  .section-lede { margin-inline: auto; }
+  .cta-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-md); margin-top: var(--space-xl); }
+  @media (max-width: 480px) {
+    .cta-buttons { flex-direction: column; width: 100%; }
+    .cta-buttons .btn { width: 100%; }
+  }
+  @media (min-width: 1px) {
+    .cta-share { margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--line); text-align: left; }
+  }
+</style>

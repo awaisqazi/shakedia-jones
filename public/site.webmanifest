@@ -1,0 +1,13 @@
+{
+  "name": "Shakedia Jones for 1st Ward",
+  "short_name": "Shakedia Jones",
+  "start_url": "/shakedia-jones/",
+  "scope": "/shakedia-jones/",
+  "display": "browser",
+  "theme_color": "#c2412a",
+  "background_color": "#f7f2ea",
+  "icons": [
+    { "src": "/shakedia-jones/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/shakedia-jones/brand/avatar-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

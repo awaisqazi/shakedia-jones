@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "skip": "Ir al contenido",
+    "home": "Inicio",
+    "meet": "Conozca a Shakedia",
+    "plan": "El plan de juego",
+    "join": "Participe",
+    "volunteer_cta": "Únase",
+    "donate": "Donar",
+    "menu": "Menú",
+    "tagline": "Excelencia de Waukegan.",
+    "wordmark_sub": "Distrito 1 · Waukegan",
+    "main_label": "Principal",
+    "home_label": "Shakedia Jones, inicio"
+  },
+  "bar": {
+    "volunteer": "Únase",
+    "donate": "Donar",
+    "share": "Cuéntele a un vecino"
+  },
+  "ui": {
+    "sign_label": "El letrero honorario tal como se dedicó el 14 de julio de 2024: Shakedia Jones Olympic Way, George Avenue.",
+    "newtab": "(se abre en una pestaña nueva)"
+  },
+  "footer": {
+    "band_label": "Corra con nosotros",
+    "band_text": "Cada vecino que se une hace a este equipo más rápido.",
+    "motto": "Excelencia de Waukegan.",
+    "links_title": "Secciones",
+    "dates_title": "Fechas clave",
+    "when_1": "Cómo empieza",
+    "date_1": "Las firmas de los votantes del Distrito 1 ponen a Shakedia en la boleta",
+    "when_2": "6 de abril de 2027",
+    "date_2": "Día de las Elecciones",
+    "when_3": "Antes de votar",
+    "date_3": "Verifique su inscripción como votante en la Secretaría del Condado de Lake",
+    "follow_title": "Síganos",
+    "social_soon": "Muy pronto estrenaremos las redes sociales de la campaña.",
+    "links_page": "Todos los enlaces",
+    "paid_for": "Pagado por [Committee Name]",
+    "disclosure": "Una copia de nuestro informe presentado ante la Junta Electoral del Estado se encuentra (o se encontrará) disponible en el sitio web oficial de la Junta (www.elections.il.gov) o se puede comprar en la Junta Electoral del Estado, Springfield, Illinois.",
+    "copyright": "© 2026 Shakedia Jones for Waukegan. Todos los derechos reservados."
+  },
+  "share": {
+    "label": "Funciona ahora mismo, sin inscribirse",
+    "native": "Cuéntele a un vecino",
+    "sms": "Envíe un texto a un vecino",
+    "whatsapp": "WhatsApp",
+    "copy": "Copiar enlace",
+    "calendar": "Agregar el 6 de abril a mi calendario"
+  },
+  "meta": {
+    "home": {
+      "title": "Shakedia Jones, candidata a concejal del Distrito 1 | Waukegan",
+      "description": "Integrante del Equipo Olímpico de EE. UU. del 2000, nueve veces campeona estatal de Illinois y fundadora de FLY. Las elecciones son el 6 de abril de 2027."
+    },
+    "meet": {
+      "title": "Conozca a Shakedia Jones | Atleta olímpica, entrenadora, vecina",
+      "description": "Nueve títulos estatales de la IHSA, el Equipo Olímpico del 2000 y la fundación de FLY: la historia de una joven del South Side de Waukegan que volvió a casa."
+    },
+    "plan": {
+      "title": "El plan de juego | Shakedia Jones por el Distrito 1",
+      "description": "Cuatro carriles para el Distrito 1 de Waukegan: vecindarios seguros, programas para jóvenes, infraestructura sólida y gobierno transparente."
+    },
+    "join": {
+      "title": "Participe | Shakedia Jones, candidata a concejal del Distrito 1",
+      "description": "Peticiones, puertas, letreros y eventos: así puede ayudar a poner a Shakedia Jones en la boleta y a ganar el Distrito 1 el 6 de abril de 2027."
+    },
+    "links": {
+      "title": "Shakedia Jones | Enlaces",
+      "description": "Todos los enlaces de la campaña de Shakedia Jones por el Distrito 1 de Waukegan."
+    }
+  }
+}

@@ -1,0 +1,42 @@
+---
+// Lane 2 aside: her record with young people (facts section wording only) and a youth outing photo.
+// FLY is a 501(c)(3) and separate from the campaign, so the box carries a separation note.
+// No District 60 job or events here (QA H5), and no donation ask anywhere near this photo (QA H1).
+import en from '../../i18n/parts/plan.en.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const L = en.plan.lanes.l2;
+const items = ['record_1', 'record_2'] as const;
+---
+
+<div class="record">
+  <h4 class="record-label" data-i18n="plan.lanes.l2.record_label">{L.record_label}</h4>
+  <ul>
+    {items.map((key) => (
+      <li><span class="wing" aria-hidden="true"></span><span data-i18n={`plan.lanes.l2.${key}`}>{L[key]}</span></li>
+    ))}
+  </ul>
+  <p class="record-note" data-i18n="plan.lanes.l2.record_note">{L.record_note}</p>
+</div>
+
+<figure class="photo record-photo">
+  <img
+    src={`${base}/images/fly-youth-outing-2026.webp`}
+    width="1800" height="1350" loading="lazy" decoding="async"
+    alt={L.photo_alt} data-i18n-attr="alt:plan.lanes.l2.photo_alt"
+  />
+  <figcaption data-i18n="plan.lanes.l2.photo_caption">{L.photo_caption}</figcaption>
+</figure>
+
+<style>
+  .record { background: var(--fly-soft); border-left: 6px solid var(--fly); border-radius: var(--radius-md); padding: var(--space-lg); }
+  .record-label {
+    font-family: var(--font-label); font-weight: 700; font-size: var(--text-sm); text-transform: uppercase;
+    letter-spacing: 0.18em; color: var(--fly-deep); margin-bottom: var(--space-md); line-height: 1.2;
+  }
+  .record ul { display: flex; flex-direction: column; gap: var(--space-sm); }
+  .record li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-sm); color: var(--ink); font-weight: 500; font-size: var(--text-sm); line-height: 1.5; }
+  .record-note { margin-top: var(--space-md); font-size: var(--text-xs); line-height: 1.5; color: var(--ink-soft); }
+  .wing { width: 12px; height: 12px; margin-top: 0.4em; border-radius: 2px 10px 2px 10px; background: var(--fly-deep); }
+  .record-photo { margin-top: var(--space-lg); aspect-ratio: 4 / 3; }
+</style>

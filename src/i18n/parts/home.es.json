@@ -1,0 +1,79 @@
+{
+  "home": {
+    "hero": {
+      "kicker": "Waukegan · Concejal del Distrito 1 · 6 de abril de 2027",
+      "headline_1": "Corrió por Team USA.",
+      "headline_2": "Ahora corre por el Distrito 1.",
+      "sub": "Shakedia Jones fue parte del Equipo Olímpico de EE. UU. del 2000 (grupo del relevo 4x100 m), es nueve veces campeona estatal de Illinois, graduada de UCLA con un MBA y fundadora de FLY, que según su cifra de 2024 ha ayudado a más de 600 jóvenes. Regresó a Waukegan en 2013 y desde entonces ha trabajado por sus niños y jóvenes. Ahora quiere trabajar por sus vecinos.",
+      "cta_join": "Únase al equipo",
+      "cta_meet": "Conozca a Shakedia",
+      "countdown": "días para la elección",
+      "chip_in": "Contribuya",
+      "photo_alt": "Dos mujeres bajo el letrero de Shakedia Jones Olympic Way en George Avenue; una lo señala.",
+      "photo_caption": "El día de la dedicación en George Avenue, 14 de julio de 2024.",
+      "bib_top": "Waukegan · Distrito"
+    },
+    "splits": {
+      "label": "Los tiempos",
+      "title_1": "Un historial que usted",
+      "title_2": "puede comprobar.",
+      "titles": "títulos estatales de la IHSA, la mayor cantidad en la historia del atletismo femenil de Illinois cuando se graduó en 1997",
+      "wj": "medallas de oro en el Mundial Juvenil con Team USA, 1998",
+      "oly": "Equipo Olímpico de EE. UU., Sídney (grupo del relevo 4x100 m)",
+      "ncaa": "títulos de la NCAA por equipos con UCLA",
+      "fly": "jóvenes ayudados por FLY (su cifra de 2024)",
+      "founded": "el año en que fundó Furthering the Lives of Youth (FLY)",
+      "note": "Además: dos veces ganadora del premio Gatorade Illinois Player of the Year y miembro del Lake County High School Hall of Fame (2019). Ha entrenado al equipo femenil de atletismo de Waukegan High School."
+    },
+    "excellence": {
+      "label": "El letrero honorario",
+      "title_1": "Excelencia de",
+      "title_2": "Waukegan.",
+      "p1": "En julio de 2024, Waukegan le dedicó el nombre honorario \"Shakedia Jones Olympic Way\" a un tramo de George Avenue, cerca de la casa donde creció. En agosto de ese año, el Concejo Municipal la honró con una proclamación.",
+      "quote": "\"Why isn't there a place where we can go to find out the people in Waukegan who have done amazing things...\"",
+      "quote_tr": "Traducción: ¿Por qué no existe un lugar donde podamos conocer a las personas de Waukegan que han hecho cosas increíbles...?",
+      "quote_cite": "Shakedia Jones, Concejo Municipal de Waukegan, agosto de 2024",
+      "p2": "Le pidió a la ciudad que creara ese lugar, para que la gente pueda ver la excelencia de Waukegan. Lo pedía para el próximo niño de la cuadra, el que necesita ver que aquí también nacen campeones. Ese es el trabajo que quiere: que la excelencia sea algo de todos los días en el Distrito 1.",
+      "still_alt": "Con una proclamación enmarcada en la mano, habla al micrófono en la sala del Concejo Municipal de Waukegan.",
+      "still_caption": "Honrada por el Concejo Municipal, agosto de 2024."
+    },
+    "plan": {
+      "label": "El plan de juego",
+      "title_1": "Cuatro carriles.",
+      "title_2": "Una sola meta.",
+      "lede": "Una entrenadora fija la meta, hace el plan y publica los tiempos. Así trabajará Shakedia por el Distrito 1.",
+      "safe_title": "Vecindarios seguros",
+      "safe_body": "Parques, cuadras y caminos a casa donde niños y adultos mayores se sientan seguros, con soluciones creadas junto a los vecinos y los clubes de cuadra.",
+      "youth_title": "Programas para jóvenes",
+      "youth_body": "Más puertas abiertas después de clases y todo el verano, y ayuda para las familias que no pueden pagar las cuotas.",
+      "infra_title": "Infraestructura sólida",
+      "infra_body": "Calles, banquetas, callejones y el reemplazo de tuberías de plomo, con seguimiento cuadra por cuadra y reportes a los vecinos.",
+      "open_title": "Gobierno transparente",
+      "open_body": "Reuniones del distrito en inglés y español, explicación de los votos importantes y un informe mensual al Distrito 1.",
+      "cta": "Vea el plan de juego completo"
+    },
+    "fly": {
+      "label": "Furthering the Lives of Youth",
+      "title_1": "Creó el programa",
+      "title_2": "que ella nunca tuvo.",
+      "lede": "En 2014 Shakedia fundó FLY, una organización sin fines de lucro 501(c)(3) que les echa la mano a jóvenes talentosos y trabajadores de familias de pocos recursos cuando lo necesitan. Según su cifra de 2024, ha ayudado a más de 600 jóvenes.",
+      "i1": "Cuotas de atletismo y voleibol, y el equipo deportivo para competir",
+      "i2": "Su primer chelo para una joven chelista de Waukegan",
+      "i3": "Patrocinio de un equipo juvenil de atletismo y de competencias comunitarias de atletismo",
+      "i4": "Viajes, incluso a Los Ángeles, y partidos de las Chicago Sky",
+      "quote": "\"So this, in essence, is the program I would have been part of had it existed when I was younger.\"",
+      "quote_tr": "Traducción: Este es, en esencia, el programa del que yo habría sido parte si hubiera existido cuando era más joven.",
+      "quote_cite": "Shakedia Jones, Chicago Tribune, 2016",
+      "photo_a_alt": "Jóvenes y adultos con camisetas grises de FLY reunidos en el pasto durante un evento en el parque.",
+      "photo_a_caption": "FLY en el parque, verano de 2017.",
+      "separation": "Furthering the Lives of Youth es una organización sin fines de lucro, independiente de esta campaña, y no respalda a candidatos."
+    },
+    "join": {
+      "label": "Su tramo",
+      "title_1": "Tome la estafeta.",
+      "lede": "Firme una petición, toque algunas puertas, ponga un letrero en su jardín o cuéntele a un vecino, en inglés o en español. Cada tramo cuenta.",
+      "cta_join": "Únase al equipo",
+      "cta_donate": "Contribuya"
+    }
+  }
+}

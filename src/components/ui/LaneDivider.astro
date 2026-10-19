@@ -1,0 +1,18 @@
+---
+// A strip of running-track lanes with lane numbers, always upright.
+export interface Props { flip?: boolean; class?: string }
+const { flip = false, class: cls } = Astro.props;
+const lanes = [1, 2, 3, 4, 5, 6, 7, 8];
+---
+<div class:list={['lane-divider', cls, { flip }]} aria-hidden="true">
+  {lanes.map((n) => <span class="lane"><span class="lane-num">{n}</span></span>)}
+</div>
+
+<style>
+  .lane-divider { display: grid; grid-template-columns: repeat(8, 1fr); height: 64px; background: var(--track); overflow: hidden; }
+  .lane { position: relative; border-right: 3px solid rgba(255, 255, 255, 0.92); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; }
+  .lane:first-child { border-left: 3px solid rgba(255, 255, 255, 0.92); }
+  .lane-num { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; color: rgba(255, 255, 255, 0.92); line-height: 1; }
+  .flip .lane { align-items: flex-start; padding: 8px 0 0; }
+  @media (max-width: 600px) { .lane-divider { height: 44px; } .lane-num { font-size: 1.1rem; } }
+</style>

@@ -1,0 +1,52 @@
+---
+import { COUNTY_CLERK_URL, canDonate } from '../../data/campaign.js';
+// Lane number follows the donate block, which is hidden until donations open.
+const lane = canDonate() ? 5 : 4;
+const items = [
+  { k: 'register', title: 'Register or check your registration', text: 'Make sure you are registered at your current address.' },
+  { k: 'mail', title: 'Vote by mail', text: 'Request a mail ballot and vote from your kitchen table.' },
+  { k: 'polling', title: 'Find your polling place', text: 'Look up where to vote early or on Election Day.' },
+];
+---
+
+<section class="section-padding bg-chalk-2 byv" id="before-you-vote" aria-labelledby="byv-title">
+  <div class="container">
+    <span class="section-label animate-in"><span class="lane-chip" aria-hidden="true">{lane}</span><span data-i18n="join.vote.label">Before you vote</span></span>
+    <h2 class="section-title animate-in" id="byv-title">
+      <span data-i18n="join.vote.title_a">Be ready for</span>
+      <span class="accent" data-i18n="join.vote.title_b">April 6</span>
+    </h2>
+    <p class="section-lede animate-in" data-i18n="join.vote.lede">Election Day is Tuesday, April 6, 2027. The Lake County Clerk runs elections here and keeps every deadline up to date. Check with them directly.</p>
+
+    <ul class="byv-list">
+      {items.map((it, i) => (
+        <li class="animate-in" style={`--reveal-delay: ${i * 0.05}s`}>
+          <a href={COUNTY_CLERK_URL} class="byv-card card" target="_blank" rel="noopener">
+            <span class="byv-title" data-i18n={`join.vote.${it.k}_title`}>{it.title}</span>
+            <span class="byv-text" data-i18n={`join.vote.${it.k}_text`}>{it.text}</span>
+            <span class="byv-go" data-i18n="join.vote.go">Lake County Clerk</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="byv-foot animate-in">
+      <a href={COUNTY_CLERK_URL} class="arrow-link" target="_blank" rel="noopener"><span data-i18n="join.vote.clerk_link">Lake County Clerk: register and find your polling place</span><span class="visually-hidden" data-i18n="ui.newtab">(opens in a new tab)</span></a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .byv-list { margin-top: var(--space-2xl); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+  .byv-card {
+    height: 100%; display: flex; flex-direction: column; gap: var(--space-sm); padding: var(--space-xl);
+    border-top: 5px solid var(--navy); transition: transform var(--duration-fast), box-shadow var(--duration-normal), border-color var(--duration-normal);
+  }
+  .byv-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-top-color: var(--track); }
+  .byv-title { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--text-xl); color: var(--navy); line-height: 1.05; }
+  .byv-text { color: var(--ink-soft); }
+  .byv-go { margin-top: auto; padding-top: var(--space-sm); font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-sm); color: var(--track-deep); }
+  .byv-go::after { content: ' \2197'; }
+  .byv-foot { margin-top: var(--space-xl); }
+  .byv-foot .arrow-link { white-space: normal; min-height: 44px; }
+  @media (max-width: 860px) { .byv-list { grid-template-columns: 1fr; } .byv-card { padding: var(--space-lg); } }
+</style>

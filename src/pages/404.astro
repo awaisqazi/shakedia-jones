@@ -1,0 +1,48 @@
+---
+// GitHub Pages serves dist/404.html for any unknown path under the project site.
+// Bilingual static copy (no dictionary keys), noindex, links built from base.
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { href: `${base}/`, en: 'Home', es: 'Inicio' },
+  { href: `${base}/meet/`, en: 'Meet Shakedia', es: 'Conozca a Shakedia' },
+  { href: `${base}/plan/`, en: 'The Game Plan', es: 'El plan' },
+  { href: `${base}/join/`, en: 'Get Involved', es: 'Participe' },
+];
+---
+
+<Layout
+  title="Page not found | Shakedia Jones for 1st Ward"
+  description="This page could not be found. Go to the Shakedia Jones for 1st Ward Alderperson home page."
+  noindex
+>
+  <Navbar />
+  <main id="main" tabindex="-1" class="nf section-padding">
+    <div class="container">
+      <p class="section-label">404</p>
+      <h1 class="section-title">Off the track.</h1>
+      <p class="section-lede">We could not find that page. It may have moved, or the link may have a typo.</p>
+      <p class="section-lede nf-es" lang="es">No encontramos esa página. Puede que se haya movido o que el enlace tenga un error.</p>
+      <ul class="nf-links">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} class="btn btn-navy">
+              <span>{l.en}</span><span class="nf-sep" aria-hidden="true">/</span><span lang="es">{l.es}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .nf { padding-top: calc(var(--nav-height) + var(--space-3xl)); min-height: 70vh; }
+  .nf-es { margin-top: var(--space-sm); color: var(--muted); }
+  .nf-links { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-xl); }
+  .nf-sep { opacity: 0.5; }
+</style>

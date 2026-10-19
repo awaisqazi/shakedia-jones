@@ -1,0 +1,52 @@
+---
+// The record, as a scoreboard. Every number here is verified in BRIEF.md.
+const splits = [
+  { value: '9', key: 'titles', label: 'IHSA state titles, the most in Illinois girls’ history when she graduated in 1997' },
+  { value: '2', key: 'wj', label: 'World Junior gold medals for Team USA, 1998' },
+  { value: '2000', key: 'oly', label: 'U.S. Olympic Team, Sydney (4x100m relay pool)' },
+  { value: '2', key: 'ncaa', label: 'NCAA team titles with UCLA' },
+  { value: '600+', key: 'fly', label: 'young people helped through FLY (her 2024 count)', count: 600, suffix: '+' },
+  { value: '2014', key: 'founded', label: 'the year she founded Furthering the Lives of Youth (FLY)' },
+];
+---
+
+<section class="splits on-dark" id="record" aria-labelledby="splits-title">
+  <div class="container">
+    <div class="splits-head">
+      <span class="section-label"><span class="lane-chip" aria-hidden="true">2</span><span data-i18n="home.splits.label">The splits</span></span>
+      <h2 class="section-title" id="splits-title">
+        <span data-i18n="home.splits.title_1">A record you can</span>
+        <span class="accent" data-i18n="home.splits.title_2">look up.</span>
+      </h2>
+    </div>
+
+    <ol class="board">
+      {splits.map((s, i) => (
+        <li class="split animate-in" style={`--reveal-delay: ${i * 0.06}s`}>
+          <span class="split-lane" aria-hidden="true">{i + 1}</span>
+          <span class="split-value stat-tabular" {...(s.count ? { 'data-count-to': String(s.count), 'data-count-suffix': s.suffix } : {})}>{s.value}</span>
+          <span class="split-label" data-i18n={`home.splits.${s.key}`}>{s.label}</span>
+        </li>
+      ))}
+    </ol>
+
+    <p class="splits-note" data-i18n="home.splits.note">Plus: two-time Gatorade Illinois Player of the Year and Lake County High School Hall of Fame (2019). She has coached the Waukegan High School girls track team.</p>
+  </div>
+</section>
+
+<style>
+  .splits { background: var(--navy); padding: var(--space-4xl) 0; position: relative; }
+  .splits::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: repeating-linear-gradient(90deg, var(--white) 0 14px, var(--navy) 14px 28px); opacity: 0.85; }
+  .splits-head { margin-bottom: var(--space-2xl); }
+  .splits-head .section-title { display: flex; flex-direction: column; }
+
+  .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255, 255, 255, 0.12); border-radius: var(--radius-lg); overflow: hidden; }
+  .split { position: relative; background: #0a1633; padding: var(--space-xl) var(--space-lg) var(--space-lg); display: flex; flex-direction: column; gap: var(--space-sm); min-height: 210px; }
+  .split-lane { position: absolute; top: var(--space-md); right: var(--space-md); font-family: var(--font-display); font-weight: 800; font-size: 1rem; color: rgba(255, 255, 255, 0.35); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 4px; width: 1.8rem; height: 1.8rem; display: grid; place-items: center; }
+  .split-value { font-family: var(--font-display); font-weight: 900; font-size: clamp(3.4rem, 2.4rem + 4vw, 5.6rem); line-height: 0.9; color: var(--gold); text-shadow: 0 0 22px rgba(233, 178, 60, 0.25); }
+  .split-label { font-size: var(--text-base); color: rgba(255, 255, 255, 0.84); line-height: 1.4; max-width: 30ch; }
+  .splits-note { margin-top: var(--space-xl); color: rgba(255, 255, 255, 0.72); font-size: var(--text-sm); }
+
+  @media (max-width: 900px) { .board { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .board { grid-template-columns: 1fr; } .split { min-height: 0; } }
+</style>

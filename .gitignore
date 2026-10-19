@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+.env
+
+# Internal research with opposition notes: never publish
+RESEARCH.md
+BRIEF.md
+npm-debug.log*
+.env.*
+.vscode/
+INTERNAL.md

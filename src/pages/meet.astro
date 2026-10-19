@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import MeetHero from '../components/meet/MeetHero.astro';
+import MeetSplits from '../components/meet/MeetSplits.astro';
+import MeetRelay from '../components/meet/MeetRelay.astro';
+import MeetQuote from '../components/meet/MeetQuote.astro';
+import MeetOlympicWay from '../components/meet/MeetOlympicWay.astro';
+import MeetNews from '../components/meet/MeetNews.astro';
+import MeetCTA from '../components/meet/MeetCTA.astro';
+---
+
+<Layout
+  title="Meet Shakedia Jones | USA Olympian, Coach, Neighbor"
+  description="Nine IHSA state titles, the 2000 U.S. Olympic Team, the founder of FLY: how a kid from Waukegan's South Side came home to run for the 1st Ward."
+>
+  <Navbar />
+  <main id="main" tabindex="-1">
+    <MeetHero />
+    <MeetSplits />
+    <MeetRelay />
+    <MeetQuote />
+    <MeetOlympicWay />
+    <MeetNews />
+    <MeetCTA />
+  </main>
+  <Footer />
+</Layout>

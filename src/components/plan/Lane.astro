@@ -1,0 +1,123 @@
+---
+// One lane of the Game Plan. Strings come from plan.en.json (English fallback) and are
+// swapped client side through data-i18n keys under plan.lanes.<id>.
+//
+// DRAFT FOR CANDIDATE APPROVAL: the commitments (c1 to c4) and the why-it-matters copy
+// for every lane are proposed wording. Shakedia Jones has not yet approved them.
+// Do not treat them as final campaign positions until she signs off.
+import en from '../../i18n/parts/plan.en.json';
+
+export interface Props { id: 'l1' | 'l2' | 'l3' | 'l4'; n: number; tone?: 'chalk' | 'chalk-2' }
+const { id, n, tone = 'chalk' } = Astro.props;
+const t = en.plan;
+const L = t.lanes[id] as Record<string, string>;
+const k = (key: string) => `plan.lanes.${id}.${key}`;
+const commitments = ['c1', 'c2', 'c3', 'c4'];
+const hasSlot = Astro.slots.has('default');
+---
+
+<section class:list={['lane', 'section-padding', `tone-${tone}`]} id={`lane-${n}`} aria-labelledby={`lane-${n}-title`}>
+  <div class="container lane-grid">
+    <div class="lane-marker" aria-hidden="true">
+      <span class="marker-num">{n}</span>
+      <span class="marker-lines"></span>
+    </div>
+
+    <div class="lane-body">
+      <header class="lane-head">
+        <span class="section-label animate-in">
+          <span class="lane-chip" aria-hidden="true">{n}</span>
+          <span data-i18n={k('name')}>{L.name}</span>
+        </span>
+        <h2 class="section-title lane-title animate-in" id={`lane-${n}-title`}>
+          <span data-i18n={k('title_1')}>{L.title_1}</span>
+          <span class="accent" data-i18n={k('title_2')}>{L.title_2}</span>
+        </h2>
+      </header>
+
+      <div class:list={['lane-cols', { 'has-aside': hasSlot }]}>
+        <div class="why animate-in">
+          <h3 class="mini-label" data-i18n="plan.why_label">{t.why_label}</h3>
+          <p data-i18n={k('why_1')}>{L.why_1}</p>
+          <p data-i18n={k('why_2')}>{L.why_2}</p>
+          {hasSlot && <div class="lane-aside"><slot /></div>}
+        </div>
+
+        <div class="commits card animate-in" style="--reveal-delay:0.08s">
+          <h3 class="mini-label commits-label" data-i18n="plan.commit_label">{t.commit_label}</h3>
+          <ol class="splits">
+            {commitments.map((c, i) => (
+              <li class="split">
+                <span class="split-tag"><span data-i18n="plan.split">{t.split}</span> <span class="stat-tabular">{n}.{i + 1}</span></span>
+                <p data-i18n={k(c)}>{L[c]}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tone-chalk { --lane-bg: var(--chalk); background: var(--lane-bg); }
+  .tone-chalk-2 { --lane-bg: var(--chalk-2); background: var(--lane-bg); }
+  .lane { scroll-margin-top: var(--nav-height); }
+
+  .lane-grid { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: var(--space-2xl); }
+
+  /* A big painted lane number with the lane line running down beside it */
+  .lane-marker { position: relative; display: flex; flex-direction: column; align-items: center; }
+  .marker-num {
+    position: sticky; top: calc(var(--nav-height) + var(--space-lg));
+    font-family: var(--font-display); font-weight: 900; line-height: 0.85;
+    font-size: clamp(6rem, 4rem + 6vw, 9.5rem);
+    color: transparent; -webkit-text-stroke: 3px var(--track);
+    z-index: 1; background: var(--lane-bg); padding-block: 0.1em;
+  }
+  .marker-lines {
+    position: absolute; top: 0; bottom: 0; left: 50%; width: 22px; transform: translateX(-50%); z-index: 0;
+    border-left: 3px solid var(--track); border-right: 3px solid var(--track); opacity: 0.22;
+  }
+
+  .lane-title { font-size: var(--text-3xl); overflow-wrap: anywhere; margin-bottom: var(--space-xl); }
+  .lane-title span { display: block; }
+
+  .lane-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: var(--space-2xl); align-items: start; }
+
+  .mini-label {
+    font-family: var(--font-label); font-weight: 700; font-size: var(--text-sm); text-transform: uppercase;
+    letter-spacing: 0.18em; color: var(--navy); margin-bottom: var(--space-md); line-height: 1.2;
+  }
+  .why p { color: var(--ink-soft); margin-bottom: var(--space-md); }
+  .lane-aside { margin-top: var(--space-xl); }
+
+  .commits { padding: var(--space-xl); border-top: 6px solid var(--track); }
+  .commits-label { color: var(--track-deep); }
+  .splits { display: flex; flex-direction: column; }
+  .split { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-md); padding: var(--space-md) 0; border-top: 1px dashed var(--line); }
+  .split:first-child { border-top: none; padding-top: 0; }
+  .split p { color: var(--ink); font-weight: 500; }
+  .split-tag {
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    min-width: 4.2rem; padding: 0.35rem 0.5rem; border-radius: 6px; background: var(--navy); color: var(--white);
+    font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; line-height: 1;
+    align-self: start;
+  }
+  .split-tag .stat-tabular { font-family: var(--font-display); font-size: 1.35rem; letter-spacing: 0.02em; color: var(--gold); }
+
+  @media (max-width: 1024px) {
+    .lane-cols { grid-template-columns: 1fr; gap: var(--space-xl); }
+  }
+  @media (max-width: 760px) {
+    .lane-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+    .lane-marker { flex-direction: row; align-items: center; gap: var(--space-md); }
+    .marker-num { position: static; font-size: 5rem; -webkit-text-stroke-width: 2.5px; }
+    .marker-lines { position: static; transform: none; flex: 1; width: auto; height: 22px; border: none; border-top: 3px solid var(--track); border-bottom: 3px solid var(--track); }
+  }
+  @media (max-width: 420px) {
+    .commits { padding: var(--space-lg) var(--space-md); }
+    .split { gap: var(--space-sm); }
+    .split-tag { min-width: 3.6rem; }
+  }
+</style>

@@ -1,0 +1,79 @@
+{
+  "home": {
+    "hero": {
+      "kicker": "Waukegan · 1st Ward Alderperson · April 6, 2027",
+      "headline_1": "She ran for Team USA.",
+      "headline_2": "Now she's running for the 1st Ward.",
+      "sub": "Shakedia Jones is a 2000 U.S. Olympic Team member (4x100m relay pool), a nine-time Illinois state champion, a UCLA graduate with an MBA, and the founder of FLY, which by her 2024 count has helped more than 600 young people. She came home to Waukegan in 2013 and has worked for its kids ever since. Now she wants to work for its neighbors.",
+      "cta_join": "Join the team",
+      "cta_meet": "Meet Shakedia",
+      "countdown": "days to Election Day",
+      "chip_in": "Chip in",
+      "photo_alt": "Two women stand under the street sign for Shakedia Jones Olympic Way on George Avenue; one points up at it.",
+      "photo_caption": "Dedication day on George Avenue, July 14, 2024.",
+      "bib_top": "Waukegan · Ward"
+    },
+    "splits": {
+      "label": "The splits",
+      "title_1": "A record you can",
+      "title_2": "look up.",
+      "titles": "IHSA state titles, the most in Illinois girls’ history when she graduated in 1997",
+      "wj": "World Junior gold medals for Team USA, 1998",
+      "oly": "U.S. Olympic Team, Sydney (4x100m relay pool)",
+      "ncaa": "NCAA team titles with UCLA",
+      "fly": "young people helped through FLY (her 2024 count)",
+      "founded": "the year she founded Furthering the Lives of Youth (FLY)",
+      "note": "Plus: two-time Gatorade Illinois Player of the Year and Lake County High School Hall of Fame (2019). She has coached the Waukegan High School girls track team."
+    },
+    "excellence": {
+      "label": "The honorary sign",
+      "title_1": "Excellence from",
+      "title_2": "Waukegan.",
+      "p1": "In July 2024, Waukegan dedicated the honorary street name \"Shakedia Jones Olympic Way\" on George Avenue, near her childhood home. That August, the City Council honored her with a proclamation.",
+      "quote": "\"Why isn't there a place where we can go to find out the people in Waukegan who have done amazing things...\"",
+      "quote_tr": "",
+      "quote_cite": "Shakedia Jones, Waukegan City Council, August 2024",
+      "p2": "She asked the city to give that place a home, so people can see excellence from Waukegan. She was asking for the next kid on the block, the one who needs to see that champions come from here. That is the job she wants: making excellence ordinary in the 1st Ward.",
+      "still_alt": "Holding a framed proclamation, she speaks into a microphone in the Waukegan City Council chambers.",
+      "still_caption": "Honored by the City Council, August 2024."
+    },
+    "plan": {
+      "label": "The game plan",
+      "title_1": "Four lanes.",
+      "title_2": "One finish line.",
+      "lede": "A coach sets the goal, makes the plan, and posts the splits. That is how Shakedia will work for the 1st Ward.",
+      "safe_title": "Safe neighborhoods",
+      "safe_body": "Parks, blocks and walks home where kids and seniors feel safe, built with neighbors and block clubs.",
+      "youth_title": "Youth programming",
+      "youth_body": "More open doors after school and all summer, and help for families who can’t cover the fees.",
+      "infra_title": "Strong infrastructure",
+      "infra_body": "Streets, sidewalks, alleys and lead line replacement, tracked block by block and reported back.",
+      "open_title": "Transparent government",
+      "open_body": "Ward meetings in English and Spanish, major votes explained, and a monthly report to the 1st Ward.",
+      "cta": "See the full game plan"
+    },
+    "fly": {
+      "label": "Furthering the Lives of Youth",
+      "title_1": "She built the program",
+      "title_2": "she never had.",
+      "lede": "In 2014 Shakedia founded FLY, a 501(c)(3) nonprofit that steps in when talented, hardworking kids from families with limited means need a hand. By her 2024 count, it has helped more than 600 young people.",
+      "i1": "Track and volleyball fees, and the gear to go with them",
+      "i2": "A first cello for a young Waukegan cellist",
+      "i3": "Sponsorship of a youth track club team and community track meets",
+      "i4": "Trips, including to Los Angeles, and Chicago Sky games",
+      "quote": "\"So this, in essence, is the program I would have been part of had it existed when I was younger.\"",
+      "quote_tr": "",
+      "quote_cite": "Shakedia Jones, Chicago Tribune, 2016",
+      "photo_a_alt": "Young people and adults in matching gray FLY shirts stand together on the grass at a park event.",
+      "photo_a_caption": "FLY in the park, summer 2017.",
+      "separation": "Furthering the Lives of Youth is a nonprofit organization. It is separate from this campaign and does not endorse candidates."
+    },
+    "join": {
+      "label": "Your leg",
+      "title_1": "Take the baton.",
+      "lede": "Sign a petition, knock a few doors, put up a yard sign, or tell a neighbor in English or Spanish. Every leg counts.",
+      "cta_join": "Join the team",
+      "cta_donate": "Chip in"
+    }
+  }
+}

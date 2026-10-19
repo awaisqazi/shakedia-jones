@@ -1,0 +1,102 @@
+---
+// The honors of 2024: the street dedication and the council proclamation. The page's navy section.
+// The sign photo is a past-tense record of the dedication; it does not claim the sign is still posted.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section class="olympic-way bg-navy on-dark section-padding" aria-labelledby="way-title">
+  <div class="container way-grid">
+    <div class="way-visual animate-in">
+      <figure class="photo sign-photo">
+        <img src={`${base}/images/olympic-way-sign.webp`} width="460" height="262" alt="The green George Av street sign with the brown Shakedia Jones Olympic Way honorary blade beneath it." data-i18n-attr="alt:meet.way.sign_alt" loading="lazy" decoding="async" />
+        <figcaption data-i18n="meet.way.sign_cap">The honorary sign as dedicated on July 14, 2024.</figcaption>
+      </figure>
+      <figure class="photo council-photo">
+        <img src={`${base}/images/council-honor-2024.webp`} width="320" height="568" alt="A group gathered at the Waukegan City Council ceremony, one woman holding a framed proclamation." data-i18n-attr="alt:meet.way.photo_alt" loading="lazy" decoding="async" />
+        <figcaption data-i18n="meet.way.photo_cap">Honored by the Waukegan City Council, August 2024.</figcaption>
+      </figure>
+    </div>
+
+    <div class="way-copy">
+      <p class="section-label animate-in"><span class="kick-bar" aria-hidden="true"></span><span data-i18n="meet.way.kicker">Shakedia Jones Olympic Way</span></p>
+      <h2 id="way-title" class="section-title animate-in">
+        <span data-i18n="meet.way.title_1">Excellence</span>
+        <span class="accent" data-i18n="meet.way.title_2">from Waukegan</span>
+      </h2>
+      <p class="section-lede animate-in" data-i18n="meet.way.lede">In 2024 her hometown honored her twice. She used the moment to ask the city to honor everyone else, too.</p>
+
+      <ol class="dates">
+        <li class="date-card animate-in" style="--reveal-delay: 0.05s">
+          <span class="date-chip" aria-hidden="true">1</span>
+          <p class="date-when"><span data-i18n="meet.way.d1_day">Sunday</span><span class="sep" aria-hidden="true">/</span><span data-i18n="meet.way.d1_date">July 14, 2024</span></p>
+          <h3 class="date-title" data-i18n="meet.way.d1_title">The street dedication</h3>
+          <p class="date-text" data-i18n="meet.way.d1_text">Waukegan dedicated the honorary street name "Shakedia Jones Olympic Way" on George Avenue, near her childhood home.</p>
+        </li>
+        <li class="date-card animate-in" style="--reveal-delay: 0.1s">
+          <span class="date-chip" aria-hidden="true">2</span>
+          <p class="date-when"><span data-i18n="meet.way.d2_day">Monday</span><span class="sep" aria-hidden="true">/</span><span data-i18n="meet.way.d2_date">August 5, 2024</span></p>
+          <h3 class="date-title" data-i18n="meet.way.d2_title">The council proclamation</h3>
+          <p class="date-text" data-i18n="meet.way.d2_text">The City Council honored her with a proclamation. The room gave her five standing ovations.</p>
+        </li>
+      </ol>
+
+      <blockquote class="way-quote animate-in">
+        <p class="q-text" lang="en" data-i18n="meet.way.q1">Why isn't there a place where we can go to find out the people in Waukegan who have done amazing things,</p>
+        <p class="q-text q-strong" lang="en" data-i18n="meet.way.q2">...so that people can see excellence from Waukegan.</p>
+        <p class="tr-line" lang="es"><span class="tr-label" data-i18n="meet.way.tr_label">Translation</span> <span data-i18n="meet.way.q_tr">¿Por qué no existe un lugar donde podamos conocer a las personas de Waukegan que han hecho cosas increíbles? ...para que la gente vea la excelencia de Waukegan.</span></p>
+        <footer class="q-src" data-i18n="meet.way.q_src">At the Waukegan City Council, August 2024</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<style>
+  .olympic-way { position: relative; overflow: hidden; }
+  /* Gold lane lines fading in from the right edge */
+  .olympic-way::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(90deg, transparent 0 70px, rgba(233, 178, 60, 0.07) 70px 73px);
+    -webkit-mask-image: linear-gradient(90deg, transparent 30%, #000);
+    mask-image: linear-gradient(90deg, transparent 30%, #000);
+    pointer-events: none;
+  }
+  .kick-bar { display: inline-block; width: 34px; height: 4px; background: var(--gold); border-radius: 2px; }
+  .way-grid { position: relative; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--space-3xl); align-items: start; }
+
+  .way-visual { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--space-xl); }
+  .sign-photo { width: min(100%, 460px); aspect-ratio: 460 / 300; box-shadow: var(--shadow-xl); border: 4px solid rgba(255, 255, 255, 0.12); transform: rotate(-1.5deg); }
+  .council-photo { width: min(100%, 300px); aspect-ratio: 320 / 568; box-shadow: var(--shadow-xl); border: 4px solid rgba(255, 255, 255, 0.12); }
+  .council-photo img { object-position: center top; }
+
+  .dates { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); margin: var(--space-xl) 0; }
+  .date-card { position: relative; background: var(--navy-2); border: 1px solid var(--line-light); border-radius: var(--radius-md); padding: var(--space-lg); }
+  .date-chip {
+    position: absolute; top: var(--space-md); right: var(--space-md);
+    display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border: 2px solid var(--gold); border-radius: 4px;
+    font-family: var(--font-display); font-weight: 800; color: var(--gold); line-height: 1;
+  }
+  .date-when { display: flex; flex-wrap: wrap; gap: 0 0.45em; font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: var(--text-sm); color: var(--gold); padding-right: 2.4rem; }
+  .sep { opacity: 0.5; }
+  .date-title { font-size: var(--text-2xl); margin: var(--space-sm) 0; }
+  .date-text { font-size: var(--text-sm); color: rgba(255, 255, 255, 0.8); line-height: 1.55; }
+
+  .way-quote { border-left: 4px solid var(--gold); padding-left: var(--space-lg); }
+  .q-text { font-size: var(--text-lg); font-style: italic; font-weight: 500; color: rgba(255, 255, 255, 0.88); line-height: 1.45; }
+  .q-text:first-child::before { content: '\201C'; }
+  .q-strong { margin-top: var(--space-sm); font-family: var(--font-display); font-style: normal; font-weight: 800; text-transform: uppercase; font-size: var(--text-3xl); line-height: 1; color: var(--white); }
+  .q-strong::after { content: '\201D'; color: var(--gold); }
+  .tr-line { margin-top: var(--space-md); font-size: var(--text-sm); color: rgba(255, 255, 255, 0.7); }
+  .tr-label { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78em; color: var(--gold); margin-right: 0.3em; }
+  :global(html[lang='en']) .tr-line { display: none; }
+  .q-src { margin-top: var(--space-md); font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: var(--text-sm); color: var(--gold); }
+
+  @media (max-width: 960px) {
+    .way-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
+    .way-visual { flex-direction: row; justify-content: center; flex-wrap: wrap; order: 2; }
+    .council-photo { width: min(100%, 240px); }
+    .sign-photo { transform: none; }
+  }
+  @media (max-width: 600px) {
+    .dates { grid-template-columns: 1fr; }
+  }
+</style>

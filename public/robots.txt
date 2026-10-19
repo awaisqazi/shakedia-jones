@@ -1,0 +1,7 @@
+# Crawlers only read robots.txt at the host root. On the GitHub Pages project site
+# (awaisqazi.github.io/shakedia-jones/) this file is not consulted; it takes effect
+# once a custom domain serves the site at "/". Update the Sitemap URL then.
+User-agent: *
+Allow: /
+
+Sitemap: https://awaisqazi.github.io/shakedia-jones/sitemap-index.xml

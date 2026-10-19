@@ -1,0 +1,87 @@
+---
+// Asks that work today, with no contact info and no backend: tell a neighbor (native share,
+// with text / WhatsApp / copy-link fallbacks) and add Election Day to a calendar.
+export interface Props { variant?: 'light' | 'dark'; class?: string; compact?: boolean }
+const { variant = 'light', class: cls, compact = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const linksUrl = new URL(`${base}/links/`, Astro.site).href;
+const shareText = `Shakedia Jones, 2000 U.S. Olympic Team member and Waukegan High track coach, is running for 1st Ward Alderperson. See why: ${linksUrl}`;
+const sms = `sms:?&body=${encodeURIComponent(shareText)}`;
+const wa = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+---
+
+<div class:list={['share-bar', `sb-${variant}`, cls, { compact }]} data-share-bar data-share-url={linksUrl} data-share-title="Shakedia Jones for 1st Ward">
+  {!compact && <p class="sb-label" data-i18n="share.label">Works right now, no sign-up needed</p>}
+  <div class="sb-row">
+    <button type="button" class="btn btn-track sb-native" data-share-native hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+      <span data-i18n="share.native">Tell a neighbor</span>
+    </button>
+    <a href={sms} class="btn btn-track sb-sms" data-share-fallback data-i18n="share.sms" data-share-text={shareText}>Text a neighbor</a>
+    <a href={wa} class="btn btn-outline sb-wa" target="_blank" rel="noopener" data-share-fallback data-share-text={shareText}><span data-i18n="share.whatsapp">WhatsApp</span><span class="visually-hidden" data-i18n="ui.newtab">(opens in a new tab)</span></a>
+    <button type="button" class="btn btn-outline sb-copy" data-share-copy><span data-i18n="share.copy">Copy link</span></button>
+    <a href={`${base}/election-day.ics`} class="btn btn-outline sb-cal" download="election-day-april-6-2027.ics" data-i18n="share.calendar">Add April 6 to my calendar</a>
+  </div>
+  <p class="sb-toast" role="status" aria-live="polite" data-share-toast></p>
+</div>
+
+<script>
+  // Share text is translated at runtime so Spanish readers forward Spanish.
+  const TEXT = {
+    en: (u: string) => `Shakedia Jones, 2000 U.S. Olympic Team member and Waukegan High track coach, is running for 1st Ward Alderperson. See why: ${u}`,
+    es: (u: string) => `Shakedia Jones, integrante del Equipo Olímpico de EE. UU. del 2000 y entrenadora de atletismo en Waukegan High, es candidata a concejal del Distrito 1. Vea por qué: ${u}`,
+  };
+  const COPIED = { en: 'Link copied. Paste it anywhere.', es: 'Enlace copiado. Péguelo donde quiera.' };
+  const lang = () => (document.documentElement.lang === 'es' ? 'es' : 'en');
+
+  document.querySelectorAll<HTMLElement>('[data-share-bar]').forEach((bar) => {
+    const url = bar.dataset.shareUrl || location.href;
+    const title = bar.dataset.shareTitle || document.title;
+    const native = bar.querySelector<HTMLButtonElement>('[data-share-native]');
+    const sms = bar.querySelector<HTMLAnchorElement>('.sb-sms');
+    const wa = bar.querySelector<HTMLAnchorElement>('.sb-wa');
+    const copy = bar.querySelector<HTMLButtonElement>('[data-share-copy]');
+    const toast = bar.querySelector<HTMLElement>('[data-share-toast]');
+
+    const refresh = () => {
+      const text = TEXT[lang()](url);
+      if (sms) sms.href = `sms:?&body=${encodeURIComponent(text)}`;
+      if (wa) wa.href = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    };
+    refresh();
+    document.addEventListener('sj:langchange', refresh);
+
+    if (native && typeof navigator.share === 'function') {
+      native.hidden = false;
+      if (sms) sms.classList.add('sb-secondary');
+      native.addEventListener('click', async () => {
+        try { await navigator.share({ title, text: TEXT[lang()](url), url }); } catch { /* user cancelled */ }
+      });
+    }
+
+    copy?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(url);
+        if (toast) toast.textContent = COPIED[lang()];
+        setTimeout(() => { if (toast) toast.textContent = ''; }, 2500);
+      } catch {
+        prompt(lang() === 'es' ? 'Copie este enlace:' : 'Copy this link:', url);
+      }
+    });
+  });
+</script>
+
+<style>
+  .share-bar { display: flex; flex-direction: column; gap: var(--space-sm); }
+  .sb-label { font-family: var(--font-label); font-weight: 700; font-size: var(--text-sm); letter-spacing: 0.14em; text-transform: uppercase; color: var(--track-deep); }
+  .sb-dark .sb-label { color: var(--gold); }
+  .sb-row { display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+  .sb-row .btn { font-size: var(--text-base); padding: 0.65rem 1.2rem 0.6rem; }
+  .sb-row .btn svg { width: 1.1em; height: 1.1em; }
+  .sb-secondary { background: transparent; color: var(--navy); border-color: var(--navy); box-shadow: none; }
+  .sb-dark .sb-secondary, .sb-dark .btn-outline { border-color: rgba(255, 255, 255, 0.7); color: var(--white); }
+  .sb-dark .sb-secondary:hover, .sb-dark .btn-outline:hover { background: var(--white); color: var(--navy); }
+  .sb-toast { min-height: 1.2em; font-size: var(--text-sm); font-weight: 600; color: var(--track-deep); max-width: none; }
+  .sb-dark .sb-toast { color: var(--gold); }
+  @media (max-width: 480px) { .sb-row .btn { flex: 1 1 calc(50% - var(--space-sm)); white-space: normal; } }
+</style>

@@ -1,0 +1,123 @@
+---
+// "The splits": a results board of her record, then the hometown honors.
+---
+
+<section class="meet-splits bg-chalk-2 section-padding" aria-labelledby="splits-title">
+  <div class="container">
+    <p class="section-label"><span class="kick-bar" aria-hidden="true"></span><span data-i18n="meet.splits.kicker">By the numbers</span></p>
+    <h2 id="splits-title" class="section-title">
+      <span data-i18n="meet.splits.title_1">The splits</span>
+      <span class="accent" data-i18n="meet.splits.title_2">on the record</span>
+    </h2>
+
+    <ol class="board">
+      <li class="split animate-in">
+        <span class="split-lane" aria-hidden="true">1</span>
+        <span class="split-num stat-tabular">9</span>
+        <span class="split-label" data-i18n="meet.splits.s1_label">IHSA state titles</span>
+        <span class="split-note" data-i18n="meet.splits.s1_note">100m and 200m all four years, plus the 400m in 1996</span>
+      </li>
+      <li class="split animate-in" style="--reveal-delay: 0.05s">
+        <span class="split-lane" aria-hidden="true">2</span>
+        <span class="split-num stat-tabular">2</span>
+        <span class="split-label" data-i18n="meet.splits.s2_label">Gatorade Illinois Player of the Year awards</span>
+        <span class="split-note" data-i18n="meet.splits.s2_note">Girls track and field, 1996 and 1997</span>
+      </li>
+      <li class="split animate-in" style="--reveal-delay: 0.1s">
+        <span class="split-lane" aria-hidden="true">3</span>
+        <span class="split-num stat-tabular">2</span>
+        <span class="split-label" data-i18n="meet.splits.s3_label">World Junior golds</span>
+        <span class="split-note" data-i18n="meet.splits.s3_note">100m and 4x100m relay, Annecy, France, 1998</span>
+      </li>
+      <li class="split animate-in" style="--reveal-delay: 0.15s">
+        <span class="split-lane" aria-hidden="true">4</span>
+        <span class="split-num stat-tabular">2</span>
+        <span class="split-label" data-i18n="meet.splits.s4_label">NCAA team titles with UCLA</span>
+        <span class="split-note" data-i18n="meet.splits.s4_note">2000 and 2001 indoor</span>
+      </li>
+      <li class="split split-usa animate-in" style="--reveal-delay: 0.2s">
+        <span class="split-lane" aria-hidden="true">5</span>
+        <span class="split-num stat-tabular">2000</span>
+        <span class="split-label" data-i18n="meet.splits.s5_label">U.S. Olympic Team</span>
+        <span class="split-note" data-i18n="meet.splits.s5_note">Sydney, 4x100m relay pool</span>
+      </li>
+      <li class="split split-fly animate-in" style="--reveal-delay: 0.25s">
+        <span class="split-lane" aria-hidden="true">6</span>
+        <span class="split-num stat-tabular" data-count-to="600" data-count-suffix="+">600+</span>
+        <span class="split-label" data-i18n="meet.splits.s6_label">young people helped by FLY</span>
+        <span class="split-note" data-i18n="meet.splits.s6_note">Her 2024 count, since she founded it in 2014</span>
+      </li>
+    </ol>
+
+    <div class="honors animate-in">
+      <h3 class="honors-title" data-i18n="meet.splits.honors_title">Honored at home</h3>
+      <ul class="honors-list">
+        <li class="honor">
+          <svg class="honor-icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><circle cx="12" cy="14" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 3h3l1 4.5M16 3h-3l-1 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 11l1 2.1 2.3.3-1.7 1.6.4 2.3-2-1.1-2 1.1.4-2.3-1.7-1.6 2.3-.3z" fill="currentColor"/></svg>
+          <span class="honor-text">
+            <span class="honor-name" data-i18n="meet.splits.h1_name">Lake County High School Hall of Fame</span>
+            <span class="honor-when" data-i18n="meet.splits.h1_when">Inducted 2019</span>
+          </span>
+        </li>
+        <li class="honor">
+          <svg class="honor-icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          <span class="honor-text">
+            <span class="honor-name" data-i18n="meet.splits.h2_name">Famous Waukeganites</span>
+            <span class="honor-when" data-i18n="meet.splits.h2_when">City of Waukegan</span>
+          </span>
+        </li>
+        <li class="honor">
+          <svg class="honor-icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M12 22V3M4 5h14l2 2.5L18 10H4zM6 12h14v4H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          <span class="honor-text">
+            <span class="honor-name" data-i18n="meet.splits.h3_name">Shakedia Jones Olympic Way</span>
+            <span class="honor-when" data-i18n="meet.splits.h3_when">Dedicated July 14, 2024</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kick-bar { display: inline-block; width: 34px; height: 4px; background: var(--track); border-radius: 2px; }
+  .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-top: var(--space-xl); }
+  .split {
+    position: relative; display: flex; flex-direction: column; gap: 0.35rem;
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-md);
+    padding: var(--space-lg) var(--space-lg) var(--space-lg) calc(var(--space-lg) + 8px);
+    box-shadow: var(--shadow-sm); overflow: hidden;
+  }
+  /* A painted lane edge on the left of every result */
+  .split::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: var(--track); }
+  .split-usa::before { background: var(--navy); }
+  .split-fly::before { background: var(--fly); }
+  .split-lane {
+    position: absolute; top: var(--space-md); right: var(--space-md);
+    display: grid; place-items: center; width: 1.9rem; height: 1.9rem;
+    border: 2px solid var(--line); border-radius: 4px; color: var(--muted);
+    font-family: var(--font-display); font-weight: 800; font-size: 1rem; line-height: 1;
+  }
+  .split-num { font-family: var(--font-display); font-weight: 900; font-size: var(--text-5xl); line-height: 0.85; color: var(--navy); }
+  .split-fly .split-num { color: var(--fly-deep); }
+  .split-label { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: var(--text-lg); line-height: 1.15; color: var(--navy); padding-right: 2rem; }
+  .split-note { font-size: var(--text-sm); color: var(--muted); line-height: 1.4; }
+
+  .honors { margin-top: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-xl); align-items: center; border-top: 2px solid var(--line); padding-top: var(--space-xl); }
+  .honors-title { font-size: var(--text-2xl); color: var(--track-deep); }
+  .honors-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+  .honor { display: flex; align-items: center; gap: var(--space-sm); }
+  .honor-icon { flex-shrink: 0; color: var(--track); }
+  .honor-text { display: flex; flex-direction: column; line-height: 1.25; }
+  .honor-name { font-weight: 700; color: var(--navy); }
+  .honor-when { font-size: var(--text-sm); color: var(--muted); }
+
+  @media (max-width: 960px) {
+    .board { grid-template-columns: repeat(2, 1fr); }
+    .honors { grid-template-columns: 1fr; gap: var(--space-md); }
+  }
+  @media (max-width: 720px) { .honors-list { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) {
+    .board { grid-template-columns: 1fr; }
+    .split-num { font-size: var(--text-4xl); }
+  }
+</style>

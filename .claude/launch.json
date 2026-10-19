@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "shakedia-dev", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev", "--", "--port", "4410"], "port": 4410, "autoPort": false }
+  ]
+}

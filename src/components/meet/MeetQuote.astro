@@ -1,0 +1,65 @@
+---
+// Pull quote: "make it your Olympics". Typographic only: the quote crosses a finish line
+// (a checkered post on the left), with a big lane numeral standing behind it.
+---
+
+<section class="meet-quote bg-chalk-2" aria-labelledby="quote-kicker">
+  <div class="container quote-wrap">
+    <span class="finish-post" aria-hidden="true"></span>
+    <div class="quote-body animate-in">
+      <span class="lane-num" aria-hidden="true">1</span>
+      <p id="quote-kicker" class="section-label"><span class="kick-bar" aria-hidden="true"></span><span data-i18n="meet.quote.kicker">In her words</span></p>
+      <blockquote class="big-quote">
+        <span class="q-mark" aria-hidden="true">&ldquo;</span>
+        <p class="q-text" lang="en" data-i18n="meet.quote.text">I tell them whatever it is you do, make it your Olympics.</p>
+        <p class="tr-line" lang="es"><span class="tr-label" data-i18n="meet.quote.tr_label">Translation</span> <span data-i18n="meet.quote.tr">Les digo que, sea lo que sea que hagan, lo conviertan en sus Olimpiadas.</span></p>
+        <footer class="q-src" data-i18n="meet.quote.src">Shakedia Jones, Chicago Tribune, 2016</footer>
+      </blockquote>
+      <div class="finish-rule" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .meet-quote { padding: var(--space-4xl) 0; overflow: hidden; }
+  .quote-wrap { position: relative; display: grid; grid-template-columns: auto 1fr; gap: var(--space-2xl); align-items: stretch; }
+  /* The finish line, stood upright: a checkered post the quote runs through */
+  .finish-post {
+    width: 18px; border-radius: 4px;
+    background: repeating-conic-gradient(var(--navy) 0 25%, var(--white) 0 50%) 0 0 / 12px 12px;
+    box-shadow: var(--shadow-sm);
+  }
+  .quote-body { position: relative; min-width: 0; padding: var(--space-md) 0; }
+  /* A giant outlined lane number, like the painted numerals at the start line */
+  .lane-num {
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    font-family: var(--font-display); font-weight: 900; font-size: clamp(10rem, 22vw, 20rem); line-height: 0.8;
+    color: transparent; -webkit-text-stroke: 3px rgba(194, 65, 42, 0.22);
+    pointer-events: none; user-select: none;
+  }
+  .kick-bar { display: inline-block; width: 34px; height: 4px; background: var(--track); border-radius: 2px; }
+  .quote-body > :not(.lane-num) { position: relative; }
+  .big-quote { position: relative; }
+  .q-mark { position: absolute; left: -0.3em; top: -0.12em; font-family: var(--font-display); font-weight: 900; font-size: 9rem; line-height: 1; color: var(--track); opacity: 0.18; pointer-events: none; }
+  .q-text { position: relative; font-family: var(--font-display); font-weight: 700; text-transform: none; letter-spacing: -0.01em; font-size: var(--text-5xl); line-height: 0.95; color: var(--navy); max-width: 20ch; }
+  .tr-line { position: relative; margin-top: var(--space-md); font-size: var(--text-base); color: var(--ink-soft); max-width: 60ch; }
+  .tr-label { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78em; color: var(--track-deep); margin-right: 0.3em; }
+  :global(html[lang='en']) .tr-line { display: none; }
+  .q-src { position: relative; margin-top: var(--space-lg); font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: var(--text-sm); color: var(--track-deep); }
+  .finish-rule { margin-top: var(--space-xl); max-width: 280px; }
+
+  @media (max-width: 860px) {
+    .meet-quote { padding: var(--space-3xl) 0; }
+    .quote-wrap { gap: var(--space-lg); }
+    .q-text { font-size: var(--text-4xl); }
+    .q-mark { font-size: 6rem; }
+  }
+  @media (max-width: 480px) {
+    .finish-post { width: 12px; background-size: 8px 8px; }
+    .quote-wrap { gap: var(--space-md); }
+    .q-text { font-size: clamp(1.9rem, 9vw, 2.4rem); }
+    .lane-num { font-size: 9rem; -webkit-text-stroke-width: 2px; }
+    .q-mark { display: none; }
+    .q-text::before { content: '\201C'; color: var(--track); }
+  }
+</style>

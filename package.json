@@ -1,0 +1,27 @@
+{
+  "name": "shakedia-jones",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "i18n:check": "node scripts/i18n-check.mjs",
+    "links:check": "node scripts/link-check.mjs",
+    "check": "astro build && node scripts/i18n-check.mjs && node scripts/link-check.mjs",
+    "check:types": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^6.1.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
+  }
+}

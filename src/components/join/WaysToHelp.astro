@@ -1,0 +1,80 @@
+---
+// Ways to help, drawn as numbered lanes on a track. The "Give" lane renders only once
+// donations are open (canDonate): no solicitation before the committee exists.
+import { canDonate } from '../../data/campaign.js';
+
+const allWays = [
+  { k: 'petition', title: 'Sign and carry petitions', text: 'Petitions are how a candidate gets on the ballot, and volunteers help gather signatures from 1st Ward voters. Sign one, or gather signatures on your own block.', rules: 'Petition signers must be registered voters in the 1st Ward. Circulators must meet state eligibility rules; we will train you before you start.', cta: 'I can carry a petition', href: '#signup', hot: true },
+  { k: 'doors', title: 'Knock doors, talk to neighbors', text: 'The best campaign is a neighbor on the porch. We give you a short list, a few talking points and a partner.', cta: 'Count me in', href: '#signup' },
+  { k: 'sign', title: 'Host a yard sign', text: 'One sign in one window starts the conversation on a whole block. We drop it off.', cta: 'Request a sign', href: '#signup' },
+  { k: 'events', title: 'Help at events', text: 'Set up tables, greet neighbors, hand out water at the park. Every event needs a crew.', cta: 'Join the crew', href: '#signup' },
+  { k: 'words', title: 'Spread the word in Spanish and English', text: 'Share posts, translate a flyer, talk about the campaign with your neighbors, team or group chat, in whichever language they speak.', cta: 'I can help share', href: '#signup' },
+  { k: 'give', title: 'Give', text: 'Any amount buys clipboards, flyers and yard signs. Small gifts from neighbors go the farthest.', cta: 'How to give', href: '#donate', donate: true },
+];
+const ways = allWays.filter((w) => !w.donate || canDonate());
+const six = ways.length === 6;
+---
+
+<section class="section-padding bg-chalk-2 wth" id="ways" aria-labelledby="wth-title">
+  <div class="container">
+    <span class="section-label animate-in"><span class="lane-chip" aria-hidden="true">2</span><span data-i18n="join.ways.label">Pick your lane</span></span>
+    <h2 class="section-title animate-in" id="wth-title">
+      <span data-i18n={six ? 'join.ways.title_a' : 'join.ways.title_a_five'}>{six ? 'Six ways' : 'Five ways'}</span>
+      <span class="accent" data-i18n="join.ways.title_b">to help</span>
+    </h2>
+    <p class="section-lede animate-in" data-i18n="join.ways.lede">Every lane matters. Choose one, choose three, or tell us how much time you have and we will find the right fit.</p>
+
+    <ol class="wth-lanes">
+      {ways.map((w, i) => (
+        <li class:list={['wth-lane animate-in', { hot: w.hot }]} style={`--reveal-delay: ${i * 0.05}s`}>
+          <span class="wth-num" aria-hidden="true">{i + 1}</span>
+          <div class="wth-body">
+            {w.hot && <span class="wth-tag" data-i18n="join.ways.now_tag">Step one</span>}
+            <h3 class="wth-title" data-i18n={`join.ways.${w.k}_title`}>{w.title}</h3>
+            <p class="wth-text" data-i18n={`join.ways.${w.k}_text`}>{w.text}</p>
+            {w.rules && <p class="wth-rules" data-i18n={`join.ways.${w.k}_rules`}>{w.rules}</p>}
+            <a href={w.href} class="arrow-link wth-cta" data-i18n={`join.ways.${w.k}_cta`}>{w.cta}</a>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .wth-lanes { margin-top: var(--space-2xl); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); counter-reset: none; }
+  .wth-lane {
+    position: relative; display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg);
+    background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--line);
+    padding: var(--space-xl) var(--space-xl) var(--space-xl) 0; overflow: hidden; box-shadow: var(--shadow-sm);
+  }
+  /* The lane line on the left edge */
+  .wth-lane::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--track); }
+  .wth-num {
+    display: grid; place-items: start center; width: 4.2rem; padding-left: 6px;
+    font-family: var(--font-display); font-weight: 900; font-size: 3.6rem; line-height: 0.85; color: var(--track);
+  }
+  .wth-body { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+  .wth-title { font-size: var(--text-2xl); line-height: 1; }
+  .wth-text { color: var(--ink-soft); }
+  .wth-rules { font-size: var(--text-sm); color: var(--ink-soft); padding-left: var(--space-sm); border-left: 3px solid var(--track); }
+  .wth-cta { margin-top: auto; min-height: 44px; font-size: var(--text-base); }
+  .wth-tag {
+    font-family: var(--font-label); font-weight: 700; font-size: var(--text-xs); letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--navy); color: var(--gold); padding: 3px 10px; border-radius: 999px;
+  }
+  .wth-lane.hot { background: var(--navy); border-color: var(--navy); }
+  .wth-lane.hot::before { background: var(--gold); }
+  .wth-lane.hot .wth-num { color: var(--gold); }
+  .wth-lane.hot .wth-title { color: var(--white); }
+  .wth-lane.hot .wth-text { color: rgba(255, 255, 255, 0.82); }
+  .wth-lane.hot .wth-rules { color: rgba(255, 255, 255, 0.78); border-left-color: var(--gold); }
+  .wth-lane.hot .wth-cta { color: var(--gold); }
+  .wth-lane.hot .wth-tag { background: var(--gold); color: var(--navy); }
+
+  @media (max-width: 820px) { .wth-lanes { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) {
+    .wth-lane { gap: var(--space-sm); padding: var(--space-lg) var(--space-lg) var(--space-lg) 0; }
+    .wth-num { width: 3rem; font-size: 2.6rem; }
+  }
+</style>

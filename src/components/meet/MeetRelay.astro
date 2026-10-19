@@ -1,0 +1,334 @@
+---
+// Her story as a relay: five legs on a single painted lane that runs down the page.
+// Each leg chip sticks under the nav while that leg is on screen.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const img = (f: string) => `${base}/images/${f}`;
+---
+
+<section id="relay" class="relay section-padding" aria-labelledby="relay-title">
+  <div class="container">
+    <header class="relay-head">
+      <p class="section-label"><span class="kick-bar" aria-hidden="true"></span><span data-i18n="meet.relay.kicker">Her story</span></p>
+      <h2 id="relay-title" class="section-title">
+        <span data-i18n="meet.relay.title_1">A relay</span>
+        <span class="accent" data-i18n="meet.relay.title_2">in five legs</span>
+      </h2>
+      <p class="section-lede" data-i18n="meet.relay.lede">Nobody runs this race alone. Someone passed her the baton. She carried it around the world, brought it home, and now she is running the anchor leg for her neighbors.</p>
+    </header>
+
+    <ol class="legs">
+      <!-- Leg 1: the South Side -->
+      <li class="leg" id="leg-1">
+        <div class="leg-rail">
+          <span class="leg-chip"><span class="leg-word" data-i18n="meet.relay.leg">Leg</span><span class="leg-num">1</span></span>
+        </div>
+        <div class="leg-body">
+          <div class="leg-text animate-in">
+            <p class="leg-when" data-i18n="meet.relay.l1_when">Waukegan, the early years</p>
+            <h3 class="leg-title" data-i18n="meet.relay.l1_title">Born and raised in Waukegan</h3>
+            <p data-i18n="meet.relay.l1_p1">Shakedia Jones was born and raised in Waukegan, on what she calls the South Side. Growing up, money was tight.</p>
+            <blockquote class="leg-quote">
+              <p class="q-text" lang="en" data-i18n="meet.relay.l1_quote">My mom didn't have the money to pay for me to participate in any organized sports until I got to high school.</p>
+              <p class="tr-line" lang="es"><span class="tr-label" data-i18n="meet.relay.tr_label">Translation</span> <span data-i18n="meet.relay.l1_quote_tr">Mi mamá no tenía dinero para pagarme ningún deporte organizado hasta que llegué a la preparatoria.</span></p>
+            </blockquote>
+            <p data-i18n="meet.relay.l1_p2">Then her cousin Shannon King, himself a Gatorade Illinois Player of the Year, talked her into going out for track. She called him "my angel."</p>
+            <p class="handoff">
+              <svg class="baton" viewBox="0 0 48 16" width="48" height="16" aria-hidden="true"><rect x="2" y="4" width="44" height="8" rx="4" fill="currentColor"/><rect x="2" y="4" width="10" height="8" rx="4" fill="#e9b23c"/></svg>
+              <span class="handoff-label" data-i18n="meet.relay.from">Baton from</span>
+              <span class="handoff-name" data-i18n="meet.relay.l1_from">Her cousin, Shannon King</span>
+            </p>
+          </div>
+          <aside class="leg-aside animate-in" style="--reveal-delay: 0.08s">
+            <div class="route card">
+              <h4 class="aside-title" data-i18n="meet.relay.l1_schools">Her neighborhood schools</h4>
+              <ol class="route-list">
+                <li data-i18n="meet.relay.l1_s1">Carman (now Carman-Buckner)</li>
+                <li data-i18n="meet.relay.l1_s2">Glen Flora Elementary</li>
+                <li data-i18n="meet.relay.l1_s3">North Elementary</li>
+                <li data-i18n="meet.relay.l1_s4">Jack Benny Middle School</li>
+                <li class="route-end" data-i18n="meet.relay.l1_s5">Waukegan High School</li>
+              </ol>
+            </div>
+          </aside>
+        </div>
+      </li>
+
+      <!-- Leg 2: Waukegan High -->
+      <li class="leg" id="leg-2">
+        <div class="leg-rail">
+          <span class="leg-chip"><span class="leg-word" data-i18n="meet.relay.leg">Leg</span><span class="leg-num">2</span></span>
+        </div>
+        <div class="leg-body">
+          <div class="leg-text animate-in">
+            <p class="leg-when" data-i18n="meet.relay.l2_when">High school, Class of 1997</p>
+            <h3 class="leg-title" data-i18n="meet.relay.l2_title">Nine IHSA state titles</h3>
+            <p data-i18n="meet.relay.l2_p1">In high school she won the IHSA state title in the 100m and the 200m all four years, plus the 400m in 1996. When she graduated from Waukegan High in 1997, nine was the most in Illinois girls' track history.</p>
+            <p data-i18n="meet.relay.l2_p2">She was named Gatorade Illinois Girls Track &amp; Field Player of the Year twice, in 1996 and 1997, and the Chicago Tribune's 1997 prep athlete of the year.</p>
+            <blockquote class="leg-quote leg-quote-big">
+              <p class="q-text" lang="en" data-i18n="meet.relay.l2_quote">Speed was my gift.</p>
+              <p class="tr-line" lang="es"><span class="tr-label" data-i18n="meet.relay.tr_label">Translation</span> <span data-i18n="meet.relay.l2_quote_tr">La velocidad era mi don.</span></p>
+              <footer class="q-src" data-i18n="meet.relay.l2_quote_src">VoyageChicago, 2018</footer>
+            </blockquote>
+          </div>
+          <aside class="leg-aside animate-in" style="--reveal-delay: 0.08s">
+            <div class="results">
+              <h4 class="results-title" data-i18n="meet.relay.board_title">IHSA state titles</h4>
+              <table class="results-table">
+                <thead>
+                  <tr>
+                    <th scope="col" data-i18n="meet.relay.board_event">Event</th>
+                    <th scope="col" class="num" data-i18n="meet.relay.board_titles">Titles</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row"><span class="ev">100m</span><span class="ev-note" data-i18n="meet.relay.board_r1">All four years</span></th>
+                    <td class="num"><span class="pips" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="stat-tabular">4</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><span class="ev">200m</span><span class="ev-note" data-i18n="meet.relay.board_r2">All four years</span></th>
+                    <td class="num"><span class="pips" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="stat-tabular">4</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><span class="ev">400m</span><span class="ev-note" data-i18n="meet.relay.board_r3">1996</span></th>
+                    <td class="num"><span class="pips" aria-hidden="true"><i></i></span><span class="stat-tabular">1</span></td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row" data-i18n="meet.relay.board_total">Total</th>
+                    <td class="num total stat-tabular">9</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </aside>
+        </div>
+      </li>
+
+      <!-- Leg 3: Team USA and UCLA -->
+      <li class="leg" id="leg-3">
+        <div class="leg-rail">
+          <span class="leg-chip"><span class="leg-word" data-i18n="meet.relay.leg">Leg</span><span class="leg-num">3</span></span>
+        </div>
+        <div class="leg-body">
+          <div class="leg-text animate-in">
+            <p class="leg-when" data-i18n="meet.relay.l3_when">1998 to 2001</p>
+            <h3 class="leg-title" data-i18n="meet.relay.l3_title">Team USA and UCLA</h3>
+            <p data-i18n="meet.relay.l3_p1">In 1998 she wore USA colors at the World Junior Championships in Annecy, France: gold in the 100m, gold in the 4x100m relay with an American junior record, and silver in the 200m.</p>
+            <p data-i18n="meet.relay.l3_p2">At UCLA from 1998 to 2001 she was the 1998 Pac-10 champion in the 100m and the 4x100m relay, a two-time NCAA team champion (2000 and 2001 indoor), a two-time NCAA runner-up in the 100m and a multiple-time All-American.</p>
+            <p data-i18n="meet.relay.l3_p3">In 2000 she was named to the U.S. Olympic Team for Sydney, in the 4x100m relay pool. She earned a B.A. in Sociology at UCLA, competed professionally after college, and later earned an MBA from Keller Graduate School of Management.</p>
+          </div>
+          <aside class="leg-aside animate-in" style="--reveal-delay: 0.08s">
+            <figure class="photo ucla-photo">
+              <img src={img('ucla-cap.webp')} width="675" height="900" alt="A smiling selfie in a UCLA cap." data-i18n-attr="alt:meet.relay.l3_photo_alt" loading="lazy" decoding="async" />
+              <figcaption data-i18n="meet.relay.l3_photo_cap">Still a Bruin.</figcaption>
+            </figure>
+            <div class="pbs">
+              <span class="pbs-title" data-i18n="meet.relay.l3_pb">Personal bests</span>
+              <div class="pbs-row">
+                <span class="pb"><span class="pb-ev" data-i18n="meet.relay.l3_pb_100">100m</span><span class="pb-time stat-tabular">11.11</span></span>
+                <span class="pb"><span class="pb-ev" data-i18n="meet.relay.l3_pb_200">200m</span><span class="pb-time stat-tabular">22.84</span></span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </li>
+
+      <!-- Leg 4: coming home, FLY (biography only), work and coaching -->
+      <li class="leg leg-fly" id="leg-4">
+        <div class="leg-rail">
+          <span class="leg-chip"><span class="leg-word" data-i18n="meet.relay.leg">Leg</span><span class="leg-num">4</span></span>
+        </div>
+        <div class="leg-body leg-body-stack">
+          <div class="leg-text leg-text-wide animate-in">
+            <p class="leg-when" data-i18n="meet.relay.l4_when">2013 to today</p>
+            <h3 class="leg-title" data-i18n="meet.relay.l4_title">Home for good</h3>
+            <div class="two-col">
+              <p data-i18n="meet.relay.l4_p1">She came home to Waukegan for good in 2013. In 2014 she founded Furthering the Lives of Youth (FLY), an IRS-recognized 501(c)(3) with a simple mission: "assisting exceptional youth with limited resources."</p>
+              <p data-i18n="meet.relay.l4_p2">Young people are nominated and need a 3.2 GPA. FLY has paid volleyball and track fees, bought equipment, bought a first cello for a young Waukegan cellist, sponsored a youth track club team and community track meets, paid for trips (including to Los Angeles), sponsored community trips to Chicago Sky games and co-hosted a backpack giveaway. More than 600 young people helped, by her 2024 count. She says she has helped 20 young people earn athletic scholarships.</p>
+              <p data-i18n="meet.relay.l4_p3">She works for Waukegan Public Schools (District 60) as Family and Community Engagement Manager and has coached girls track at Waukegan High School. Titles are for identification only; the district does not endorse candidates.</p>
+            </div>
+            <ul class="roles">
+              <li class="role role-fly" data-i18n="meet.relay.l4_role_1">Founder, FLY, 2014</li>
+              <li class="role" data-i18n="meet.relay.l4_role_2">Has coached WHS girls track</li>
+            </ul>
+          </div>
+          <div class="fly-media animate-in" style="--reveal-delay: 0.08s">
+            <figure class="photo fly-photo">
+              <img src={img('fly-park-day-2017.webp')} width="1600" height="1200" alt="Young people and adults in FLY shirts at a park event." data-i18n-attr="alt:meet.relay.l4_photo_alt" loading="lazy" decoding="async" />
+              <figcaption data-i18n="meet.relay.l4_photo_cap">FLY in the park, summer 2017.</figcaption>
+            </figure>
+            <p class="fly-note" data-i18n="meet.relay.l4_fly_note">Furthering the Lives of Youth is a nonprofit organization. It is separate from this campaign and does not endorse candidates.</p>
+          </div>
+        </div>
+      </li>
+
+      <!-- Leg 5: the anchor leg -->
+      <li class="leg leg-anchor" id="leg-5">
+        <div class="leg-rail">
+          <span class="leg-chip"><span class="leg-word" data-i18n="meet.relay.leg">Leg</span><span class="leg-num">5</span></span>
+        </div>
+        <div class="leg-body">
+          <div class="anchor-card animate-in">
+            <p class="leg-when" data-i18n="meet.relay.l5_when">Election Day: April 6, 2027</p>
+            <h3 class="leg-title" data-i18n="meet.relay.l5_title">The anchor leg</h3>
+            <p data-i18n="meet.relay.l5_p1">Now she is running for Alderperson of the 1st Ward, the neighborhood that raised her.</p>
+            <p data-i18n="meet.relay.l5_p2">She will bring the same training plan she has used her whole life: set the goal, make the plan, show the splits, report back.</p>
+            <div class="anchor-foot">
+              <p class="handoff">
+                <svg class="baton" viewBox="0 0 48 16" width="48" height="16" aria-hidden="true"><rect x="2" y="4" width="44" height="8" rx="4" fill="currentColor"/><rect x="36" y="4" width="10" height="8" rx="4" fill="#e9b23c"/></svg>
+                <span class="handoff-label" data-i18n="meet.relay.to">Passing it to</span>
+                <span class="handoff-name" data-i18n="meet.relay.l5_to">The next kid on the block</span>
+              </p>
+              <a href={`${base}/plan/`} class="arrow-link" data-i18n="meet.relay.l5_link">See the Game Plan</a>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<style>
+  .kick-bar { display: inline-block; width: 34px; height: 4px; background: var(--track); border-radius: 2px; }
+  .relay { --rail: 84px; }
+  .relay-head { margin-bottom: var(--space-2xl); }
+
+  /* The painted lane: one track-red lane with white lines, ending in a finish check */
+  .legs { position: relative; display: flex; flex-direction: column; gap: var(--space-3xl); }
+  .legs::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 18px; width: var(--rail);
+    background: var(--track); border-radius: 10px 10px 0 0;
+    box-shadow: inset 6px 0 0 var(--track), inset 9px 0 0 rgba(255, 255, 255, 0.9), inset -6px 0 0 var(--track), inset -9px 0 0 rgba(255, 255, 255, 0.9);
+  }
+  .legs::after {
+    content: ''; position: absolute; left: 0; bottom: 0; width: var(--rail); height: 18px;
+    background: repeating-conic-gradient(var(--navy) 0 25%, var(--white) 0 50%) 0 0 / 12px 12px;
+    border-radius: 0 0 6px 6px;
+  }
+  .leg { position: relative; display: grid; grid-template-columns: var(--rail) 1fr; gap: var(--space-2xl); }
+  .leg-rail { position: relative; }
+  .leg-chip {
+    position: sticky; top: calc(var(--nav-height) + 20px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    width: calc(var(--rail) - 24px); margin: 0 auto; padding: 8px 0 6px;
+    background: var(--white); color: var(--navy); border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(13, 27, 62, 0.25);
+  }
+  .leg-word { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.66rem; color: var(--track-deep); line-height: 1; }
+  .leg-num { font-family: var(--font-display); font-weight: 900; font-size: 2.4rem; line-height: 1; }
+  .leg-fly .leg-chip { box-shadow: 0 0 0 3px var(--fly), 0 6px 16px rgba(13, 27, 62, 0.25); }
+  .leg-fly .leg-word { color: var(--fly-deep); }
+  .leg-anchor .leg-chip { background: var(--navy); color: var(--gold); box-shadow: 0 0 0 3px var(--gold), 0 6px 16px rgba(13, 27, 62, 0.3); }
+  .leg-anchor .leg-word { color: var(--white); }
+
+  .leg-body { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--space-2xl); align-items: start; min-width: 0; padding-top: var(--space-sm); }
+  .leg-body-stack { grid-template-columns: 1fr; }
+  .leg-text { min-width: 0; }
+  .leg-text > p + p, .two-col p + p { margin-top: var(--space-md); }
+  .leg-when { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-sm); color: var(--track-deep); margin-bottom: var(--space-sm); }
+  .leg-fly .leg-when { color: var(--fly-deep); }
+  .leg-title { font-size: var(--text-3xl); margin-bottom: var(--space-lg); }
+  .leg-text p, .anchor-card p { color: var(--ink-soft); }
+
+  .leg-quote { margin: var(--space-lg) 0; padding: var(--space-sm) 0 var(--space-sm) var(--space-lg); border-left: 4px solid var(--gold); }
+  .leg-quote .q-text { font-family: var(--font-body); font-style: italic; font-weight: 600; font-size: var(--text-lg); color: var(--navy); line-height: 1.45; }
+  .leg-quote .q-text::before { content: '\201C'; }
+  .leg-quote .q-text::after { content: '\201D'; }
+  .leg-quote-big .q-text { font-family: var(--font-display); font-style: normal; font-weight: 700; text-transform: none; letter-spacing: -0.01em; font-size: var(--text-3xl); line-height: 1; }
+  .q-src { margin-top: var(--space-sm); font-family: var(--font-label); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: var(--text-xs); color: var(--muted); }
+  .tr-line { margin-top: var(--space-xs); font-size: var(--text-sm); color: var(--muted); }
+  .tr-label { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78em; color: var(--track-deep); }
+  :global(html[lang='en']) .tr-line { display: none; }
+
+  .handoff { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.7rem; margin-top: var(--space-lg); }
+  .baton { color: var(--navy); flex-shrink: 0; }
+  .handoff-label { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: var(--text-sm); color: var(--muted); }
+  .handoff-name { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--text-xl); color: var(--navy); line-height: 1; }
+
+  /* Leg 1: a route of neighborhood schools */
+  .route { padding: var(--space-lg); }
+  .aside-title { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: var(--text-sm); color: var(--track-deep); margin-bottom: var(--space-md); }
+  .route-list { position: relative; display: flex; flex-direction: column; gap: var(--space-md); padding-left: 1.6rem; }
+  .route-list::before { content: ''; position: absolute; left: 0.42rem; top: 0.5rem; bottom: 0.5rem; border-left: 3px dashed var(--track-soft); }
+  .route-list li { position: relative; font-weight: 600; color: var(--navy); line-height: 1.3; }
+  .route-list li::before {
+    content: ''; position: absolute; left: -1.6rem; top: 0.2rem; width: 0.95rem; height: 0.95rem;
+    border-radius: 50%; background: var(--white); border: 3px solid var(--track);
+  }
+  .route-list .route-end { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--text-xl); }
+  .route-list .route-end::before { background: var(--track); top: 0.15rem; }
+
+  /* Leg 2: a meet-results board */
+  .results { background: var(--navy); color: var(--white); border-radius: var(--radius-lg); padding: var(--space-lg); box-shadow: var(--shadow-lg); }
+  .results-title { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-sm); color: var(--gold); margin-bottom: var(--space-md); }
+  .results-table { width: 100%; border-collapse: collapse; }
+  .results-table th, .results-table td { text-align: left; padding: 0.7rem 0; border-bottom: 1px solid var(--line-light); vertical-align: middle; }
+  .results-table thead th { font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; font-size: var(--text-xs); color: rgba(255, 255, 255, 0.6); padding-top: 0; }
+  .results-table .num { text-align: right; }
+  .results-table tbody th { display: flex; flex-direction: column; font-weight: 400; }
+  .ev { font-family: var(--font-display); font-weight: 800; font-size: var(--text-2xl); line-height: 1; }
+  .ev-note { font-size: var(--text-xs); color: rgba(255, 255, 255, 0.65); margin-top: 3px; }
+  .results-table td { font-family: var(--font-display); font-weight: 800; font-size: var(--text-2xl); color: var(--gold); white-space: nowrap; }
+  .pips { display: inline-flex; gap: 4px; margin-right: 0.6rem; vertical-align: middle; }
+  .pips i { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px rgba(233, 178, 60, 0.5); }
+  .results-table tfoot th, .results-table tfoot td { border-bottom: 0; padding-bottom: 0; }
+  .results-table tfoot th { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-sm); }
+  .results-table .total { font-size: var(--text-4xl); line-height: 0.9; }
+
+  /* Leg 3: photo + personal bests */
+  .leg-aside { min-width: 0; }
+  .ucla-photo { aspect-ratio: 3 / 4; max-width: 340px; margin-left: auto; box-shadow: var(--shadow-lg); }
+  .pbs { max-width: 340px; margin: var(--space-md) auto 0 auto; position: relative; z-index: 1; margin-right: var(--space-md); }
+  .pbs-title { display: inline-block; font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-xs); background: var(--gold); color: var(--navy); padding: 3px 10px; border-radius: 4px 4px 0 0; }
+  .pbs-row { display: grid; grid-template-columns: 1fr 1fr; background: var(--navy); border-radius: 0 8px 8px 8px; box-shadow: var(--shadow-md); }
+  .pb { display: flex; flex-direction: column; padding: 0.7rem 0.9rem; color: var(--white); }
+  .pb + .pb { border-left: 1px solid var(--line-light); }
+  .pb-ev { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: var(--text-xs); color: rgba(255, 255, 255, 0.7); }
+  .pb-time { font-family: var(--font-display); font-weight: 800; font-size: var(--text-3xl); color: var(--gold); line-height: 1; }
+
+  /* Leg 4: FLY */
+  .two-col { columns: 2; column-gap: var(--space-2xl); }
+  .two-col p { break-inside: avoid; }
+  .roles { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin: var(--space-xl) 0 var(--space-lg); }
+  .role { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--text-sm); padding: 0.4em 0.85em 0.35em; border-radius: 4px; background: var(--navy); color: var(--white); line-height: 1.2; }
+  .role-fly { background: var(--fly-deep); }
+  .fly-photo { aspect-ratio: 4 / 3; max-width: 640px; box-shadow: var(--shadow-md); }
+  .fly-media { display: flex; flex-direction: column; gap: var(--space-md); min-width: 0; }
+  .fly-note { max-width: 62ch; font-size: var(--text-xs); line-height: 1.5; color: var(--muted); border-left: 3px solid var(--fly-deep); padding-left: var(--space-sm); }
+
+  /* Leg 5: the anchor */
+  .anchor-card {
+    position: relative; grid-column: 1 / -1;
+    background: var(--white); border-radius: var(--radius-lg); padding: var(--space-2xl);
+    border: 1px solid var(--line); border-top: 6px solid var(--gold); box-shadow: var(--shadow-md);
+  }
+  .anchor-card > p + p { margin-top: var(--space-md); }
+  .anchor-card .leg-title { font-size: var(--text-4xl); }
+  .anchor-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-lg); margin-top: var(--space-lg); }
+  .anchor-foot .handoff { margin-top: 0; }
+
+  @media (max-width: 1024px) {
+    .two-col { columns: 1; }
+  }
+  @media (max-width: 860px) {
+    .relay { --rail: 56px; }
+    .leg { gap: var(--space-lg); }
+    .leg-body { grid-template-columns: 1fr; gap: var(--space-xl); }
+    .leg-num { font-size: 1.8rem; }
+    .leg-word { font-size: 0.56rem; letter-spacing: 0.1em; }
+    .ucla-photo { margin-left: 0; }
+    .pbs { margin-left: var(--space-md); margin-right: auto; }
+  }
+  @media (max-width: 560px) {
+    .relay { --rail: 40px; }
+    .leg { gap: var(--space-md); }
+    .leg-chip { width: 34px; padding: 6px 0 4px; }
+    .leg-word { display: none; }
+    .leg-num { font-size: 1.5rem; }
+    .legs::before { box-shadow: inset 4px 0 0 var(--track), inset 6px 0 0 rgba(255, 255, 255, 0.9), inset -4px 0 0 var(--track), inset -6px 0 0 rgba(255, 255, 255, 0.9); }
+    .anchor-card { padding: var(--space-lg); }
+    .results { padding: var(--space-md); }
+  }
+</style>

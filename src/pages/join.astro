@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import LaneDivider from '../components/ui/LaneDivider.astro';
+import JoinHero from '../components/join/JoinHero.astro';
+import WaysToHelp from '../components/join/WaysToHelp.astro';
+import SignupForm from '../components/join/SignupForm.astro';
+import DonateBlock from '../components/join/DonateBlock.astro';
+import BeforeYouVote from '../components/join/BeforeYouVote.astro';
+import { canDonate } from '../data/campaign.js';
+
+const description = canDonate()
+  ? "Carry a petition, knock doors, host a yard sign, help at events or give to Shakedia Jones's campaign for Waukegan's 1st Ward. Election Day is April 6, 2027."
+  : "Carry a petition, knock doors, host a yard sign or help at events for Shakedia Jones's campaign for Waukegan's 1st Ward. Election Day is April 6, 2027.";
+---
+
+<Layout
+  title="Get Involved | Shakedia Jones for 1st Ward Alderperson"
+  description={description}
+>
+  <Navbar />
+  <main id="main" tabindex="-1">
+    <JoinHero />
+    <WaysToHelp />
+    <SignupForm />
+    <LaneDivider />
+    <DonateBlock />
+    <BeforeYouVote />
+  </main>
+  <Footer />
+</Layout>

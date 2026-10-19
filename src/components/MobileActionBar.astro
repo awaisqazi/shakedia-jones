@@ -1,0 +1,49 @@
+---
+// Sticky bottom bar on phones and tablets: the standing asks. Hidden on /links/ via Layout's actionBar prop.
+import { donateHref, isExternalDonate, canDonate } from '../data/campaign.js';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
+---
+
+<div class="action-bar hide-desktop" id="action-bar">
+  <a href={`${base}/join/#signup`} class="bar-btn bar-volunteer" data-i18n="bar.volunteer">Volunteer</a>
+  {canDonate()
+    ? <a href={donateHref(base)} class="bar-btn bar-donate" data-i18n="bar.donate" {...ext}>Donate</a>
+    : <button type="button" class="bar-btn bar-donate" data-i18n="bar.share" data-bar-share>Tell a neighbor</button>}
+</div>
+
+<script>
+  // Until donations open, the second button is a share action: native share where it exists,
+  // otherwise it scrolls to the page's share bar (or texts a neighbor as a last resort).
+  const btn = document.querySelector<HTMLButtonElement>('[data-bar-share]');
+  btn?.addEventListener('click', () => {
+    const native = document.querySelector<HTMLButtonElement>('[data-share-native]:not([hidden])');
+    if (native) { native.click(); return; }
+    const bar = document.querySelector('[data-share-bar]');
+    if (bar) {
+      bar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      bar.querySelector<HTMLElement>('a, button:not([hidden])')?.focus({ preventScroll: true });
+      return;
+    }
+    const sms = document.querySelector<HTMLAnchorElement>('.sb-sms');
+    if (sms) location.href = sms.href;
+  });
+</script>
+
+<style>
+  .action-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 9990;
+    display: flex; gap: 8px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(247, 242, 234, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+  }
+  .bar-btn {
+    flex: 1; border: 0; font-family: var(--font-label); text-align: center; font-family: var(--font-label); font-weight: 700; font-size: 1.05rem;
+    text-transform: uppercase; letter-spacing: 0.08em; padding: 12px 10px 11px; border-radius: 999px;
+  }
+  .bar-volunteer { background: var(--navy); color: var(--white); }
+  .bar-donate { background: var(--track); color: var(--white); }
+  @media (max-width: 1024px) { :global(body) { padding-bottom: 74px; } }
+  /* At 200% zoom on a short screen the two fixed bars would eat a third of the viewport */
+  @media (max-height: 500px) { .action-bar { position: static; } :global(body) { padding-bottom: 0; } }
+</style>

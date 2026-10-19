@@ -1,0 +1,42 @@
+---
+// The page's one navy section: an approved quote (stays in English in both languages).
+import en from '../../i18n/parts/plan.en.json';
+const t = en.plan;
+---
+
+<section class="plan-quote section-padding bg-navy on-dark">
+  <div class="container quote-inner">
+    <span class="section-label animate-in"><span data-i18n="plan.quote_label">{t.quote_label}</span></span>
+    <figure class="animate-in">
+      <blockquote lang="en">
+        <span class="qmark" aria-hidden="true">&ldquo;</span>
+        <p class="quote-text" data-i18n="plan.quote">{t.quote}</p>
+      </blockquote>
+      <figcaption class="quote-cite" data-i18n="plan.quote_cite">{t.quote_cite}</figcaption>
+    </figure>
+    <p class="quote-context animate-in" data-i18n="plan.quote_context">{t.quote_context}</p>
+  </div>
+  <div class="medal-ring" aria-hidden="true"></div>
+</section>
+
+<style>
+  .plan-quote { position: relative; overflow: hidden; }
+  .quote-inner { position: relative; z-index: 1; max-width: 960px; }
+  blockquote { position: relative; }
+  .qmark { display: block; font-family: var(--font-display); font-weight: 900; font-size: 7rem; line-height: 0.6; color: var(--gold); height: 0.5em; }
+  .quote-text {
+    font-family: var(--font-display); font-weight: 700; text-transform: none; letter-spacing: -0.01em; color: var(--white);
+    font-size: var(--text-4xl); line-height: 0.98; max-width: 22ch; overflow-wrap: anywhere;
+  }
+  .quote-cite { margin-top: var(--space-lg); font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-sm); color: var(--gold); }
+  .quote-context { margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid var(--line-light); font-size: var(--text-lg); color: rgba(255, 255, 255, 0.82); max-width: 60ch; }
+  /* A faint medal ring in the corner */
+  .medal-ring {
+    position: absolute; right: -120px; bottom: -160px; width: 460px; height: 460px; border-radius: 50%;
+    border: 26px solid rgba(233, 178, 60, 0.12); box-shadow: inset 0 0 0 18px rgba(233, 178, 60, 0.05);
+  }
+  @media (max-width: 600px) {
+    .qmark { font-size: 5rem; }
+    .medal-ring { width: 300px; height: 300px; right: -120px; bottom: -120px; border-width: 18px; }
+  }
+</style>

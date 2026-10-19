@@ -1,0 +1,69 @@
+---
+import RaceClock from '../ui/RaceClock.astro';
+import { DATES, canDonate } from '../../data/campaign.js';
+---
+
+<section class="jh" aria-labelledby="jh-title">
+  <div class="jh-stripe" aria-hidden="true"></div>
+  <div class="container jh-grid">
+    <div class="jh-copy">
+      <span class="section-label animate-in"><span class="lane-chip" aria-hidden="true">1</span><span data-i18n="join.hero.label">Get involved</span></span>
+      <h1 class="jh-title animate-in" id="jh-title" style="--reveal-delay: 0.05s">
+        <span data-i18n="join.hero.title_a">Run with</span>
+        <span class="accent" data-i18n="join.hero.title_b">us.</span>
+      </h1>
+      <p class="section-lede animate-in" style="--reveal-delay: 0.1s" data-i18n="join.hero.lede">A relay is won by a team. Shakedia is running for 1st Ward Alderperson, and every neighbor who signs up carries part of the race: a petition, a conversation at the door, a sign in the yard.</p>
+      <div class="jh-ctas animate-in" style="--reveal-delay: 0.15s">
+        <a href="#signup" class="btn btn-track btn-massive" data-i18n="join.hero.cta_signup">Join the team</a>
+        {canDonate() && <a href="#donate" class="btn btn-outline" data-i18n="join.hero.cta_donate">Chip in</a>}
+      </div>
+    </div>
+
+    <aside class="jh-card card animate-in" style="--reveal-delay: 0.2s" aria-labelledby="jh-card-title">
+      <h2 class="jh-card-title" id="jh-card-title" data-i18n="join.hero.card_title">The race</h2>
+      <RaceClock date={DATES.election} labelKey="join.hero.clock_label" label="Days to Election Day" size="lg" />
+      <p class="jh-date">
+        <span class="jh-date-k" data-i18n="join.hero.date_label">Election Day</span>
+        <span class="jh-date-v" data-i18n="join.hero.date_value">Tuesday, April 6, 2027</span>
+      </p>
+      <div class="finish-rule" aria-hidden="true"></div>
+      <p class="jh-now">
+        <span class="jh-now-k" data-i18n="join.hero.now_label">How it starts</span>
+        <span class="jh-now-v" data-i18n="join.hero.now_text">Petitions are how a candidate gets on the ballot. Volunteers help gather signatures from 1st Ward voters.</span>
+      </p>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .jh { position: relative; padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-4xl); overflow: hidden; }
+  .jh-stripe {
+    position: absolute; top: var(--nav-height); right: 0; bottom: 0; width: min(34vw, 420px);
+    background-color: var(--track-soft);
+    background-image: repeating-linear-gradient(90deg, transparent 0 calc(25% - 3px), rgba(194, 65, 42, 0.22) calc(25% - 3px) 25%);
+    opacity: 0.8;
+  }
+  .jh-grid { position: relative; display: grid; grid-template-columns: 1.35fr 1fr; gap: var(--space-3xl); align-items: center; }
+  .jh-title { font-size: var(--text-5xl); line-height: 0.9; margin-bottom: var(--space-lg); display: flex; flex-wrap: wrap; gap: 0 0.25em; }
+  .jh-ctas { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-xl); }
+  .jh-ctas .btn { min-height: 48px; }
+
+  .jh-card { padding: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md); align-items: flex-start; }
+  .jh-card-title { font-family: var(--font-label); font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.18em; color: var(--track-deep); }
+  .jh-date, .jh-now { display: flex; flex-direction: column; gap: 2px; max-width: none; }
+  .jh-date-k, .jh-now-k { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: var(--text-xs); color: var(--muted); }
+  .jh-date-v { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--text-2xl); color: var(--navy); line-height: 1.05; }
+  .jh-now-v { color: var(--ink-soft); font-size: var(--text-base); }
+  .jh-card .finish-rule { width: 100%; }
+
+  @media (max-width: 900px) {
+    .jh-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
+    .jh-stripe { width: 28vw; opacity: 0.5; }
+  }
+  @media (max-width: 600px) {
+    .jh { padding: calc(var(--nav-height) + var(--space-2xl)) 0 var(--space-3xl); }
+    .jh-stripe { display: none; }
+    .jh-ctas .btn { width: 100%; white-space: normal; }
+    .jh-card { padding: var(--space-lg); }
+  }
+</style>

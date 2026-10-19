@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "skip": "Skip to content",
+    "home": "Home",
+    "meet": "Meet Shakedia",
+    "plan": "The Game Plan",
+    "join": "Get Involved",
+    "volunteer_cta": "Volunteer",
+    "donate": "Donate",
+    "menu": "Menu",
+    "tagline": "Excellence from Waukegan.",
+    "wordmark_sub": "1st Ward · Waukegan",
+    "main_label": "Main",
+    "home_label": "Shakedia Jones, home"
+  },
+  "bar": {
+    "volunteer": "Volunteer",
+    "donate": "Donate",
+    "share": "Tell a neighbor"
+  },
+  "ui": {
+    "sign_label": "The honorary sign as dedicated on July 14, 2024: Shakedia Jones Olympic Way, George Avenue.",
+    "newtab": "(opens in a new tab)"
+  },
+  "footer": {
+    "band_label": "Run with us",
+    "band_text": "Every neighbor who joins makes this team faster.",
+    "motto": "Excellence from Waukegan.",
+    "links_title": "Explore",
+    "dates_title": "Key dates",
+    "when_1": "How it starts",
+    "date_1": "1st Ward voters’ signatures put Shakedia on the ballot",
+    "when_2": "Apr 6, 2027",
+    "date_2": "Election Day",
+    "when_3": "Before you vote",
+    "date_3": "Check your registration with the Lake County Clerk",
+    "follow_title": "Follow",
+    "social_soon": "Campaign social pages are on the way.",
+    "links_page": "All links",
+    "paid_for": "Paid for by [Committee Name]",
+    "disclosure": "",
+    "copyright": "© 2026 Shakedia Jones for Waukegan. All rights reserved."
+  },
+  "share": {
+    "label": "Works right now, no sign-up needed",
+    "native": "Tell a neighbor",
+    "sms": "Text a neighbor",
+    "whatsapp": "WhatsApp",
+    "copy": "Copy link",
+    "calendar": "Add April 6 to my calendar"
+  },
+  "meta": {
+    "home": {
+      "title": "Shakedia Jones for 1st Ward Alderperson | Waukegan",
+      "description": "2000 U.S. Olympic Team member, nine-time Illinois state champion and FLY founder, running for Waukegan's 1st Ward. Election Day is April 6, 2027."
+    },
+    "meet": {
+      "title": "Meet Shakedia Jones | USA Olympian, Coach, Neighbor",
+      "description": "Nine IHSA state titles, the 2000 U.S. Olympic Team, the founder of FLY: how a kid from Waukegan's South Side came home to run for the 1st Ward."
+    },
+    "plan": {
+      "title": "The Game Plan | Shakedia Jones for the 1st Ward",
+      "description": "Four lanes for Waukegan's 1st Ward: safe neighborhoods, youth programming, strong infrastructure and transparent government, with a monthly report back."
+    },
+    "join": {
+      "title": "Get Involved | Shakedia Jones for 1st Ward Alderperson",
+      "description": "Carry a petition, knock doors, host a yard sign or help at events for Shakedia Jones's campaign for Waukegan's 1st Ward. Election Day is April 6, 2027."
+    },
+    "links": {
+      "title": "Shakedia Jones | Links",
+      "description": "Every link for Shakedia Jones's campaign for 1st Ward Alderperson in Waukegan: volunteer, meet Shakedia and read the Game Plan."
+    }
+  }
+}

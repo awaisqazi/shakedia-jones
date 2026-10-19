@@ -1,0 +1,61 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const lanes = [
+  { key: 'safe', title: 'Safe neighborhoods', body: 'Parks, blocks and walks home where kids and seniors feel safe, built with neighbors and block clubs.' },
+  { key: 'youth', title: 'Youth programming', body: 'More open doors after school and all summer, and help for families who can’t cover the fees.' },
+  { key: 'infra', title: 'Strong infrastructure', body: 'Streets, sidewalks, alleys and lead line replacement, tracked block by block and reported back.' },
+  { key: 'open', title: 'Transparent government', body: 'Ward meetings in English and Spanish, major votes explained, and a monthly report to the 1st Ward.' },
+];
+---
+
+<section class="plan-teaser section-padding" id="plan" aria-labelledby="plan-title">
+  <div class="container">
+    <div class="pt-head">
+      <div>
+        <span class="section-label"><span class="lane-chip" aria-hidden="true">4</span><span data-i18n="home.plan.label">The game plan</span></span>
+        <h2 class="section-title" id="plan-title">
+          <span data-i18n="home.plan.title_1">Four lanes.</span>
+          <span class="accent" data-i18n="home.plan.title_2">One finish line.</span>
+        </h2>
+      </div>
+      <p class="section-lede" data-i18n="home.plan.lede">A coach sets the goal, makes the plan, and posts the splits. That is how Shakedia will work for the 1st Ward.</p>
+    </div>
+
+    <ol class="pt-lanes">
+      {lanes.map((l, i) => (
+        <li class="pt-lane animate-in" style={`--reveal-delay: ${i * 0.07}s`}>
+          <span class="pt-num" aria-hidden="true">{i + 1}</span>
+          <div class="pt-body">
+            <h3 data-i18n={`home.plan.${l.key}_title`}>{l.title}</h3>
+            <p data-i18n={`home.plan.${l.key}_body`}>{l.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <a href={`${base}/plan/`} class="arrow-link" data-i18n="home.plan.cta">See the full game plan</a>
+  </div>
+</section>
+
+<style>
+  .pt-head { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); align-items: end; margin-bottom: var(--space-2xl); }
+  .pt-head .section-title { display: flex; flex-direction: column; margin-bottom: 0; }
+  .pt-lanes { display: flex; flex-direction: column; border-top: 3px solid var(--white); margin-bottom: var(--space-2xl); border-radius: var(--radius-lg); overflow: hidden; }
+  .pt-lane {
+    display: grid; grid-template-columns: 96px 1fr; align-items: stretch;
+    background: var(--track); color: var(--white); border-bottom: 3px solid var(--white);
+    transition: background var(--duration-normal);
+  }
+  .pt-lane:hover { background: var(--track-deep); }
+  .pt-num { display: grid; place-items: center; font-family: var(--font-display); font-weight: 900; font-size: 3.4rem; line-height: 1; border-right: 3px solid var(--white); color: var(--white); }
+  .pt-body { padding: var(--space-lg) var(--space-xl); display: grid; grid-template-columns: minmax(200px, 0.8fr) 1.2fr; gap: var(--space-xl); align-items: center; }
+  .pt-body h3 { color: var(--white); font-size: var(--text-2xl); }
+  .pt-body p { color: rgba(255, 255, 255, 0.92); font-size: var(--text-base); }
+
+  @media (max-width: 860px) {
+    .pt-head { grid-template-columns: 1fr; gap: var(--space-md); }
+    .pt-body { grid-template-columns: 1fr; gap: var(--space-xs); padding: var(--space-lg); }
+    .pt-lane { grid-template-columns: 64px 1fr; }
+    .pt-num { font-size: 2.4rem; }
+  }
+</style>

@@ -1,0 +1,66 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const items = [
+  { key: 'i1', text: 'Track and volleyball fees, and the gear to go with them' },
+  { key: 'i2', text: 'A first cello for a young Waukegan cellist' },
+  { key: 'i3', text: 'Sponsorship of a youth track club team and community track meets' },
+  { key: 'i4', text: 'Trips, including to Los Angeles, and Chicago Sky games' },
+];
+---
+
+<section class="fly section-padding" id="fly" aria-labelledby="fly-title">
+  <div class="container fly-grid">
+    <figure class="photo fly-photo">
+      <img src={`${base}/images/fly-park-day-2017.webp`} width="1600" height="1200" loading="lazy" decoding="async"
+        alt="Young people and adults in matching gray FLY shirts stand together on the grass at a park event."
+        data-i18n-attr="alt:home.fly.photo_a_alt" />
+      <figcaption data-i18n="home.fly.photo_a_caption">FLY in the park, summer 2017.</figcaption>
+    </figure>
+
+    <div class="fly-copy">
+      <span class="section-label fly-label"><span class="lane-chip" aria-hidden="true">5</span><span data-i18n="home.fly.label">Furthering the Lives of Youth</span></span>
+      <h2 class="section-title" id="fly-title">
+        <span data-i18n="home.fly.title_1">She built the program</span>
+        <span class="fly-accent" data-i18n="home.fly.title_2">she never had.</span>
+      </h2>
+      <p class="section-lede" data-i18n="home.fly.lede">In 2014 Shakedia founded FLY, a 501(c)(3) nonprofit that steps in when talented, hardworking kids from families with limited means need a hand. By her 2024 count, it has helped more than 600 young people.</p>
+      <ul class="fly-list">
+        {items.map((it) => (<li data-i18n={`home.fly.${it.key}`}>{it.text}</li>))}
+      </ul>
+      <blockquote class="fly-quote">
+        <p lang="en" data-i18n="home.fly.quote">"So this, in essence, is the program I would have been part of had it existed when I was younger."</p>
+        <p class="tr-line" data-i18n="home.fly.quote_tr"></p>
+        <footer data-i18n="home.fly.quote_cite">Shakedia Jones, Chicago Tribune, 2016</footer>
+      </blockquote>
+    </div>
+  </div>
+  <div class="container">
+    <p class="fly-note" data-i18n="home.fly.separation">Furthering the Lives of Youth is a nonprofit organization. It is separate from this campaign and does not endorse candidates.</p>
+  </div>
+</section>
+
+<style>
+  .fly { background: linear-gradient(180deg, var(--chalk) 0%, var(--fly-soft) 100%); }
+  .fly-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: var(--space-3xl); align-items: center; }
+  .fly-photo { width: 100%; aspect-ratio: 4 / 3; box-shadow: var(--shadow-lg); border: 5px solid var(--white); transform: rotate(-2deg); }
+  .fly-label { color: var(--fly-deep); }
+  .fly-copy .section-title { display: flex; flex-direction: column; }
+  .fly-accent { color: var(--fly-deep); }
+  .fly-list { margin: var(--space-lg) 0; display: grid; gap: var(--space-sm); }
+  .fly-list li { position: relative; padding-left: 2rem; color: var(--ink-soft); }
+  .fly-list li::before {
+    content: ''; position: absolute; left: 0; top: 0.42em; width: 1.1rem; height: 0.7rem;
+    background: var(--fly); clip-path: polygon(0 100%, 100% 0, 100% 35%, 30% 100%);
+  }
+  .fly-quote { border-left: 5px solid var(--fly); padding: var(--space-sm) var(--space-lg); margin-bottom: var(--space-lg); }
+  .fly-quote p { font-style: italic; font-weight: 500; font-size: var(--text-lg); color: var(--navy); }
+  .fly-quote .tr-line { margin-top: var(--space-xs); font-style: normal; font-weight: 400; font-size: var(--text-base); color: var(--ink-soft); }
+  .tr-line:empty, :global(html[lang="en"]) .tr-line { display: none; }
+  .fly-quote footer { font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-xs); color: var(--muted); margin-top: var(--space-xs); }
+  .fly-note { margin-top: var(--space-2xl); padding-top: var(--space-md); border-top: 1px solid var(--line); font-size: var(--text-sm); color: var(--muted); max-width: 70ch; }
+
+  @media (max-width: 960px) {
+    .fly-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
+    .fly-photo { max-width: 560px; transform: rotate(-1.5deg); }
+  }
+</style>

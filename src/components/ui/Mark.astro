@@ -1,0 +1,17 @@
+---
+// The campaign mark, "Lane 1": a track bend sweeping into the numeral 1. It reads as the 1st Ward,
+// lane one, and first place at once. Mirrored in public/favicon.svg and public/brand/; keep them in sync.
+export interface Props { size?: number; class?: string; variant?: 'track' | 'navy' | 'mono' }
+const { size = 40, class: cls, variant = 'track' } = Astro.props;
+const tile = variant === 'navy' ? '#0d1b3e' : variant === 'mono' ? 'currentColor' : '#c2412a';
+const one = variant === 'navy' ? '#e9b23c' : '#fff';
+const lane = variant === 'mono' ? '#f7f2ea' : '#fff';
+---
+<svg class={cls} width={size} height={size} viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+  <rect width="48" height="48" rx="11" fill={tile} />
+  <g fill="none" stroke={lane} stroke-width="3.2">
+    <path d="M0 14 H9 a11 11 0 0 1 11 11 V48" />
+    <path d="M0 22.5 H8 a4.5 4.5 0 0 1 4.5 4.5 V48" />
+  </g>
+  <path d="M31 9.5 h7 v29 h-7 z M31 9.5 L24 14.5 v7 l7 -5 z" fill={one} />
+</svg>

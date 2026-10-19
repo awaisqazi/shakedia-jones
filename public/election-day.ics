@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Shakedia Jones for 1st Ward//Election Day//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:election-day-2027-04-06@shakedia-jones
+DTSTAMP:20261018T000000Z
+DTSTART;VALUE=DATE:20270406
+DTEND;VALUE=DATE:20270407
+SUMMARY:Election Day: vote in Waukegan's 1st Ward
+DESCRIPTION:Consolidated election\, Tuesday\, April 6\, 2027. Find your polling place and hours with the Lake County Clerk: https://www.lakecountyil.gov/2365/Elections
+URL:https://www.lakecountyil.gov/2365/Elections
+END:VEVENT
+END:VCALENDAR

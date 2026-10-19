@@ -1,0 +1,182 @@
+---
+// Link-in-bio page for social profiles. No navbar, footer or action bar: just the links.
+import Layout from '../layouts/Layout.astro';
+import Wordmark from '../components/ui/Wordmark.astro';
+import ShareBar from '../components/ui/ShareBar.astro';
+import { SOCIALS, canDonate, donateHref, isExternalDonate } from '../data/campaign.js';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
+const socials = SOCIALS.filter((s) => s.href);
+
+// Donate shows only once donations are open (no solicitation before the committee exists).
+const links = [
+  { href: `${base}/join/#signup`, key: 'links.volunteer', label: 'Volunteer: join the team', sub: 'links.volunteer_sub', subLabel: 'Petitions, doors, yard signs', style: 'primary' },
+  { href: donateHref(base), key: 'links.donate', label: 'Donate', sub: 'links.donate_sub', subLabel: 'Fuel the anchor leg', style: 'gold', attrs: ext, donate: true },
+  { href: `${base}/meet/`, key: 'links.meet', label: 'Meet Shakedia', sub: 'links.meet_sub', subLabel: 'USA Olympian. Coach. Neighbor.' },
+  { href: `${base}/plan/`, key: 'links.plan', label: 'The Game Plan', sub: 'links.plan_sub', subLabel: 'Four lanes for the 1st Ward' },
+].filter((l) => !l.donate || canDonate());
+const description = canDonate()
+  ? "Every link for Shakedia Jones's campaign for 1st Ward Alderperson in Waukegan: volunteer, donate, meet Shakedia and read the Game Plan."
+  : "Every link for Shakedia Jones's campaign for 1st Ward Alderperson in Waukegan: volunteer, meet Shakedia and read the Game Plan.";
+---
+
+<Layout
+  title="Shakedia Jones | Links"
+  description={description}
+  actionBar={false}
+>
+  <main id="main" tabindex="-1" class="lk">
+    <div class="lk-top">
+      <a href={`${base}/`} class="lk-home" data-i18n="links.home">Full website</a>
+      <div class="lk-lang" role="group" aria-label="Language / Idioma">
+        <button type="button" data-lang-toggle="en" class="lk-lang-btn active" aria-label="English" lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-toggle="es" class="lk-lang-btn" aria-label="Español" lang="es" aria-pressed="false">ES</button>
+      </div>
+    </div>
+
+    <header class="lk-head">
+      <div class="lk-photo">
+        <img
+          src={`${base}/images/olympic-way-sign-portrait.webp`}
+          width="440" height="1100" decoding="async" fetchpriority="high"
+          alt="Dedication day on George Avenue, July 14, 2024: two women smile under the honorary Shakedia Jones Olympic Way sign."
+          data-i18n-attr="alt:links.photo_alt"
+        />
+      </div>
+      <h1 class="lk-wordmark"><Wordmark light size="lg" /></h1>
+      <p class="lk-office" data-i18n="links.office">For 1st Ward Alderperson, Waukegan</p>
+      <p class="lk-tag" data-i18n="links.tagline">USA Olympian. Coach. Neighbor. Excellence from Waukegan.</p>
+    </header>
+
+    <ul class="lk-list">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class:list={['lk-btn', l.style && `lk-${l.style}`]} {...(l.attrs || {})}>
+            <span class="lk-btn-main" data-i18n={l.key}>{l.label}</span>
+            <span class="lk-btn-sub" data-i18n={l.sub}>{l.subLabel}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    {socials.length > 0 && (
+      <ul class="lk-social">
+        {socials.map((s) => (
+          <li>
+            <a href={s.href} class="lk-social-link" aria-label={s.name} target="_blank" rel="noopener">
+              {s.icon === 'ig' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>}
+              {s.icon === 'fb' && <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>}
+              {s.icon === 'tt' && <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.23 8.23 0 0 0 4.76 1.51V6.82a4.83 4.83 0 0 1-1-.13z"/></svg>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <div class="lk-date">
+      <span class="lk-date-k" data-i18n="links.election_label">Election Day</span>
+      <span class="lk-date-v" data-i18n="links.election_value">Tuesday, April 6, 2027</span>
+    </div>
+
+    <footer class="lk-foot">
+      <div class="finish-rule" aria-hidden="true"></div>
+      <ShareBar variant="dark" class="lk-share" compact />
+      <p class="lk-paid" data-i18n="footer.paid_for">Paid for by [Committee Name]</p>
+      <!-- Statutory ISBE notice: the English text stays visible in both languages; the Spanish line is added under it. -->
+      <p class="lk-disc" lang="en">A copy of our report filed with the State Board of Elections is (or will be) available on the Board's official website (www.elections.il.gov) or for purchase from the State Board of Elections, Springfield, Illinois.</p>
+      <p class="lk-disc lk-disc-es" lang="es" data-i18n="footer.disclosure"></p>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .lk {
+    min-height: 100dvh; max-width: 520px; margin: 0 auto;
+    padding: var(--space-md) var(--gutter) var(--space-2xl);
+    display: flex; flex-direction: column; align-items: center; gap: var(--space-lg);
+    color: rgba(255, 255, 255, 0.88);
+  }
+  :global(body:has(.lk)) {
+    background-color: var(--navy);
+    background-image:
+      linear-gradient(180deg, rgba(13, 27, 62, 0) 0, var(--navy) 420px),
+      repeating-linear-gradient(90deg, transparent 0 calc(12.5% - 2px), rgba(255, 255, 255, 0.06) calc(12.5% - 2px) 12.5%);
+  }
+
+  .lk-top { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); }
+  .lk-home {
+    display: inline-flex; align-items: center; min-height: 44px;
+    font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.9rem;
+    color: var(--gold); text-decoration: underline; text-underline-offset: 4px;
+  }
+  .lk-lang { display: flex; gap: 2px; background: rgba(255, 255, 255, 0.1); border-radius: 999px; padding: 3px; }
+  .lk-lang-btn {
+    font-family: var(--font-label); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.08em;
+    min-width: 44px; min-height: 44px; padding: 0 12px; border-radius: 999px; color: var(--white);
+    transition: background var(--duration-fast), color var(--duration-fast);
+  }
+  .lk-lang-btn.active { background: var(--gold); color: var(--navy); }
+  .lk-lang-btn:hover:not(.active) { background: rgba(255, 255, 255, 0.16); }
+
+  .lk-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-sm); }
+  .lk-photo {
+    width: 160px; height: 160px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+    box-shadow: 0 0 0 5px var(--gold), 0 0 0 10px rgba(233, 178, 60, 0.18), var(--shadow-lg);
+    margin-bottom: var(--space-md); background: var(--navy-2);
+  }
+  /* 440x1100 source: the two women sit at about x 56%, y 62%. Cover fills the width, then a 1.5x zoom frames them. */
+  .lk-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%; transform: scale(1.5); transform-origin: 67% 50%; }
+  .lk-wordmark { font-size: inherit; line-height: 1; }
+  .lk-office {
+    font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-sm);
+    color: var(--gold); max-width: none;
+  }
+  .lk-tag { font-size: var(--text-base); color: rgba(255, 255, 255, 0.8); max-width: 36ch; }
+
+  .lk-list { width: 100%; display: flex; flex-direction: column; gap: var(--space-sm); }
+  .lk-btn {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-align: center;
+    min-height: 64px; width: 100%; padding: 0.7rem 1.2rem;
+    background: var(--white); color: var(--navy); border-radius: var(--radius-md); border: 2px solid var(--white);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+    transition: transform var(--duration-fast) var(--ease-default), background var(--duration-normal), border-color var(--duration-normal);
+  }
+  .lk-btn:hover { transform: translateY(-2px); background: var(--chalk); }
+  .lk-btn-main { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.45rem; line-height: 1.05; letter-spacing: 0.01em; }
+  .lk-btn-sub { font-family: var(--font-label); font-weight: 600; font-size: 0.92rem; letter-spacing: 0.06em; color: var(--muted); line-height: 1.2; }
+  .lk-primary { background: var(--track); border-color: var(--track); color: var(--white); }
+  .lk-primary:hover { background: var(--track-deep); border-color: var(--track-deep); }
+  .lk-primary .lk-btn-sub { color: var(--white); }
+  .lk-gold { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+  .lk-gold:hover { background: #f3c25a; }
+  .lk-gold .lk-btn-sub { color: var(--navy-2); }
+
+  .lk-social { display: flex; gap: var(--space-sm); }
+  .lk-social-link {
+    display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1); color: var(--white); transition: background var(--duration-fast);
+  }
+  .lk-social-link:hover { background: var(--track); }
+
+  .lk-date { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .lk-date-k { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: var(--text-xs); color: rgba(255, 255, 255, 0.7); }
+  .lk-date-v { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--text-2xl); color: var(--gold); line-height: 1.05; }
+
+  .lk-foot { width: 100%; margin-top: var(--space-2xl); display: flex; flex-direction: column; align-items: center; gap: var(--space-md); }
+  .lk-foot .finish-rule { width: 100%; }
+  .lk-share { margin: var(--space-xl) 0; }
+  .lk-share :global(.sb-row) { justify-content: center; }
+  .lk-paid {
+    font-family: var(--font-label); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: var(--text-xs);
+    color: var(--white); border: 1px solid rgba(255, 255, 255, 0.35); padding: 5px 12px; border-radius: 4px; text-align: center; max-width: 100%;
+  }
+  .lk-disc { font-size: 0.78rem; line-height: 1.5; color: rgba(255, 255, 255, 0.66); text-align: center; max-width: 46ch; margin: 0; }
+  .lk-disc-es:empty { display: none; }
+
+  @media (max-width: 380px) {
+    .lk-photo { width: 132px; height: 132px; }
+    .lk-btn-main { font-size: 1.25rem; }
+    .lk-wordmark :global(.wm-name) { font-size: 1.8rem; }
+  }
+</style>

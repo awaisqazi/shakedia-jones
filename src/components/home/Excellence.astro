@@ -1,0 +1,56 @@
+---
+import StreetSign from '../ui/StreetSign.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section class="excellence section-padding" id="excellence" aria-labelledby="excellence-title">
+  <div class="container ex-grid">
+    <div class="ex-copy">
+      <span class="section-label"><span class="lane-chip" aria-hidden="true">3</span><span data-i18n="home.excellence.label">The honorary sign</span></span>
+      <h2 class="section-title" id="excellence-title">
+        <span data-i18n="home.excellence.title_1">Excellence from</span>
+        <span class="accent" data-i18n="home.excellence.title_2">Waukegan.</span>
+      </h2>
+      <p class="section-lede" data-i18n="home.excellence.p1">In July 2024, Waukegan dedicated the honorary street name "Shakedia Jones Olympic Way" on George Avenue, near her childhood home. That August, the City Council honored her with a proclamation.</p>
+
+      <blockquote class="ex-quote">
+        <p lang="en" data-i18n="home.excellence.quote">"Why isn't there a place where we can go to find out the people in Waukegan who have done amazing things..."</p>
+        <p class="tr-line" data-i18n="home.excellence.quote_tr"></p>
+        <footer data-i18n="home.excellence.quote_cite">Shakedia Jones, Waukegan City Council, August 2024</footer>
+      </blockquote>
+
+      <p class="ex-p2" data-i18n="home.excellence.p2">She asked the city to give that place a home, so people can see excellence from Waukegan. She was asking for the next kid on the block, the one who needs to see that champions come from here. That is the job she wants: making excellence ordinary in the 1st Ward.</p>
+    </div>
+
+    <div class="ex-visual">
+      <StreetSign class="ex-sign" />
+      <figure class="ex-still photo">
+        <img src={`${base}/images/council-honor-2024.webp`} width="320" height="568" loading="lazy" decoding="async"
+          alt="Holding a framed proclamation, she speaks into a microphone in the Waukegan City Council chambers."
+          data-i18n-attr="alt:home.excellence.still_alt" />
+        <figcaption data-i18n="home.excellence.still_caption">Honored by the City Council, August 2024.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ex-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--space-3xl); align-items: center; }
+  .ex-copy .section-title { display: flex; flex-direction: column; }
+  .ex-quote { margin: var(--space-xl) 0; padding: var(--space-lg) var(--space-xl); border-left: 6px solid var(--track); background: var(--white); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; box-shadow: var(--shadow-sm); }
+  .ex-quote p { font-family: var(--font-display); font-weight: 700; font-size: var(--text-2xl); line-height: 1.1; color: var(--navy); text-transform: none; }
+  .ex-quote .tr-line { margin-top: var(--space-sm); font-family: var(--font-body); font-weight: 400; font-size: var(--text-base); line-height: 1.5; color: var(--ink-soft); }
+  .tr-line:empty, :global(html[lang="en"]) .tr-line { display: none; }
+  .ex-quote footer { margin-top: var(--space-sm); font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-sm); color: var(--muted); }
+  .ex-p2 { color: var(--ink-soft); }
+
+  .ex-visual { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--space-lg); }
+  .ex-still { width: 200px; aspect-ratio: 320 / 440; transform: rotate(3deg); box-shadow: var(--shadow-lg); border: 5px solid var(--white); margin-top: -40px; margin-left: 140px; }
+  .ex-still img { object-position: center 30%; }
+
+  @media (max-width: 960px) {
+    .ex-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
+    .ex-still { margin-left: 90px; width: 190px; }
+  }
+  @media (max-width: 420px) { .ex-still { margin-left: 40px; width: 170px; } }
+</style>

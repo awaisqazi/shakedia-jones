@@ -1,0 +1,169 @@
+---
+import Wordmark from './ui/Wordmark.astro';
+import Mark from './ui/Mark.astro';
+import { donateHref, isExternalDonate, canDonate } from '../data/campaign.js';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const DONATE = donateHref(base);
+const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
+const links = [
+  { href: `${base}/meet/`, key: 'nav.meet', label: 'Meet Shakedia' },
+  { href: `${base}/plan/`, key: 'nav.plan', label: 'The Game Plan' },
+  { href: `${base}/join/`, key: 'nav.join', label: 'Get Involved' },
+];
+const current = Astro.url.pathname;
+---
+
+<nav class="navbar" id="navbar" aria-label="Main" data-i18n-attr="aria-label:nav.main_label">
+  <div class="nav-inner container-wide">
+    <a href={`${base}/`} class="nav-logo" aria-label="Shakedia Jones, home" data-i18n-attr="aria-label:nav.home_label">
+      <Wordmark size="md" />
+    </a>
+
+    <ul class="nav-links hide-mobile">
+      {links.map((l) => (
+        <li><a href={l.href} data-i18n={l.key} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a></li>
+      ))}
+    </ul>
+
+    <div class="nav-actions">
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <button type="button" data-lang-toggle="en" class="lang-btn active" aria-label="English" lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-toggle="es" class="lang-btn" aria-label="Español" lang="es" aria-pressed="false">ES</button>
+      </div>
+      <a href={`${base}/join/#signup`} class="btn btn-track nav-pill" data-i18n="nav.volunteer_cta">Volunteer</a>
+      {canDonate() && <a href={DONATE} class="btn btn-track nav-pill" data-i18n="nav.donate" {...ext}>Donate</a>}
+
+      <button type="button" class="hamburger hide-desktop" id="hamburger" aria-label="Menu" data-i18n-attr="aria-label:nav.menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-drawer hide-desktop" id="mobile-drawer">
+    <ul class="mobile-links">
+      {links.map((l, i) => (
+        <li><a href={l.href}><span class="m-lane" aria-hidden="true">{i + 1}</span><span data-i18n={l.key}>{l.label}</span></a></li>
+      ))}
+      <li class="mobile-ctas">
+        <a href={`${base}/join/#signup`} class="btn btn-navy btn-block" data-i18n="nav.volunteer_cta">Volunteer</a>
+        {canDonate() && <a href={DONATE} class="btn btn-track btn-block" data-i18n="nav.donate" {...ext}>Donate</a>}
+      </li>
+    </ul>
+    <div class="mobile-foot">
+      <Mark size={44} />
+      <p class="mobile-tag" data-i18n="nav.tagline">Excellence from Waukegan.</p>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('mobile-drawer');
+  const navbar = document.getElementById('navbar');
+
+  // While the drawer is open, the page behind it is inert (no Tab escape, no clicks).
+  const setInert = (on: boolean) => {
+    document.querySelectorAll('main, footer:not(main footer), #action-bar').forEach((el) => el.toggleAttribute('inert', on));
+  };
+  const isOpen = () => !!drawer?.classList.contains('open');
+
+  const close = () => {
+    drawer?.classList.remove('open');
+    hamburger?.classList.remove('active');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    setInert(false);
+  };
+
+  hamburger?.addEventListener('click', () => {
+    const open = !!drawer?.classList.toggle('open');
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+    setInert(open);
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) { close(); hamburger?.focus(); } });
+  drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+  // Crossing into the desktop layout hides the hamburger, so close the drawer too.
+  const desktop = matchMedia('(min-width: 1025px)');
+  const onBreakpoint = (e: MediaQueryList | MediaQueryListEvent) => { if (e.matches && isOpen()) close(); };
+  desktop.addEventListener?.('change', onBreakpoint);
+  const onScroll = () => navbar?.classList.toggle('scrolled', window.scrollY > 30);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+<style>
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9998;
+    height: var(--nav-height);
+    background: rgba(247, 242, 234, 0.88);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: background var(--duration-normal), box-shadow var(--duration-normal), border-color var(--duration-normal);
+  }
+  /* A thin lane-line strip across the very top */
+  .navbar::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--track) 0 78%, var(--gold) 78% 100%);
+  }
+  .navbar.scrolled { background: rgba(247, 242, 234, 0.97); box-shadow: 0 2px 18px rgba(13, 27, 62, 0.08); border-color: var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; gap: var(--space-md); }
+  .nav-logo { display: flex; align-items: center; flex-shrink: 0; transition: transform var(--duration-fast); }
+  .nav-logo:hover { transform: translateY(-1px); }
+
+  .nav-links { display: flex; align-items: center; gap: var(--space-xl); }
+  .nav-links a {
+    font-family: var(--font-label); font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--navy); position: relative; padding: 6px 0;
+  }
+  .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--track); transition: width var(--duration-normal) var(--ease-default); }
+  .nav-links a:hover::after, .nav-links a[aria-current='page']::after { width: 100%; }
+  .nav-links a[aria-current='page'] { color: var(--track-deep); }
+
+  .nav-actions { display: flex; align-items: center; gap: var(--space-sm); }
+  .lang-toggle { display: flex; align-items: center; gap: 2px; background: rgba(13, 27, 62, 0.07); border-radius: 999px; padding: 3px; margin-right: var(--space-xs); }
+  .lang-btn { font-family: var(--font-label); font-weight: 700; font-size: 0.82rem; color: var(--navy); padding: 6px 11px; min-height: 32px; border-radius: 999px; letter-spacing: 0.08em; transition: background var(--duration-fast), color var(--duration-fast); }
+  .lang-btn.active { background: var(--navy); color: var(--white); }
+  .lang-btn:hover:not(.active) { background: rgba(13, 27, 62, 0.12); }
+
+  .nav-pill { font-size: 0.95rem; padding: 0.55rem 1.15rem 0.5rem; }
+  @media (max-width: 1024px) { .nav-pill { display: none; } }
+
+  .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 10px; }
+  .hamburger-line { display: block; width: 24px; height: 2.5px; background: var(--navy); border-radius: 2px; transition: transform var(--duration-normal) var(--ease-default), opacity var(--duration-fast); transform-origin: center; }
+  .hamburger.active .hamburger-line:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .hamburger.active .hamburger-line:nth-child(2) { opacity: 0; }
+  .hamburger.active .hamburger-line:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  .mobile-drawer {
+    position: fixed; top: var(--nav-height); left: 0; right: 0; height: calc(100dvh - var(--nav-height));
+    background: var(--chalk); z-index: 9999; transform: translateX(100%); visibility: hidden;
+    transition: transform var(--duration-normal) var(--ease-default), visibility 0s linear var(--duration-normal);
+    padding: var(--space-xl) var(--gutter) var(--space-3xl); overflow-y: auto; -webkit-overflow-scrolling: touch;
+    display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-xl);
+  }
+  .mobile-drawer.open { transform: translateX(0); visibility: visible; transition: transform var(--duration-normal) var(--ease-default); }
+  .mobile-links { display: flex; flex-direction: column; }
+  .mobile-links a:not(.btn) {
+    display: flex; align-items: center; gap: var(--space-md);
+    font-family: var(--font-display); font-weight: 800; font-size: var(--text-3xl); text-transform: uppercase; color: var(--navy);
+    padding: var(--space-md) 0; border-bottom: 2px solid var(--line);
+  }
+  .m-lane { display: inline-grid; place-items: center; width: 2.1rem; height: 2.1rem; border: 2px solid var(--track); color: var(--track); border-radius: 5px; font-size: 1.2rem; flex-shrink: 0; }
+  .mobile-ctas { display: grid; gap: var(--space-sm); margin-top: var(--space-xl); }
+  .mobile-foot { display: flex; align-items: center; gap: var(--space-md); }
+  .mobile-tag { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--text-xl); color: var(--track-deep); line-height: 1; }
+  @media (max-width: 420px) { .nav-logo :global(.wm-name) { font-size: 1.3rem; } .nav-logo :global(.wm-mark) { width: 34px; height: 34px; } }
+  /* Small phones and 400% zoom (320px): keep the hamburger inside the viewport. */
+  @media (max-width: 360px) {
+    .nav-inner { gap: var(--space-xs); }
+    .nav-actions { gap: 2px; }
+    .lang-toggle { margin-right: 0; }
+    .lang-btn { padding: 6px 8px; }
+    .nav-logo :global(.wm-name) { font-size: 1.15rem; }
+    .nav-logo :global(.wm-mark) { width: 30px; height: 30px; }
+  }
+  @media (max-width: 350px) { .nav-logo :global(.wm-sub) { display: none; } }
+</style>

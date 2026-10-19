@@ -1,0 +1,28 @@
+---
+// Text wordmark: mark + SHAKEDIA JONES, with a small office line under it.
+import Mark from './Mark.astro';
+export interface Props { light?: boolean; size?: 'sm' | 'md' | 'lg' }
+const { light = false, size = 'md' } = Astro.props;
+---
+<span class:list={['wordmark', `wm-${size}`, { 'wm-light': light }]}>
+  <Mark class="wm-mark" size={size === 'lg' ? 56 : size === 'sm' ? 34 : 42} />
+  <span class="wm-text">
+    <span class="wm-name"><span class="wm-first">Shakedia</span> <span class="wm-last">Jones</span></span>
+    <span class="wm-sub" data-i18n="nav.wordmark_sub">1st Ward · Waukegan</span>
+  </span>
+</span>
+
+<style>
+  .wordmark { display: inline-flex; align-items: center; gap: 0.6rem; line-height: 1; }
+  .wm-mark { flex-shrink: 0; }
+  .wm-text { display: flex; flex-direction: column; gap: 3px; }
+  .wm-name { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: 1.6rem; letter-spacing: 0.01em; color: var(--navy); white-space: nowrap; }
+  .wm-last { color: var(--track); }
+  .wm-sub { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.68rem; color: var(--muted); white-space: nowrap; }
+  .wm-sm .wm-name { font-size: 1.3rem; }
+  .wm-lg .wm-name { font-size: 2.2rem; }
+  .wm-lg .wm-sub { font-size: 0.8rem; }
+  .wm-light .wm-name { color: var(--white); }
+  .wm-light .wm-last { color: var(--gold); }
+  .wm-light .wm-sub { color: rgba(255, 255, 255, 0.7); }
+</style>

@@ -1,0 +1,32 @@
+---
+// /plan/ "The Game Plan": four lanes, how she will work, a quote, and a call to join.
+// DRAFT FOR CANDIDATE APPROVAL: every lane commitment (plan.lanes.*.c1 to c4 in
+// src/i18n/parts/plan.*.json) is proposed wording awaiting Shakedia Jones's sign-off.
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PlanHero from '../components/plan/PlanHero.astro';
+import Lane from '../components/plan/Lane.astro';
+import YouthRecord from '../components/plan/YouthRecord.astro';
+import CoachWay from '../components/plan/CoachWay.astro';
+import PlanQuote from '../components/plan/PlanQuote.astro';
+import PlanCTA from '../components/plan/PlanCTA.astro';
+---
+
+<Layout
+  title="The Game Plan | Shakedia Jones for the 1st Ward"
+  description="Four lanes for Waukegan's 1st Ward: safe neighborhoods, youth programming, strong infrastructure and transparent government, with a monthly report back."
+>
+  <Navbar />
+  <main id="main" tabindex="-1">
+    <PlanHero />
+    <Lane id="l1" n={1} tone="chalk-2" />
+    <Lane id="l2" n={2} tone="chalk"><YouthRecord /></Lane>
+    <Lane id="l3" n={3} tone="chalk-2" />
+    <Lane id="l4" n={4} tone="chalk" />
+    <CoachWay />
+    <PlanQuote />
+    <PlanCTA />
+  </main>
+  <Footer />
+</Layout>

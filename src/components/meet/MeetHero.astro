@@ -1,0 +1,102 @@
+---
+// Meet hero: headline, short bio, credential tags and the dedication-day portrait.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section class="meet-hero" aria-labelledby="meet-hero-title">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="section-label animate-in"><span class="kick-bar" aria-hidden="true"></span><span data-i18n="meet.hero.kicker">Meet Shakedia</span></p>
+      <h1 id="meet-hero-title" class="hero-title animate-in" style="--reveal-delay: 0.06s">
+        <span class="t-line" data-i18n="meet.hero.title_1">She went around the world.</span>
+        <span class="t-line accent" data-i18n="meet.hero.title_2">Then she came home.</span>
+      </h1>
+      <p class="section-lede animate-in" style="--reveal-delay: 0.12s" data-i18n="meet.hero.lede">Shakedia Jones grew up on what she calls Waukegan's South Side. She won nine IHSA state titles, graduated from Waukegan High in 1997, ran for UCLA and Team USA, and came home to build Furthering the Lives of Youth (FLY). Now she is running for Alderperson of the 1st Ward.</p>
+
+      <ul class="hero-tags animate-in" style="--reveal-delay: 0.18s">
+        <li class="tag tag-navy" data-i18n="meet.hero.tag_1">USA Olympian</li>
+        <li class="tag" data-i18n="meet.hero.tag_2">Nine-time IHSA state champion</li>
+        <li class="tag tag-fly" data-i18n="meet.hero.tag_3">Founder of FLY</li>
+        <li class="tag" data-i18n="meet.hero.tag_4">Has coached WHS girls track</li>
+      </ul>
+
+      <div class="hero-ctas animate-in" style="--reveal-delay: 0.24s">
+        <a href="#relay" class="btn btn-track" data-i18n="meet.hero.cta_story">Read her story</a>
+        <a href={`${base}/plan/`} class="btn btn-outline" data-i18n="meet.hero.cta_plan">The Game Plan</a>
+      </div>
+    </div>
+
+    <div class="hero-media animate-in" style="--reveal-delay: 0.1s">
+      <span class="media-block" aria-hidden="true"></span>
+      <figure class="photo hero-photo">
+        <img
+          src={`${base}/images/olympic-way-sign-portrait.webp`}
+          width="440" height="1100"
+          alt="Two women under the George Avenue street sign and the Shakedia Jones Olympic Way honorary sign, one pointing up at it."
+          data-i18n-attr="alt:meet.hero.photo_alt"
+          loading="eager" fetchpriority="high" decoding="async"
+        />
+        <figcaption data-i18n="meet.hero.photo_cap">Dedication day on George Avenue, July 14, 2024.</figcaption>
+      </figure>
+      <div class="hero-plate">
+        <span class="plate-label" data-i18n="meet.hero.plate_label">Hometown</span>
+        <span class="plate-value" data-i18n="meet.hero.plate_value">Waukegan, IL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .meet-hero {
+    padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-4xl);
+    position: relative; overflow: hidden;
+  }
+  /* Faint lane lines running behind the copy, like the view down a straightaway */
+  .meet-hero::before {
+    content: ''; position: absolute; inset: 0 0 0 auto; width: 46%;
+    background: repeating-linear-gradient(90deg, transparent 0 58px, rgba(194, 65, 42, 0.09) 58px 61px);
+    pointer-events: none;
+  }
+  .hero-grid { position: relative; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-3xl); align-items: center; }
+  .kick-bar { display: inline-block; width: 34px; height: 4px; background: var(--track); border-radius: 2px; }
+  .hero-title { font-size: var(--text-5xl); line-height: 0.92; margin-bottom: var(--space-lg); }
+  .t-line { display: block; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin: var(--space-xl) 0; }
+  .tag {
+    font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: var(--text-sm); line-height: 1.2; padding: 0.45em 0.9em 0.4em;
+    border: 2px solid var(--track); color: var(--track-deep); border-radius: 4px; background: var(--white);
+  }
+  .tag-navy { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .tag-fly { border-color: var(--fly-deep); color: var(--fly-deep); }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: var(--space-md); }
+
+  .hero-media { position: relative; justify-self: center; width: min(100%, 400px); padding: 0 0 var(--space-xl) var(--space-xl); }
+  .media-block {
+    position: absolute; left: 0; bottom: 0; width: 78%; height: 72%;
+    background: var(--track); border-radius: var(--radius-lg);
+    box-shadow: inset 0 0 0 6px var(--track), inset 0 0 0 9px rgba(255, 255, 255, 0.85);
+  }
+  .hero-photo { position: relative; aspect-ratio: 440 / 1100; max-height: 640px; box-shadow: var(--shadow-xl); }
+  .hero-plate {
+    position: absolute; right: -10px; top: 12%;
+    display: flex; flex-direction: column; gap: 2px;
+    background: var(--navy); color: var(--white); border-radius: 8px; padding: 0.6rem 0.9rem;
+    box-shadow: var(--shadow-lg); border-left: 5px solid var(--gold);
+  }
+  .plate-label { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.72rem; color: var(--gold); }
+  .plate-value { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.35rem; line-height: 1; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
+    .meet-hero::before { width: 100%; opacity: 0.6; }
+    .hero-media { width: min(100%, 340px); }
+  }
+  @media (max-width: 480px) {
+    .meet-hero { padding-top: calc(var(--nav-height) + var(--space-2xl)); }
+    .hero-title { font-size: clamp(2.5rem, 12vw, 3.1rem); }
+    .hero-media { padding: 0 0 var(--space-lg) var(--space-lg); }
+    .hero-plate { right: 0; }
+    .hero-ctas .btn { flex: 1 1 100%; }
+  }
+</style>

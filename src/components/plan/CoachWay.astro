@@ -1,0 +1,56 @@
+---
+// "How she'll work: like a coach." Four relay legs joined by a baton line.
+import en from '../../i18n/parts/plan.en.json';
+
+const t = en.plan;
+const steps = ['s1', 's2', 's3', 's4'] as const;
+---
+
+<section class="coach section-padding bg-chalk-2" id="how">
+  <div class="container">
+    <header class="coach-head">
+      <span class="section-label animate-in"><span data-i18n="plan.how_label">{t.how_label}</span></span>
+      <h2 class="section-title animate-in">
+        <span data-i18n="plan.how_title_1">{t.how_title_1}</span>
+        <span class="accent" data-i18n="plan.how_title_2">{t.how_title_2}</span>
+      </h2>
+      <p class="section-lede animate-in" data-i18n="plan.how_lede">{t.how_lede}</p>
+    </header>
+
+    <ol class="legs">
+      {steps.map((s, i) => (
+        <li class="leg animate-in" style={`--reveal-delay:${i * 0.08}s`}>
+          <span class="leg-node" aria-hidden="true"></span>
+          <span class="leg-tag"><span data-i18n="plan.leg">{t.leg}</span> <span class="stat-tabular">{i + 1}</span></span>
+          <h3 class="leg-title" data-i18n={`plan.how.${s}_title`}>{t.how[`${s}_title`]}</h3>
+          <p data-i18n={`plan.how.${s}_text`}>{t.how[`${s}_text`]}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .coach-head { margin-bottom: var(--space-3xl); }
+  .coach-head .section-title span + span { margin-left: 0.25em; }
+
+  .legs { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-lg); }
+  /* The baton line that links the four legs */
+  .legs::before {
+    content: ''; position: absolute; top: 11px; left: 12px; right: 12px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--track), var(--gold));
+  }
+  .leg { position: relative; padding-top: var(--space-2xl); }
+  .leg-node { position: absolute; top: 0; left: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--chalk-2); border: 5px solid var(--track); }
+  .leg:last-child .leg-node { border-color: var(--gold-deep); background: var(--gold); }
+  .leg-tag { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: var(--text-xs); color: var(--track-deep); }
+  .leg-title { font-size: var(--text-2xl); margin: var(--space-xs) 0 var(--space-sm); overflow-wrap: anywhere; }
+  .leg p { color: var(--ink-soft); font-size: var(--text-sm); }
+
+  @media (max-width: 900px) {
+    .legs { grid-template-columns: 1fr; gap: var(--space-xl); padding-left: var(--space-2xl); }
+    .legs::before { top: 12px; bottom: 12px; left: 11px; right: auto; width: 4px; height: auto; background: linear-gradient(180deg, var(--track), var(--gold)); }
+    .leg { padding-top: 0; }
+    .leg-node { left: calc(-1 * var(--space-2xl)); }
+  }
+</style>

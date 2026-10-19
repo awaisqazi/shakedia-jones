@@ -1,0 +1,87 @@
+---
+// Page hero: title, countdown, and a four-lane index drawn as a stretch of track.
+// This lane index is the page's one track-red band.
+import RaceClock from '../ui/RaceClock.astro';
+import { DATES } from '../../data/campaign.js';
+import en from '../../i18n/parts/plan.en.json';
+
+const t = en.plan;
+const lanes = ['l1', 'l2', 'l3', 'l4'];
+const laneNames = t.lanes as Record<string, { name: string }>;
+---
+
+<section class="plan-hero" id="top">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="section-label animate-in">
+        <span data-i18n="plan.hero_label">{t.hero_label}</span>
+      </span>
+      <h1 class="hero-title animate-in" style="--reveal-delay:0.05s">
+        <span data-i18n="plan.hero_title_1">{t.hero_title_1}</span>
+        <span class="accent" data-i18n="plan.hero_title_2">{t.hero_title_2}</span>
+      </h1>
+      <p class="section-lede animate-in" style="--reveal-delay:0.1s" data-i18n="plan.hero_lede">{t.hero_lede}</p>
+      <div class="hero-clock animate-in" style="--reveal-delay:0.15s">
+        <RaceClock date={DATES.election} labelKey="plan.clock_label" label={t.clock_label} size="lg" />
+        <span class="hero-date" data-i18n="plan.hero_date">{t.hero_date}</span>
+      </div>
+    </div>
+
+    <nav class="lane-index animate-in" style="--reveal-delay:0.12s" aria-label={t.index_aria} data-i18n-attr="aria-label:plan.index_aria">
+      <span class="index-label" data-i18n="plan.index_label">{t.index_label}</span>
+      <ol>
+        {lanes.map((k, i) => (
+          <li>
+            <a href={`#lane-${i + 1}`} class="index-lane">
+              <span class="index-num" aria-hidden="true">{i + 1}</span>
+              <span class="index-name" data-i18n={`plan.lanes.${k}.name`}>{laneNames[k].name}</span>
+              <span class="index-arrow" aria-hidden="true">&#8595;</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <div class="index-finish" aria-hidden="true"></div>
+    </nav>
+  </div>
+</section>
+
+<style>
+  .plan-hero { padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-4xl); background: var(--chalk); overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--space-3xl); align-items: center; }
+  .hero-title { font-size: var(--text-5xl); line-height: 0.92; margin-bottom: var(--space-lg); overflow-wrap: anywhere; }
+  .hero-title span { display: block; }
+  .hero-clock { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-xl); }
+  .hero-date { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--navy); font-size: var(--text-sm); max-width: 22ch; line-height: 1.3; }
+
+  .lane-index {
+    position: relative; background: var(--track); border-radius: var(--radius-lg); padding: var(--space-lg) 0 0;
+    box-shadow: var(--shadow-lg); overflow: hidden;
+  }
+  .index-label {
+    display: block; padding: 0 var(--space-lg) var(--space-md);
+    font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; font-size: var(--text-sm); color: var(--gold-soft);
+  }
+  .lane-index ol { border-top: 3px solid rgba(255, 255, 255, 0.92); }
+  .lane-index li { border-bottom: 3px solid rgba(255, 255, 255, 0.92); }
+  .index-lane {
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg); color: var(--white); min-height: 72px;
+    transition: background var(--duration-normal) var(--ease-default);
+  }
+  .index-lane:hover, .index-lane:focus-visible { background: var(--track-deep); }
+  .index-num { font-family: var(--font-display); font-weight: 900; font-size: 2.6rem; line-height: 1; min-width: 1.2ch; text-align: center; }
+  .index-name { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--text-xl); line-height: 1; }
+  .index-arrow { font-size: 1.3rem; opacity: 0.8; transition: transform var(--duration-normal) var(--ease-default); }
+  .index-lane:hover .index-arrow { transform: translateY(3px); }
+  .index-finish { height: 14px; background: repeating-linear-gradient(90deg, var(--white) 0 14px, var(--navy) 14px 28px); }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
+    .plan-hero { padding-top: calc(var(--nav-height) + var(--space-2xl)); padding-bottom: var(--space-3xl); }
+  }
+  @media (max-width: 420px) {
+    .index-lane { padding: var(--space-sm) var(--space-md); min-height: 60px; gap: var(--space-sm); }
+    .index-num { font-size: 2rem; }
+    .index-label { padding-inline: var(--space-md); }
+  }
+</style>
