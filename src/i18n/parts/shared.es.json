@@ -3,13 +3,13 @@
     "skip": "Ir al contenido",
     "home": "Inicio",
     "meet": "Conozca a Shakedia",
-    "plan": "El plan de juego",
+    "plan": "Prioridades",
     "join": "Participe",
     "volunteer_cta": "Únase",
     "donate": "Donar",
     "menu": "Menú",
-    "tagline": "Excelencia de Waukegan.",
-    "wordmark_sub": "Distrito 1 · Waukegan",
+    "tagline": "Construyendo un 1er Distrito Más Fuerte Unidos",
+    "wordmark_sub": "Concejala del 1er Distrito",
     "main_label": "Principal",
     "home_label": "Shakedia Jones, inicio"
   },
@@ -20,18 +20,25 @@
   },
   "ui": {
     "sign_label": "El letrero honorario tal como se dedicó el 14 de julio de 2024: Shakedia Jones Olympic Way, George Avenue.",
-    "newtab": "(se abre en una pestaña nueva)"
+    "newtab": "(se abre en una pestaña nueva)",
+    "ribbon": "Concejala del 1er Distrito",
+    "slogan": "Construyendo un 1er Distrito Más Fuerte Unidos",
+    "values_label": "Nuestros valores",
+    "values_1": "Familia",
+    "values_2": "Oportunidades",
+    "values_3": "Vecindarios más seguros",
+    "values_4": "Comunidades más fuertes"
   },
   "footer": {
-    "band_label": "Corra con nosotros",
-    "band_text": "Cada vecino que se une hace a este equipo más rápido.",
-    "motto": "Excelencia de Waukegan.",
+    "band_label": "Únase",
+    "band_text": "Cada vecino que se une hace más fuerte al 1er Distrito.",
+    "motto": "Construyendo un 1er Distrito Más Fuerte Unidos",
     "links_title": "Secciones",
     "dates_title": "Fechas clave",
-    "when_1": "Cómo empieza",
-    "date_1": "Las firmas de los votantes del Distrito 1 ponen a Shakedia en la boleta",
-    "when_2": "6 de abril de 2027",
-    "date_2": "Día de las Elecciones",
+    "when_1": "23 de feb. de 2027",
+    "date_1": "Elección primaria",
+    "when_2": "6 de abr. de 2027",
+    "date_2": "Elección general",
     "when_3": "Antes de votar",
     "date_3": "Verifique su inscripción como votante en la Secretaría del Condado de Lake",
     "follow_title": "Síganos",
@@ -47,28 +54,28 @@
     "sms": "Mándele un texto a un vecino",
     "whatsapp": "WhatsApp",
     "copy": "Copiar enlace",
-    "calendar": "Agregar a mi calendario"
+    "calendar": "Agregar el 23 de febrero a mi calendario"
   },
   "meta": {
     "home": {
-      "title": "Shakedia Jones, candidata a concejal del Distrito 1 | Waukegan",
-      "description": "Integrante del Equipo Olímpico de EE. UU. del 2000, nueve veces campeona estatal de Illinois y fundadora de FLY. Las elecciones son el 6 de abril de 2027."
+      "title": "Shakedia Jones, Concejala del 1er Distrito | Waukegan",
+      "description": "Atleta olímpica de EE. UU., nueve veces campeona estatal y fundadora de FLY. Candidata a concejala del 1er Distrito. Primaria: 23 de feb. de 2027."
     },
     "meet": {
       "title": "Conozca a Shakedia Jones | Atleta olímpica, entrenadora, vecina",
-      "description": "Nueve títulos estatales de la IHSA, el Equipo Olímpico del 2000 y la fundación de FLY: la historia de una joven del South Side de Waukegan que volvió a casa."
+      "description": "Nacida y criada en el 1er Distrito de Waukegan: nueve títulos estatales de la IHSA, el Equipo Olímpico del 2000 y FLY. Ahora, candidata a concejala."
     },
     "plan": {
-      "title": "El plan de juego | Shakedia Jones por el Distrito 1",
-      "description": "Cuatro carriles para el Distrito 1 de Waukegan: vecindarios seguros, programas para jóvenes, infraestructura sólida y gobierno transparente."
+      "title": "Prioridades | Shakedia Jones, 1er Distrito",
+      "description": "Calles más seguras, edificios abandonados, renovación de viviendas y un centro comunitario: las prioridades de Shakedia Jones para el 1er Distrito."
     },
     "join": {
-      "title": "Participe | Shakedia Jones, candidata a concejal del Distrito 1",
-      "description": "Peticiones, puertas, letreros y eventos: así puede ayudar a poner a Shakedia Jones en la boleta y a ganar el Distrito 1 el 6 de abril de 2027."
+      "title": "Participe | Shakedia Jones, Concejala del 1er Distrito",
+      "description": "Sea voluntario, toque puertas, ponga un letrero o ayude en eventos con Shakedia Jones en el 1er Distrito. Vote en la primaria el 23 de feb. de 2027."
     },
     "links": {
       "title": "Shakedia Jones | Enlaces",
-      "description": "Todos los enlaces de la campaña de Shakedia Jones por el Distrito 1 de Waukegan."
+      "description": "Todos los enlaces de la campaña de Shakedia Jones, candidata a concejala del 1er Distrito de Waukegan."
     }
   }
 }

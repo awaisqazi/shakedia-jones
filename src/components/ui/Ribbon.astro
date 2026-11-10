@@ -1,0 +1,43 @@
+---
+// The flyers' ribbon band: a dark purple bar with notched ends, a gold hairline and a gold star
+// each side. Default text is the office line ("For 1st Ward Alderman"), translated via ui.ribbon.
+// <Ribbon />  <Ribbon size="lg" />  <Ribbon i18nKey="home.hero.ribbon" text="..." as="h2" />
+import Star from './Star.astro';
+export interface Props {
+  text?: string;
+  i18nKey?: string;
+  size?: 'sm' | 'md' | 'lg';
+  as?: 'p' | 'div' | 'h1' | 'h2' | 'span';
+  class?: string;
+}
+const { text = 'For 1st Ward Alderman', i18nKey = 'ui.ribbon', size = 'md', as: Tag = 'p', class: cls } = Astro.props;
+---
+<Tag class:list={['ribbon', `ribbon-${size}`, cls]}>
+  <span class="ribbon-inner">
+    <Star class="ribbon-star" />
+    <span class="ribbon-text" data-i18n={i18nKey}>{text}</span>
+    <Star class="ribbon-star" />
+  </span>
+</Tag>
+
+<style>
+  .ribbon {
+    --notch: 0.9em;
+    display: inline-block; max-width: 100%;
+    background: var(--gold); padding: 2px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - var(--notch)) 50%, 100% 100%, 0 100%, var(--notch) 50%);
+    font-family: var(--font-display); font-weight: 800; line-height: 1.1; letter-spacing: 0;
+    font-size: clamp(1.05rem, 0.9rem + 0.8vw, 1.5rem); color: var(--white); text-transform: none;
+    filter: drop-shadow(0 6px 14px rgba(29, 10, 46, 0.3));
+  }
+  .ribbon-inner {
+    display: flex; align-items: center; justify-content: center; gap: 0.55em;
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    padding: 0.42em calc(var(--notch) + 0.8em) 0.4em;
+    clip-path: polygon(0 0, 100% 0, calc(100% - var(--notch) + 1px) 50%, 100% 100%, 0 100%, calc(var(--notch) - 1px) 50%);
+  }
+  .ribbon-text { text-wrap: balance; text-align: center; }
+  .ribbon-inner :global(.ribbon-star) { width: 0.8em; height: 0.8em; }
+  .ribbon-sm { font-size: clamp(0.92rem, 0.85rem + 0.3vw, 1.05rem); --notch: 0.75em; }
+  .ribbon-lg { font-size: clamp(1.25rem, 0.95rem + 1.5vw, 2.1rem); }
+</style>

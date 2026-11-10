@@ -1,87 +1,117 @@
 ---
-// Page hero: title, countdown, and a four-lane index drawn as a stretch of track.
-// This lane index is the page's one track-red band.
+// /plan/ hero on the flyers' sunset sky: kicker, title, script slogan, lede, countdown to the
+// primary, and a gold-topped card that jumps to each of the four priorities.
 import RaceClock from '../ui/RaceClock.astro';
+import Star from '../ui/Star.astro';
+import Swoosh from '../ui/Swoosh.astro';
+import PriorityIcon from './PriorityIcon.astro';
 import { DATES } from '../../data/campaign.js';
 import en from '../../i18n/parts/plan.en.json';
 
 const t = en.plan;
-const lanes = ['l1', 'l2', 'l3', 'l4'];
-const laneNames = t.lanes as Record<string, { name: string }>;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const items = [
+  { id: 'p1', icon: 'car' },
+  { id: 'p2', icon: 'buildings' },
+  { id: 'p3', icon: 'home' },
+  { id: 'p4', icon: 'people' },
+] as const;
 ---
 
-<section class="plan-hero" id="top">
+<section class="plan-hero bg-sunset" id="top">
   <div class="container hero-grid">
     <div class="hero-text">
-      <span class="section-label animate-in">
-        <span data-i18n="plan.hero_label">{t.hero_label}</span>
-      </span>
-      <h1 class="hero-title animate-in" style="--reveal-delay:0.05s">
-        <span data-i18n="plan.hero_title_1">{t.hero_title_1}</span>
-        <span class="accent" data-i18n="plan.hero_title_2">{t.hero_title_2}</span>
-      </h1>
-      <p class="section-lede animate-in" style="--reveal-delay:0.1s" data-i18n="plan.hero_lede">{t.hero_lede}</p>
-      <div class="hero-clock animate-in" style="--reveal-delay:0.15s">
-        <RaceClock date={DATES.election} labelKey="plan.clock_label" label={t.clock_label} size="lg" />
-        <span class="hero-date" data-i18n="plan.hero_date">{t.hero_date}</span>
+      <p class="kicker animate-in" data-i18n="plan.hero.kicker">{t.hero.kicker}</p>
+      <h1 class="hero-title animate-in" style="--reveal-delay:0.05s" data-i18n="plan.hero.title">{t.hero.title}</h1>
+      <p class="hero-slogan script animate-in" style="--reveal-delay:0.1s" data-i18n="ui.slogan">Building a Stronger 1st Ward Together</p>
+      <Swoosh class="hero-swoosh" />
+      <p class="hero-lede animate-in" style="--reveal-delay:0.14s" data-i18n="plan.hero.lede">{t.hero.lede}</p>
+      <div class="hero-clock animate-in" style="--reveal-delay:0.18s">
+        <RaceClock date={DATES.primary} labelKey="plan.hero.clock_label" label={t.hero.clock_label} size="lg" />
+        <div class="hero-dates">
+          <span class="date-main" data-i18n="plan.hero.date_primary">{t.hero.date_primary}</span>
+          <span class="date-sub" data-i18n="plan.hero.date_general">{t.hero.date_general}</span>
+        </div>
       </div>
     </div>
 
-    <nav class="lane-index animate-in" style="--reveal-delay:0.12s" aria-label={t.index_aria} data-i18n-attr="aria-label:plan.index_aria">
-      <span class="index-label" data-i18n="plan.index_label">{t.index_label}</span>
+    <nav class="hero-index card-gold animate-in" style="--reveal-delay:0.12s" aria-label={t.hero.index_aria} data-i18n-attr="aria-label:plan.hero.index_aria">
+      <p class="index-label"><Star /><span data-i18n="plan.hero.index_label">{t.hero.index_label}</span><Star /></p>
       <ol>
-        {lanes.map((k, i) => (
+        {items.map(({ id, icon }, i) => (
           <li>
-            <a href={`#lane-${i + 1}`} class="index-lane">
-              <span class="index-num" aria-hidden="true">{i + 1}</span>
-              <span class="index-name" data-i18n={`plan.lanes.${k}.name`}>{laneNames[k].name}</span>
+            <a href={`#priority-${i + 1}`} class="index-link">
+              <span class="icon-badge icon-badge-sm"><PriorityIcon name={icon} /></span>
+              <span class="index-text">
+                <span class="index-num"><span data-i18n="plan.priority_word">{t.priority_word}</span> {i + 1}</span>
+                <span class="index-name" data-i18n={`plan.p.${id}.short`}>{t.p[id].short}</span>
+              </span>
               <span class="index-arrow" aria-hidden="true">&#8595;</span>
             </a>
           </li>
         ))}
       </ol>
-      <div class="index-finish" aria-hidden="true"></div>
     </nav>
   </div>
+  <img class="hero-skyline" src={`${base}/images/campaign/skyline.webp`} width="1300" height="150" alt="" loading="eager" decoding="async" />
 </section>
 
 <style>
-  .plan-hero { padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-4xl); background: var(--chalk); overflow: hidden; }
-  .hero-grid { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: var(--space-3xl); align-items: center; }
-  .hero-title { font-size: clamp(3rem, 1.8rem + 4.2vw, 5.6rem); line-height: 0.92; margin-bottom: var(--space-lg); overflow-wrap: anywhere; }
-  .hero-title span { display: block; }
-  .hero-clock { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-xl); }
-  .hero-date { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--navy); font-size: var(--text-sm); max-width: 22ch; line-height: 1.3; }
+  .plan-hero {
+    position: relative; overflow: hidden;
+    padding: calc(var(--nav-height) + var(--space-3xl)) 0 calc(var(--space-4xl) + 70px);
+    /* The flyers' sky, held purple through the copy so white text stays readable */
+    background: linear-gradient(180deg, #2b0747 0%, #4a0375 42%, #5a1185 64%, #8a2a8f 80%, #e0457b 91%, #ff9a3c 97%, #fec60a 100%);
+  }
+  .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr); gap: var(--space-3xl); align-items: center; }
+  .hero-title {
+    font-variant-numeric: lining-nums;
+    font-family: var(--font-display); font-weight: 900; font-size: clamp(2.6rem, 1.6rem + 4.4vw, 5.4rem);
+    line-height: 0.98; letter-spacing: -0.01em; color: var(--white); text-wrap: balance;
+    text-shadow: 0 4px 24px rgba(29, 10, 46, 0.45);
+  }
+  .hero-slogan { color: var(--gold); font-size: clamp(1.45rem, 1.1rem + 1.6vw, 2.3rem); margin-top: var(--space-md); }
+  .plan-hero :global(.hero-swoosh) { max-width: 420px; height: 22px; margin: var(--space-xs) 0 var(--space-lg); }
+  .hero-lede { font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); max-width: 56ch; }
+  .hero-clock { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-md) var(--space-lg); margin-top: var(--space-xl); }
+  .hero-dates { display: flex; flex-direction: column; gap: 0.3rem; font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; line-height: 1.25; }
+  .date-main { color: var(--gold); font-size: var(--text-sm); }
+  .date-sub { color: rgba(255, 255, 255, 0.82); font-size: var(--text-xs); }
 
-  .lane-index {
-    position: relative; background: var(--track); border-radius: var(--radius-lg); padding: var(--space-lg) 0 0;
-    box-shadow: var(--shadow-lg); overflow: hidden;
-  }
+  .hero-index { padding: var(--space-lg) var(--space-lg) var(--space-md); }
   .index-label {
-    display: block; padding: 0 var(--space-lg) var(--space-md);
-    font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; font-size: var(--text-sm); color: var(--gold-soft);
+    display: flex; align-items: center; justify-content: center; gap: 0.6em; margin-bottom: var(--space-sm);
+    font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: var(--text-sm); color: var(--purple);
   }
-  .lane-index ol { border-top: 3px solid rgba(255, 255, 255, 0.92); }
-  .lane-index li { border-bottom: 3px solid rgba(255, 255, 255, 0.92); }
-  .index-lane {
-    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-md);
-    padding: var(--space-md) var(--space-lg); color: var(--white); min-height: 72px;
+  .index-label :global(.star) { filter: drop-shadow(0 0 0.6px rgba(43, 7, 71, 0.6)); }
+  .hero-index li + li { border-top: 1px solid var(--gold); }
+  .index-link {
+    display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--space-md);
+    padding: var(--space-md) var(--space-xs); color: var(--ink); border-radius: var(--radius-md);
     transition: background var(--duration-normal) var(--ease-default);
   }
-  .index-lane:hover, .index-lane:focus-visible { background: var(--track-deep); }
-  .index-num { font-family: var(--font-display); font-weight: 900; font-size: 2.6rem; line-height: 1; min-width: 1.2ch; text-align: center; }
-  .index-name { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--text-xl); line-height: 1; }
-  .index-arrow { font-size: 1.3rem; opacity: 0.8; transition: transform var(--duration-normal) var(--ease-default); }
-  .index-lane:hover .index-arrow { transform: translateY(3px); }
-  .index-finish { height: 14px; background: repeating-linear-gradient(90deg, var(--white) 0 14px, var(--navy) 14px 28px); }
+  .index-link:hover { background: var(--purple-soft); }
+  .index-link .icon-badge { --badge-size: 50px; }
+  .index-link .icon-badge :global(svg) { width: 54%; height: 54%; }
+  .index-text { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+  .index-num { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-xs); color: var(--gold-deep); }
+  .index-name { font-family: var(--font-display); font-weight: 800; font-size: var(--text-xl); line-height: 1.1; color: var(--purple-deep); overflow-wrap: anywhere; }
+  .index-arrow { color: var(--purple); font-size: 1.2rem; transition: transform var(--duration-normal) var(--ease-default); }
+  .index-link:hover .index-arrow { transform: translateY(3px); }
 
-  @media (max-width: 900px) {
+  .hero-skyline {
+    position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 110px; object-fit: cover; object-position: center bottom;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 55%); mask-image: linear-gradient(180deg, transparent 0%, #000 55%);
+    opacity: 0.9; pointer-events: none;
+  }
+
+  @media (max-width: 960px) {
     .hero-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
-    .plan-hero { padding-top: calc(var(--nav-height) + var(--space-2xl)); padding-bottom: var(--space-3xl); }
+    .plan-hero { padding-top: calc(var(--nav-height) + var(--space-2xl)); }
   }
   @media (max-width: 420px) {
-    .index-lane { padding: var(--space-sm) var(--space-md); min-height: 60px; gap: var(--space-sm); }
-    .index-num { font-size: 2rem; }
-    .index-label { padding-inline: var(--space-md); }
+    .hero-index { padding: var(--space-md) var(--space-sm) var(--space-sm); }
+    .index-link { gap: var(--space-sm); }
+    .index-label { letter-spacing: 0.12em; }
   }
 </style>

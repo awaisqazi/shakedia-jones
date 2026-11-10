@@ -1,45 +1,53 @@
 ---
+// Closing call: on to Priorities and Get Involved, share tools, and the countdown to the primary.
 import ShareBar from '../ui/ShareBar.astro';
-// Closing handoff: the page's one lane divider, then the CTA to the plan and the team.
-import LaneDivider from '../ui/LaneDivider.astro';
 import RaceClock from '../ui/RaceClock.astro';
+import Ribbon from '../ui/Ribbon.astro';
+import Swoosh from '../ui/Swoosh.astro';
 import { DATES } from '../../data/campaign.js';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section class="meet-cta bg-chalk-2" aria-labelledby="meet-cta-title">
-  <LaneDivider flip />
-  <div class="section-padding">
+<section class="meet-cta bg-soft section-padding" aria-labelledby="meet-cta-title">
   <div class="container cta-inner">
     <div class="cta-copy animate-in">
-      <p class="section-label"><span class="lane-chip" aria-hidden="true">6</span><span data-i18n="meet.cta.kicker">Next leg</span></p>
+      <p class="kicker" data-i18n="meet.cta.kicker">What comes next</p>
       <h2 id="meet-cta-title" class="section-title">
-        <span data-i18n="meet.cta.title_1">The baton</span>
-        <span class="accent" data-i18n="meet.cta.title_2">is coming your way</span>
+        <span data-i18n="meet.cta.title_1">Help build a stronger</span>
+        <span class="accent" data-i18n="meet.cta.title_2">1st Ward</span>
       </h2>
-      <p class="section-lede" data-i18n="meet.cta.lede">See how she plans to serve the 1st Ward, then join the team that gets her across the finish line.</p>
+      <p class="section-lede" data-i18n="meet.cta.lede">See what she will work on for the 1st Ward, then join the neighbors helping her get there.</p>
       <div class="cta-btns">
-        <a href={`${base}/plan/`} class="btn btn-navy btn-massive" data-i18n="meet.cta.btn_plan">Read the Game Plan</a>
-        <a href={`${base}/join/`} class="btn btn-track btn-massive" data-i18n="meet.cta.btn_join">Join the team</a>
+        <a href={`${base}/plan/`} class="btn btn-primary btn-massive" data-i18n="meet.cta.btn_plan">Read her priorities</a>
+        <a href={`${base}/join/`} class="btn btn-outline btn-massive" data-i18n="meet.cta.btn_join">Get involved</a>
       </div>
       <ShareBar class="cta-share" />
     </div>
-    <div class="cta-clock animate-in" style="--reveal-delay: 0.1s">
-      <RaceClock date={DATES.election} labelKey="meet.cta.clock" label="days to Election Day" size="lg" />
-      <div class="finish-rule" aria-hidden="true"></div>
-    </div>
-  </div>
+
+    <aside class="cta-side animate-in" style="--reveal-delay: 0.1s">
+      <div class="cta-card card-gold">
+        <Ribbon size="sm" class="cta-ribbon" />
+        <RaceClock date={DATES.primary} labelKey="meet.cta.clock" label="days until the primary" size="lg" />
+        <p class="cta-slogan script" data-i18n="ui.slogan">Building a Stronger 1st Ward Together</p>
+        <Swoosh class="cta-swoosh" />
+      </div>
+    </aside>
   </div>
 </section>
 
 <style>
-  .cta-inner { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: var(--space-2xl); align-items: center; }
+  .cta-inner { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr); gap: var(--space-3xl); align-items: center; }
   .cta-btns { display: flex; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-xl); }
-  .cta-share { margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--line); }
-  .cta-clock { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
-  .cta-clock .finish-rule { width: 100%; max-width: 260px; }
-  @media (max-width: 860px) { .cta-inner { grid-template-columns: 1fr; } }
+  :global(.cta-share) { margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--lilac); }
+  .cta-card { display: flex; flex-direction: column; align-items: center; gap: var(--space-lg); padding: var(--space-xl) var(--space-lg) var(--space-lg); text-align: center; }
+  .cta-slogan { font-size: var(--text-2xl); color: var(--purple); max-width: 14ch; }
+  :global(.cta-swoosh) { height: 22px; max-width: 220px; }
+  @media (max-width: 900px) {
+    .cta-inner { grid-template-columns: minmax(0, 1fr); gap: var(--space-2xl); }
+    .cta-side { max-width: 420px; }
+  }
   @media (max-width: 480px) {
     .cta-btns .btn { flex: 1 1 100%; white-space: normal; }
+    .cta-side { max-width: none; }
   }
 </style>

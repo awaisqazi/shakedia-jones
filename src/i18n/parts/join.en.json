@@ -2,25 +2,27 @@
   "join": {
     "hero": {
       "label": "Get involved",
-      "title_a": "Run with",
-      "title_b": "us.",
-      "lede": "A relay is won by a team. Shakedia is running for 1st Ward Alderperson, and every neighbor who signs up carries part of the race: a petition, a conversation at the door, a sign in the yard.",
+      "title_a": "Join the",
+      "title_b": "team.",
+      "lede": "Shakedia Jones is running for 1st Ward Alderman, and this campaign runs on neighbors. Carry a petition, talk with the people on your block, put a sign in your yard. Every bit of help makes the 1st Ward stronger.",
       "cta_signup": "Join the team",
+      "cta_ways": "See ways to help",
       "cta_donate": "Chip in",
-      "card_title": "The race",
-      "clock_label": "Days to Election Day",
-      "date_label": "Election Day",
-      "date_value": "Tuesday, April 6, 2027",
+      "card_title": "The primary",
+      "clock_label": "days until the primary",
+      "date_label": "Primary election",
+      "date_value": "Tuesday, February 23, 2027",
+      "general_label": "General election",
+      "general_value": "Tuesday, April 6, 2027",
       "now_label": "How it starts",
       "now_text": "Petitions are how a candidate gets on the ballot. Volunteers help gather signatures from 1st Ward voters."
     },
     "ways": {
-      "label": "Pick your lane",
+      "label": "Ways to help",
       "title_a": "Six ways",
       "title_a_five": "Five ways",
       "title_b": "to help",
-      "lede": "Every lane matters. Choose one, choose three, or tell us how much time you have and we will find the right fit.",
-      "now_tag": "Step one",
+      "lede": "Choose one, choose three, or tell us how much time you have and we will find the right fit.",
       "petition_title": "Sign and carry petitions",
       "petition_text": "Petitions are how a candidate gets on the ballot, and volunteers help gather signatures from 1st Ward voters. Sign one, or gather signatures on your own block.",
       "petition_rules": "Petition signers must be registered voters in the 1st Ward. Circulators must meet state eligibility rules; we will train you before you start.",
@@ -39,7 +41,8 @@
       "words_cta": "I can help share",
       "give_title": "Give",
       "give_text": "Any amount buys clipboards, flyers and yard signs. Small gifts from neighbors go the farthest.",
-      "give_cta": "How to give"
+      "give_cta": "How to give",
+      "start_tag": "Start here"
     },
     "form": {
       "label": "Sign up",
@@ -83,30 +86,42 @@
       "again": "Edit my sign-up",
       "soon_title": "Sign-up opens soon",
       "soon_text": "The volunteer form is almost ready. Check back here soon to join the team.",
-      "lede_soon": "Petitions, doors, yard signs, events: there is a lane for everyone. The sign-up form opens right here soon."
+      "lede_soon": "Petitions, doors, yard signs, events: there is a place for everyone. The sign-up form opens right here soon."
     },
     "donate": {
       "label": "Chip in",
-      "title_a": "Fuel the",
-      "title_b": "anchor leg",
+      "title_a": "Help build a",
+      "title_b": "stronger 1st Ward",
       "lede": "This campaign runs on neighbors, not big checks. Your gift pays for petition clipboards, flyers in Spanish and English, and yard signs for the 1st Ward.",
       "button": "Donate now",
       "button_note": "Opens our secure donation page in a new tab.",
-      "legal": "Contributions to [Committee Name] are not tax deductible. Contributions over $150 are itemized in reports filed with the Illinois State Board of Elections. Contributions must be made from your own funds; contributions from foreign nationals are prohibited."
+      "legal": "Contributions to [Committee Name] are not tax deductible. Contributions over $150 are itemized in reports filed with the Illinois State Board of Elections. Contributions must be made from your own funds; contributions from foreign nationals are prohibited.",
+      "box_title": "Every gift counts"
     },
     "vote": {
       "label": "Before you vote",
-      "title_a": "Be ready for",
-      "title_b": "April 6",
-      "lede": "Election Day is Tuesday, April 6, 2027. The Lake County Clerk runs elections here and keeps every deadline up to date. Check with them directly.",
-      "register_title": "Register or check your registration",
-      "register_text": "Make sure you are registered at your current address.",
-      "mail_title": "Vote by mail",
-      "mail_text": "Request a mail ballot and vote from your kitchen table.",
-      "polling_title": "Find your polling place",
-      "polling_text": "Look up where to vote early or on Election Day.",
-      "go": "Lake County Clerk",
-      "clerk_link": "Lake County Clerk: register and find your polling place"
+      "title_a": "Vote on",
+      "title_b": "February 23",
+      "lede": "The primary is Tuesday, February 23, 2027, and the general election follows on Tuesday, April 6, 2027. The Lake County Clerk runs elections here and keeps every deadline up to date, so check with them directly.",
+      "primary_label": "Primary election",
+      "primary_date": "Tuesday, February 23, 2027",
+      "primary_note": "The first date to circle. Plan your vote now.",
+      "general_label": "General election",
+      "general_date": "Tuesday, April 6, 2027",
+      "general_note": "The consolidated election for city offices.",
+      "clerk_title": "Lake County Clerk",
+      "clerk_text": "One stop for everything before you vote:",
+      "register": "Register or check your registration",
+      "mail": "Request a mail ballot",
+      "polling": "Find your polling place",
+      "clerk_link": "Lake County Clerk: register and find your polling place",
+      "newtab_note": "Opens the Clerk's website in a new tab."
+    },
+    "share": {
+      "label": "Spread the word",
+      "title_a": "Tell a neighbor about",
+      "title_b": "February 23",
+      "lede": "A text to a neighbor takes ten seconds and keeps the 1st Ward talking."
     }
   }
 }

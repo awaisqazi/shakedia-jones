@@ -1,40 +1,93 @@
 /* ============================================
    SHAKEDIA JONES - GLOBAL DESIGN SYSTEM
-   "Olympic Way": track surface, lane lines, medal gold, Team USA navy
+   "Building a Stronger 1st Ward Together": royal purple, campaign gold, sunset sky,
+   heavy mixed-case serif, a script slogan, gold stars and the ribbon band.
+   Matches the campaign's own flyers in public/images/campaign/.
+   ============================================
+
+   UTILITIES (for page components)
+   Surfaces
+     .bg-purple        flat royal purple field; text inside is light (same rules as .on-dark)
+     .bg-purple-deep   dark purple section; light text
+     .bg-sunset        the flyers' sky gradient (purple to pink to orange to gold); light text
+     .bg-soft          pale purple tint section (light)
+     .bg-cream-2       warm alternate light section (old .bg-chalk-2 is an alias)
+     .on-dark          light text rules for any dark surface you style yourself
+   Type
+     .section-label    condensed uppercase kicker (purple on light, gold on dark)
+     .kicker           same label with a gold star in front: <p class="kicker">Meet Shakedia</p>
+     .section-title    Playfair Display 800, mixed case. Wrap a phrase in .accent:
+                       on light it gets a gold underline bar, on dark it turns gold
+     .section-lede     larger intro paragraph
+     .script           the slogan face (Kaushan Script). Slogan only, never body copy
+   Ornaments
+     .gold-rule        hairline gold rule with a star in the middle (<div class="gold-rule" aria-hidden="true"></div>)
+     .star-list        <ul> whose items get gold star bullets
+     .icon-badge       round purple badge with a gold ring; put a 24px stroke SVG inside (white).
+                       Size with --badge-size (default 64px). .icon-badge-sm = 44px
+     .lane-chip        legacy: now a small gold disc with a purple number (page agents will remove)
+   Cards
+     .card             white card, rounded, lilac hairline
+     .card-gold        white card with a gold top border (the flyers' "About" box);
+                       optional first child .card-gold-head = gold gradient header strip
+     .photo            rounded photo frame (+ figcaption strip)
+   Buttons (pill, Barlow Condensed uppercase)
+     .btn .btn-primary primary: purple/white on light, gold/purple-deep inside any dark surface
+                       (.btn-track is a legacy alias of .btn-primary)
+     .btn-gold         gold with dark purple text (dark surfaces only)
+     .btn-dark         purple-deep with white text (.btn-navy is a legacy alias)
+     .btn-outline      purple outline on light, white outline inside dark surfaces
+     .btn-outline-light white outline (dark only)
+     .btn-massive .btn-block   size/width modifiers
+     .arrow-link       uppercase text link with an arrow
+   Motion / misc
+     .animate-in (+ --reveal-delay), .stat-tabular, .visually-hidden, .hide-mobile, .hide-desktop
+   Legacy (kept so pages build until page agents replace them)
+     .bg-navy = .bg-purple-deep, .bg-track = .bg-purple, .lanes = purple field with faint stars,
+     .finish-rule = thick gold rule
+   Shared components (src/components/ui/): Star, Ribbon, Swoosh, ValuesStrip, Mark, Wordmark,
+   RaceClock, ShareBar, StreetSign (Meet only).
    ============================================ */
 
 /* Fonts are self-hosted via the Astro Fonts API (astro.config.mjs fonts + <Font> in Layout.astro). */
 
 :root {
   /* Brand */
-  --track: #c2412a;        /* polyurethane track red-orange: primary */
-  --track-deep: #9c3320;   /* hover, small text on light tints */
-  --track-soft: #f6dcd3;
-  --navy: #0d1b3e;         /* Team USA navy: dark sections, footer */
-  --navy-2: #16295a;
-  --navy-3: #22396f;
-  --gold: #e9b23c;         /* medal gold: accents on dark, highlights */
-  --gold-deep: #b9861c;
-  --gold-soft: #fbefd2;
-  --fly: #2fb3b8;          /* FLY wings teal: the nonprofit's color */
-  --fly-deep: #0c7177;
-  --fly-soft: #ddf3f3;
-  --sign-brown: #7b3a24;   /* the honorary street sign */
-  --sign-green: #1e6b47;   /* the city street sign */
-  --chalk: #f7f2ea;        /* body background, warm paper */
-  --chalk-2: #eee5d7;      /* alternate light section */
+  --purple: #4a0375;        /* royal purple: the brand color, headings on light, primary buttons */
+  --purple-2: #3a055e;      /* between purple and purple-deep: hover on purple */
+  --purple-3: #6a1fa0;      /* a lighter purple for gradients and hover on deep surfaces */
+  --purple-deep: #2b0747;   /* dark sections, footer */
+  --purple-ink: #1d0a2e;    /* deepest purple, text */
+  --purple-soft: #efe6f7;   /* light tint sections */
+  --lilac: #d9c4ec;         /* borders and lines on light */
+  --gold: #fec60a;          /* campaign gold: on purple only (buttons, accent words, stars, rules) */
+  --gold-deep: #8a5d00;     /* small gold-family text on light (5:1 on cream) */
+  --gold-soft: #fff4cc;
+  --gold-light: #ffd84d;    /* hover on gold */
+  --green: #0b5a3c;         /* blazer green: sparing secondary accent (FLY, checkmarks) */
+  --green-soft: #e1f0e9;
+  --sunset-1: #ff9a3c;      /* only inside the sunset gradient */
+  --sunset-2: #e0457b;
+  --sign-brown: #7b3a24;    /* the honorary street sign (StreetSign only) */
+  --sign-green: #1e6b47;    /* the city street sign (StreetSign only) */
+  --cream: #fbf7ef;         /* page background */
+  --cream-2: #f4ecdd;       /* alternate warm light section */
   --white: #ffffff;
 
+  --sunset: linear-gradient(180deg, #2b0747 0%, #4a0375 38%, #8a2a8f 62%, #e0457b 80%, #ff9a3c 93%, #fec60a 100%);
+  --gold-sheen: linear-gradient(180deg, #ffe27a 0%, #fec60a 45%, #e3a800 100%);
+
   /* Text */
-  --ink: #141a2a;
-  --ink-soft: #3a4152;
-  --muted: #5b6070;
-  --line: rgba(13, 27, 62, 0.12);
-  --line-light: rgba(255, 255, 255, 0.16);
+  --ink: #1d0a2e;
+  --ink-soft: #4a3d59;
+  --muted: #6a5d78;
+  --line: rgba(74, 3, 117, 0.14);
+  --line-light: rgba(255, 255, 255, 0.18);
 
   /* Type */
   /* --ff-* come from the Astro Fonts API (family plus metric-matched fallbacks). */
-  --font-display: var(--ff-display, 'Big Shoulders Display', Impact, 'Arial Narrow', sans-serif);
+  --font-display: var(--ff-display, 'Playfair Display', Georgia, 'Times New Roman', serif);
+  --font-script: var(--ff-script, 'Kaushan Script', 'Brush Script MT', cursive);
   --font-body: var(--ff-body, 'Barlow', system-ui, -apple-system, sans-serif);
   --font-label: var(--ff-label, 'Barlow Condensed', 'Arial Narrow', sans-serif);
 
@@ -43,10 +96,10 @@
   --text-base: clamp(1.02rem, 0.95rem + 0.35vw, 1.15rem);
   --text-lg: clamp(1.15rem, 1.05rem + 0.5vw, 1.32rem);
   --text-xl: clamp(1.3rem, 1.15rem + 0.75vw, 1.6rem);
-  --text-2xl: clamp(1.6rem, 1.3rem + 1.5vw, 2.25rem);
-  --text-3xl: clamp(2.1rem, 1.6rem + 2.6vw, 3.4rem);
-  --text-4xl: clamp(2.6rem, 1.8rem + 4vw, 4.75rem);
-  --text-5xl: clamp(3.1rem, 2rem + 5.8vw, 6.75rem);
+  --text-2xl: clamp(1.55rem, 1.3rem + 1.3vw, 2.15rem);
+  --text-3xl: clamp(1.95rem, 1.5rem + 2.3vw, 3.1rem);
+  --text-4xl: clamp(2.3rem, 1.7rem + 3.2vw, 4.1rem);
+  --text-5xl: clamp(2.7rem, 1.8rem + 4.8vw, 5.6rem);
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -63,7 +116,7 @@
   --container-max: 1180px;
   --container-wide: 1400px;
   --gutter: clamp(16px, 4vw, 32px);
-  --nav-height: 74px;
+  --nav-height: 76px;
 
   /* Motion */
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
@@ -76,10 +129,13 @@
   --radius-md: 12px;
   --radius-lg: 18px;
   --radius-xl: 26px;
-  --shadow-sm: 0 1px 3px rgba(13, 27, 62, 0.1);
-  --shadow-md: 0 8px 22px rgba(13, 27, 62, 0.12);
-  --shadow-lg: 0 16px 44px rgba(13, 27, 62, 0.16);
-  --shadow-xl: 0 26px 70px rgba(13, 27, 62, 0.24);
+  --shadow-sm: 0 1px 3px rgba(43, 7, 71, 0.1);
+  --shadow-md: 0 8px 22px rgba(43, 7, 71, 0.12);
+  --shadow-lg: 0 16px 44px rgba(43, 7, 71, 0.16);
+  --shadow-xl: 0 26px 70px rgba(43, 7, 71, 0.26);
+
+  /* The five-point star as a mask (used by .kicker, .star-list, .gold-rule) */
+  --star-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.1L14.7 8.88L22.94 9.05L16.37 14.02L18.76 21.9L12 17.2L5.24 21.9L7.63 14.02L1.06 9.05L9.3 8.88Z'/%3E%3C/svg%3E");
 }
 
 /* --- Reset --- */
@@ -87,10 +143,11 @@
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font-body);
+  font-variant-numeric: lining-nums;
   font-size: var(--text-base);
   line-height: 1.65;
   color: var(--ink);
-  background-color: var(--chalk);
+  background-color: var(--cream);
   overflow-x: hidden;
 }
 img { max-width: 100%; height: auto; display: block; }
@@ -98,31 +155,60 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
 ul, ol { list-style: none; }
-h1, h2 { text-wrap: balance; font-family: var(--font-display); line-height: 0.98; color: var(--navy); font-weight: 800; letter-spacing: 0.005em; text-transform: uppercase; }
-/* Card and list titles: the body face in sentence case, so only display headings shout */
-h3, h4 { text-wrap: balance; font-family: var(--font-body); line-height: 1.15; color: var(--navy); font-weight: 700; letter-spacing: -0.005em; }
-/* Quotes in her voice: Big Shoulders mixed case, never caps */
-.quote-text { font-family: var(--font-display); font-weight: 700; text-transform: none; letter-spacing: -0.01em; line-height: 1.04; color: var(--navy); }
+/* Display headings: the flyers' heavy serif, mixed case, tight */
+/* Playfair's default figures are old-style; lining figures keep "1st" reading like the flyers */
+h1, h2 { font-variant-numeric: lining-nums; text-wrap: balance; font-family: var(--font-display); line-height: 1.05; color: var(--purple); font-weight: 800; letter-spacing: -0.01em; text-transform: none; }
+h1 { font-weight: 900; }
+/* Card and list titles: the body face */
+h3, h4 { text-wrap: balance; font-family: var(--font-body); line-height: 1.2; color: var(--purple-deep); font-weight: 700; letter-spacing: -0.005em; }
+/* Quotes in her voice */
+.quote-text { font-variant-numeric: lining-nums; font-family: var(--font-display); font-weight: 700; font-style: italic; text-transform: none; letter-spacing: -0.005em; line-height: 1.15; color: var(--purple); }
 p { max-width: 68ch; }
 strong { font-weight: 700; }
-/* Focus: navy on light surfaces, gold on dark ones (both pass 3:1 on their backgrounds) */
-:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 4px; }
-.on-dark :focus-visible, .bg-navy :focus-visible, .race-clock :focus-visible { outline-color: var(--gold); }
+/* Focus: purple on light surfaces, gold on dark ones */
+:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; border-radius: 4px; }
+.on-dark :focus-visible, .bg-purple :focus-visible, .bg-purple-deep :focus-visible, .bg-sunset :focus-visible,
+.bg-navy :focus-visible, .bg-track :focus-visible, .lanes :focus-visible, .race-clock :focus-visible { outline-color: var(--gold); }
+/* Light cards inside dark sections get the light-surface focus color back */
+.on-dark .card :focus-visible, .on-dark .card-gold :focus-visible, .bg-purple .card :focus-visible, .bg-purple .card-gold :focus-visible,
+.bg-purple-deep .card :focus-visible, .bg-purple-deep .card-gold :focus-visible { outline-color: var(--purple); }
 /* Keep focused elements clear of the fixed nav and the mobile action bar */
 html { scroll-padding-top: calc(var(--nav-height) + 16px); }
 @media (max-width: 1024px) { html { scroll-padding-bottom: 96px; } }
-::selection { background: var(--gold); color: var(--navy); }
+::selection { background: var(--gold); color: var(--purple-deep); }
 
 /* --- Layout utilities --- */
 .container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--gutter); }
 .container-wide { width: 100%; max-width: var(--container-wide); margin: 0 auto; padding: 0 var(--gutter); }
 .section-padding { padding: var(--space-4xl) 0; }
 @media (max-width: 768px) { .section-padding { padding: var(--space-3xl) 0; } }
-.bg-chalk-2 { background: var(--chalk-2); }
-.bg-navy { background: var(--navy); }
-.bg-track { background: var(--track); }
 
-/* Kicker: condensed, tracked-out label with a lane-number chip */
+/* --- Surfaces --- */
+.bg-soft { background: var(--purple-soft); }
+.bg-cream-2, .bg-chalk-2 { background: var(--cream-2); }
+.bg-purple, .bg-track { background: var(--purple); }
+.bg-purple-deep, .bg-navy { background: var(--purple-deep); }
+.bg-sunset { background: var(--sunset); }
+/* Legacy texture: a purple field with a faint scatter of stars */
+.lanes {
+  background-color: var(--purple);
+  background-image: radial-gradient(circle at 20% 30%, rgba(254, 198, 10, 0.16) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.12) 0 1.5px, transparent 2px);
+  background-size: 46px 46px, 64px 64px;
+}
+
+/* Dark-surface text rules: any of these containers flips to light text */
+.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes { color: rgba(255, 255, 255, 0.88); }
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) :is(.section-label, .kicker) { color: var(--gold); }
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) :is(.section-title, h1, h2, h3) { color: var(--white); }
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) .accent { color: var(--gold); background: none; }
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) .section-lede { color: rgba(255, 255, 255, 0.82); }
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) .quote-text { color: var(--white); }
+/* ...but light cards placed on them keep dark text */
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) :is(.card, .card-gold) { color: var(--ink); }
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) :is(.card, .card-gold) :is(h2, h3, h4) { color: var(--purple-deep); }
+
+/* --- Type utilities --- */
 .section-label {
   display: inline-flex; align-items: center; gap: 0.6em;
   font-family: var(--font-label);
@@ -130,41 +216,91 @@ html { scroll-padding-top: calc(var(--nav-height) + 16px); }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--track-deep);
+  color: var(--purple);
   margin-bottom: var(--space-md);
 }
+/* Kicker: the label with a gold star in front */
+.kicker {
+  display: inline-flex; align-items: center; gap: 0.55em;
+  font-family: var(--font-label); font-size: var(--text-sm); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.18em; color: var(--purple);
+  margin-bottom: var(--space-md);
+}
+.kicker::before {
+  content: ''; flex-shrink: 0; width: 1.15em; height: 1.15em; background: var(--gold);
+  -webkit-mask: var(--star-mask) center / contain no-repeat; mask: var(--star-mask) center / contain no-repeat;
+  filter: drop-shadow(0 0 0.5px rgba(43, 7, 71, 0.5));
+}
+/* Legacy number chip, now a small gold disc */
 .lane-chip {
+  font-variant-numeric: lining-nums;
   display: inline-grid; place-items: center;
-  min-width: 1.9em; height: 1.9em; padding: 0 0.35em;
-  border: 2px solid currentColor; border-radius: 4px;
-  font-family: var(--font-display); font-weight: 800; font-size: 0.95em; letter-spacing: 0;
+  min-width: 1.9em; height: 1.9em; padding: 0 0.4em;
+  background: var(--gold); color: var(--purple-deep); border-radius: 999px;
+  font-family: var(--font-display); font-weight: 800; font-size: 0.9em; letter-spacing: 0;
   line-height: 1;
 }
 .section-title {
+  font-variant-numeric: lining-nums;
   font-family: var(--font-display);
   font-size: var(--text-4xl);
   font-weight: 800;
-  line-height: 0.95;
-  color: var(--navy);
+  line-height: 1.05;
+  color: var(--purple);
   margin-bottom: var(--space-lg);
-  text-transform: uppercase;
+  text-transform: none;
 }
-.section-title .accent, .accent { color: var(--track); }
+/* Accent words: a gold marker bar on light, gold text on dark */
+.accent {
+  color: var(--purple-deep);
+  background: linear-gradient(transparent 78%, rgba(254, 198, 10, 0.7) 78%, rgba(254, 198, 10, 0.7) 94%, transparent 94%);
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
 .section-lede { font-size: var(--text-lg); color: var(--ink-soft); max-width: 62ch; }
-.on-dark { color: rgba(255, 255, 255, 0.86); }
-.on-dark .section-label { color: var(--gold); }
-.on-dark .section-title, .on-dark h2, .on-dark h3 { color: var(--white); }
-.on-dark .section-title .accent, .on-dark .accent { color: var(--gold); }
-.on-dark .section-lede { color: rgba(255, 255, 255, 0.78); }
+.script { font-family: var(--font-script); font-weight: 400; text-transform: none; letter-spacing: 0; line-height: 1.2; }
 
-/* Lane lines: the signature texture. Put on any track-colored surface. */
-.lanes {
-  background-color: var(--track);
-  background-image:
-    repeating-linear-gradient(90deg, transparent 0 calc(12.5% - 3px), rgba(255, 255, 255, 0.9) calc(12.5% - 3px) 12.5%);
+/* --- Ornaments --- */
+/* Gold hairlines with a star in the middle */
+.gold-rule {
+  position: relative; height: 18px; max-width: 520px; margin-inline: auto;
+  background: linear-gradient(90deg, transparent, var(--gold) 12%, var(--gold) calc(50% - 18px), transparent calc(50% - 18px), transparent calc(50% + 18px), var(--gold) calc(50% + 18px), var(--gold) 88%, transparent) center / 100% 2px no-repeat;
 }
-/* A single finish-line style rule */
-.finish-rule { height: 6px; background: repeating-linear-gradient(90deg, var(--white) 0 14px, var(--navy) 14px 28px); border-radius: 3px; }
+.gold-rule::after {
+  content: ''; position: absolute; left: 50%; top: 0; width: 18px; height: 18px; transform: translateX(-50%);
+  background: var(--gold); -webkit-mask: var(--star-mask) center / contain no-repeat; mask: var(--star-mask) center / contain no-repeat;
+}
+/* Gold star bullets */
+.star-list { display: grid; gap: 0.6em; }
+.star-list > li { position: relative; padding-left: 1.75em; }
+.star-list > li::before {
+  content: ''; position: absolute; left: 0; top: 0.28em; width: 1.1em; height: 1.1em; background: var(--gold);
+  -webkit-mask: var(--star-mask) center / contain no-repeat; mask: var(--star-mask) center / contain no-repeat;
+  filter: drop-shadow(0 0 0.6px rgba(43, 7, 71, 0.55));
+}
+/* Round purple icon badge with a gold ring (the flyers' priority icons) */
+.icon-badge {
+  --badge-size: 64px;
+  display: inline-grid; place-items: center; flex-shrink: 0;
+  width: var(--badge-size); height: var(--badge-size); border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--purple-3), var(--purple) 55%, var(--purple-deep));
+  color: var(--white);
+  box-shadow: 0 0 0 3px var(--gold), 0 0 0 5px rgba(43, 7, 71, 0.18), var(--shadow-md);
+}
+.icon-badge svg { width: 46%; height: 46%; }
+.icon-badge-sm { --badge-size: 44px; }
+
+/* --- Cards --- */
+.card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--lilac); }
+.card-gold {
+  background: var(--white); color: var(--ink); border-radius: var(--radius-lg); overflow: hidden;
+  border-top: 6px solid var(--gold); box-shadow: var(--shadow-lg);
+}
+.card-gold-head {
+  font-variant-numeric: lining-nums;
+  background: var(--gold-sheen); color: var(--purple-deep);
+  font-family: var(--font-display); font-weight: 900; font-size: var(--text-2xl); line-height: 1.1;
+  padding: 0.55em 1rem 0.5em; text-align: center;
+}
 
 /* --- Buttons --- */
 .btn {
@@ -185,16 +321,27 @@ html { scroll-padding-top: calc(var(--nav-height) + 16px); }
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
 .btn svg { width: 1.05em; height: 1.05em; flex-shrink: 0; }
-.btn-track { background: var(--track); color: var(--white); box-shadow: 0 6px 18px rgba(194, 65, 42, 0.32); }
-.btn-track:hover { background: var(--track-deep); box-shadow: 0 10px 26px rgba(194, 65, 42, 0.4); }
-.btn-gold { background: var(--gold); color: var(--navy); box-shadow: 0 6px 18px rgba(233, 178, 60, 0.3); }
-.btn-gold:hover { background: #f3c25a; }
-.btn-navy { background: var(--navy); color: var(--white); }
-.btn-navy:hover { background: var(--navy-3); }
-.btn-outline { border-color: var(--navy); color: var(--navy); }
-.btn-outline:hover { background: var(--navy); color: var(--white); }
-.btn-outline-light { border-color: rgba(255, 255, 255, 0.7); color: var(--white); }
-.btn-outline-light:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
+/* Primary on light: purple with white text */
+.btn-primary, .btn-track { background: var(--purple); color: var(--white); box-shadow: 0 6px 18px rgba(74, 3, 117, 0.28); }
+.btn-primary:hover, .btn-track:hover { background: var(--purple-deep); box-shadow: 0 10px 26px rgba(74, 3, 117, 0.36); }
+/* Gold: primary on dark */
+.btn-gold,
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) :is(.btn-primary, .btn-track) {
+  background: var(--gold); color: var(--purple-deep); box-shadow: 0 6px 18px rgba(254, 198, 10, 0.28);
+}
+.btn-gold:hover,
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) :is(.btn-primary, .btn-track):hover { background: var(--gold-light); color: var(--purple-deep); }
+.btn-dark, .btn-navy { background: var(--purple-deep); color: var(--white); }
+.btn-dark:hover, .btn-navy:hover { background: var(--purple-2); }
+.btn-outline { border-color: var(--purple); color: var(--purple); }
+.btn-outline:hover { background: var(--purple); color: var(--white); }
+.btn-outline-light,
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) .btn-outline { border-color: rgba(255, 255, 255, 0.75); color: var(--white); }
+.btn-outline-light:hover,
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) .btn-outline:hover { background: var(--white); color: var(--purple-deep); border-color: var(--white); }
+/* Light cards on dark surfaces keep light-surface buttons */
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset) :is(.card, .card-gold) :is(.btn-primary, .btn-track) { background: var(--purple); color: var(--white); box-shadow: none; }
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset) :is(.card, .card-gold) .btn-outline { border-color: var(--purple); color: var(--purple); }
 .btn-massive { font-size: var(--text-xl); padding: 1rem 2.2rem 0.95rem; }
 .btn-block { width: 100%; }
 
@@ -202,30 +349,30 @@ html { scroll-padding-top: calc(var(--nav-height) + 16px); }
 .arrow-link {
   display: inline-flex; align-items: center; gap: 0.45em;
   font-family: var(--font-label); font-weight: 700; font-size: var(--text-lg);
-  text-transform: uppercase; letter-spacing: 0.08em; color: var(--track-deep);
-  border-bottom: 2px solid currentColor; padding-bottom: 2px;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple);
+  border-bottom: 2px solid var(--gold); padding-bottom: 2px;
   transition: gap var(--duration-normal) var(--ease-default), color var(--duration-fast);
 }
 .arrow-link::after { content: '\2192'; font-family: var(--font-body); }
-.arrow-link:hover { gap: 0.8em; }
-.on-dark .arrow-link { color: var(--gold); }
+.arrow-link:hover { gap: 0.8em; color: var(--purple-deep); }
+:is(.on-dark, .bg-purple, .bg-purple-deep, .bg-sunset, .bg-navy, .bg-track, .lanes) .arrow-link { color: var(--gold); }
 
-/* Cards */
-.card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--line); }
+/* Legacy thick rule, now gold */
+.finish-rule { height: 4px; background: var(--gold); border-radius: 2px; }
 
 /* Photos with a caption strip */
-.photo { position: relative; border-radius: var(--radius-lg); overflow: hidden; background: var(--chalk-2); }
+.photo { position: relative; border-radius: var(--radius-lg); overflow: hidden; background: var(--purple-soft); }
 .photo img { width: 100%; height: 100%; object-fit: cover; }
 .photo figcaption {
   position: absolute; left: 0; right: 0; bottom: 0;
   padding: 2.2rem var(--space-md) 0.7rem;
-  background: linear-gradient(180deg, transparent, rgba(13, 27, 62, 0.94));
+  background: linear-gradient(180deg, transparent, rgba(43, 7, 71, 0.94));
   color: var(--white); font-family: var(--font-label); font-weight: 600; font-size: var(--text-sm);
   letter-spacing: 0.04em; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 /* Numbers */
-.stat-tabular { font-variant-numeric: tabular-nums; }
+.stat-tabular { font-variant-numeric: lining-nums tabular-nums; }
 
 /* --- Scroll reveal ---
    Hidden only when JS is running (Layout adds .js inline in <head>), so no-JS

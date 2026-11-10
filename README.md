@@ -1,6 +1,6 @@
 # Shakedia Jones for the 1st Ward
 
-Campaign website for **Shakedia Jones**, candidate for 1st Ward Alderperson in Waukegan, Illinois. Election Day: **Tuesday, April 6, 2027**.
+Campaign website for **Shakedia Jones**, candidate for 1st Ward Alderman in Waukegan, Illinois. Primary election: **Tuesday, February 23, 2027** (the countdown target). General election: Tuesday, April 6, 2027.
 
 Built with Astro and vanilla CSS. It has a client-side English/Spanish toggle and uses the same architecture as the Cassandra for Aurora site. Read [BRIEF.md](BRIEF.md) before writing copy: it holds the verified facts, voice, design tokens and i18n rules. 
 
@@ -18,29 +18,30 @@ npm run check:types
 
 | Route | What it is |
 |---|---|
-| `/` | Hero ("She ran for Team USA. Now she's running for the 1st Ward."), record scoreboard, Olympic Way and the council quote, her story as a relay, four-lane plan teaser, FLY spotlight, join band |
+| `/` | Sunset hero with the campaign portrait, About Shakedia stats, the four priorities, the honorary street name, FLY, join band |
 | `/meet/` | Full biography, honors, the street dedication, in the news |
-| `/plan/` | The Game Plan: four lanes with commitments (draft for candidate approval), how she'll work |
+| `/plan/` | 1st Ward Priorities: the campaign's four priorities with draft steps (for candidate approval), how she will work |
 | `/join/` | Ways to help, sign-up (opens soon), donate block, voter info |
 | `/links/` | Linktree page for social bios |
 
-## The look: "Olympic Way"
+## The look: "Building a Stronger 1st Ward Together"
 
-Running-track red-orange, Team USA navy, medal gold, and FLY's teal. Headlines use Big Shoulders Display, the typeface designed for Chicago's city signage, with Barlow for text. Motifs: lane lines, numbered lane chips, a scoreboard countdown, a race bib numbered for the 1st Ward, and a drawn copy of her honorary street sign.
+The site matches the campaign's own flyers, sign and banner (`public/images/campaign/`): royal purple (`#4a0375`) and dark purple fields, the campaign gold (`#fec60a`, on purple only), a sunset-sky gradient, and a sparing blazer green. Headlines use **Playfair Display** (heavy, mixed case), the slogan uses **Kaushan Script**, body text is **Barlow** and labels are **Barlow Condensed** in caps. Motifs: gold stars, the ribbon band ("For 1st Ward Alderman"), thin gold swooshes and hairlines, white cards with a gold top edge, round purple icon badges with a gold ring, and the values strip (Family, Opportunity, Safer Neighborhoods, Stronger Communities) above the footer. Tokens and utilities are documented at the top of `src/styles/global.css`.
 
-**The mark, "Lane 1":** the numeral 1 beside a track bend. It reads as the 1st Ward, lane one, and first place. Source of truth: `src/components/ui/Mark.astro` (variants: track, navy, mono). Ready-made files in `public/brand/`:
+**The mark:** a purple tile with a gold star over a white "1" for the 1st Ward. Source of truth: `src/components/ui/Mark.astro` (variants: purple, deep, mono). Ready-made files in `public/brand/`:
 
 | File | Use |
 |---|---|
-| `mark.svg`, `mark-navy.svg` | Vector mark for print and video |
-| `avatar-512.png`, `avatar-wordless-1000.png` | Social profile pictures |
-| `yard-sign-24x16.png` | Yard sign concept at 24x16 proportions (replace the Paid-for line before printing) |
-| `lockups.png` | Horizontal and stacked lockups on light, navy and red |
+| `mark.svg` | Vector mark for print and video |
+| `avatar-512.png` | Social profile picture |
+| `lockups.png` | Horizontal and stacked lockups on cream, purple and dark purple |
+
+`public/images/og-card.jpg` is the link preview (1200x630). Brand images are rendered from HTML with Playwright's headless shell.
 
 ## Before launch: open items
 
-- **Office and ward.** The city's ward GIS puts the 300 block of George Ave in the 1st Ward. Confirm she is running for 1st Ward Alderperson and that her voter registration is in Ward 1. The ward appears in `src/data/campaign.js` (`WARD`) and in copy across the i18n files.
-- **Party and primary.** Filing as a Democrat (Oct 19-26, 2026) puts her in the Feb 23, 2027 primary if it is contested. Filing as an independent (Nov 16-23) goes straight to April 6. The site shows only April 6 until this is settled.
+- **Office and ward.** The city's ward GIS puts the 300 block of George Ave in the 1st Ward. Confirm she is running for 1st Ward Alderman and that her voter registration is in Ward 1. The ward appears in `src/data/campaign.js` (`WARD`) and in copy across the i18n files.
+- **Primary.** The site now treats the Tuesday, Feb 23, 2027 primary as the headline date (she asked voters for Feb 23 on video) and names April 6, 2027 as the general election. `DATES.primary` / `DATES.general` in `src/data/campaign.js`; `public/election-day.ics` is the Feb 23 primary.
 - **Committee name** for "Paid for by" (`footer.paid_for` in `src/i18n/parts/shared.*.json`). No ISBE committee exists yet.
 - **Donate link.** Set `DONATE_URL` in `src/data/campaign.js`. Until then every Donate button goes to `/join/#donate`, which says online giving opens soon.
 - **Campaign email and social accounts.** Set `EMAIL` and `SOCIALS` in `src/data/campaign.js`. Social icons stay hidden while empty.

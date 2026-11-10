@@ -1,0 +1,106 @@
+---
+// One of the four 1st Ward priorities. The headline is the campaign's own wording (RETHEME.md).
+// Strings come from plan.en.json (English fallback) and swap client side via plan.p.<id>.*.
+//
+// DRAFT FOR CANDIDATE APPROVAL: the "why it matters" copy and every commitment (c1 to c3)
+// are proposed wording that Shakedia Jones has not yet approved. An alderman advocates and
+// votes: keep these to "will push for / will work with / will ask / will report back".
+import PriorityIcon from './PriorityIcon.astro';
+import en from '../../i18n/parts/plan.en.json';
+
+export interface Props {
+  id: 'p1' | 'p2' | 'p3' | 'p4';
+  n: number;
+  icon: 'car' | 'buildings' | 'home' | 'people';
+  tone?: 'cream' | 'soft';
+}
+const { id, n, icon, tone = 'cream' } = Astro.props;
+const t = en.plan;
+const P = t.p[id] as Record<string, string>;
+const k = (key: string) => `plan.p.${id}.${key}`;
+const steps = ['c1', 'c2', 'c3'];
+const resources = ['r1', 'r2', 'r3'].filter((r) => P[r]);
+const hasSlot = Astro.slots.has('default');
+---
+
+<section class:list={['priority', 'section-padding', tone === 'soft' ? 'bg-soft' : 'tone-cream']} id={`priority-${n}`} aria-labelledby={`priority-${n}-title`}>
+  <div class="container">
+    <header class="pr-head">
+      <span class="icon-badge pr-badge animate-in"><PriorityIcon name={icon} /></span>
+      <div class="pr-head-text">
+        <p class="kicker animate-in"><span data-i18n="plan.priority_word">{t.priority_word}</span> <span>{n}</span></p>
+        <h2 class="section-title pr-title animate-in" id={`priority-${n}-title`} data-i18n={k('title')}>{P.title}</h2>
+        {resources.length > 0 && (
+          <div class="resources animate-in">
+            <h3 class="mini-label" data-i18n={k('resources_label')}>{P.resources_label}</h3>
+            <ul class="star-list">
+              {resources.map((r) => <li data-i18n={k(r)}>{P[r]}</li>)}
+            </ul>
+          </div>
+        )}
+      </div>
+    </header>
+
+    <div class:list={['pr-cols', { 'has-aside': hasSlot }]}>
+      <div class="why animate-in">
+        <h3 class="mini-label" data-i18n="plan.why_label">{t.why_label}</h3>
+        <p data-i18n={k('why_1')}>{P.why_1}</p>
+        <p data-i18n={k('why_2')}>{P.why_2}</p>
+      </div>
+
+      <div class="commits card-gold animate-in" style="--reveal-delay:0.08s">
+        <h3 class="card-gold-head" data-i18n="plan.commit_label">{t.commit_label}</h3>
+        <ul class="star-list commit-list">
+          {steps.map((c) => <li data-i18n={k(c)}>{P[c]}</li>)}
+        </ul>
+      </div>
+
+      {hasSlot && <div class="pr-aside animate-in"><slot /></div>}
+    </div>
+  </div>
+</section>
+
+<style>
+  .tone-cream { background: var(--cream); }
+  .priority { scroll-margin-top: var(--nav-height); }
+
+  .pr-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-xl); align-items: start; max-width: 960px; margin-bottom: var(--space-2xl); }
+  .pr-badge { --badge-size: 96px; margin-top: 0.3rem; }
+  .pr-head .kicker { margin-bottom: var(--space-sm); }
+  .pr-title { font-size: var(--text-3xl); line-height: 1.1; margin-bottom: 0; text-wrap: balance; overflow-wrap: break-word; }
+
+  .resources { margin-top: var(--space-xl); }
+  .resources .star-list li { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); color: var(--purple-deep); line-height: 1.3; }
+
+  .pr-cols {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: var(--space-xl) var(--space-2xl); align-items: start;
+    grid-template-areas: 'why commits';
+  }
+  .pr-cols.has-aside { grid-template-areas: 'why commits' 'aside commits'; }
+  .why { grid-area: why; }
+  .commits { grid-area: commits; }
+  .pr-aside { grid-area: aside; }
+  .pr-badge :global(svg) { width: 54%; height: 54%; }
+
+  .mini-label {
+    font-family: var(--font-label); font-weight: 700; font-size: var(--text-sm); text-transform: uppercase;
+    letter-spacing: 0.18em; color: var(--gold-deep); margin-bottom: var(--space-md); line-height: 1.2;
+  }
+  .why p { color: var(--ink-soft); font-size: var(--text-base); margin-bottom: var(--space-md); max-width: 60ch; }
+
+  .commits .card-gold-head { font-size: var(--text-xl); }
+  .commit-list { padding: var(--space-lg) var(--space-xl) var(--space-xl); gap: 0; }
+  .commit-list li { padding-block: var(--space-md); color: var(--ink); font-weight: 500; line-height: 1.5; }
+  .commit-list li::before { top: calc(var(--space-md) + 0.22em); }
+  .commit-list li + li { border-top: 1px solid var(--lilac); }
+
+  @media (max-width: 960px) {
+    .pr-cols { grid-template-columns: 1fr; grid-template-areas: 'why' 'commits'; }
+    .pr-cols.has-aside { grid-template-areas: 'why' 'commits' 'aside'; }
+  }
+  @media (max-width: 600px) {
+    .pr-head { grid-template-columns: 1fr; gap: var(--space-md); margin-bottom: var(--space-xl); }
+    .pr-badge { --badge-size: 72px; }
+    .commit-list { padding: var(--space-sm) var(--space-md) var(--space-md); }
+  }
+</style>

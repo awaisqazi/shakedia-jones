@@ -1,0 +1,84 @@
+---
+// Her record, in the flyers' "About" box. Every number here is verified in BRIEF.md.
+import Star from '../ui/Star.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const facts = [
+  { value: '9', key: 'titles', label: 'IHSA state titles, the most in Illinois girls’ history when she graduated in 1997' },
+  { value: '2', key: 'wj', label: 'World Junior gold medals for Team USA, 1998' },
+  { value: '2000', key: 'oly', label: 'U.S. Olympic Team, Sydney (4x100m relay pool)' },
+  { value: '2', key: 'ncaa', label: 'NCAA team titles with UCLA' },
+  { value: '600+', key: 'fly', label: 'young people helped through FLY (her 2024 count)', count: 600, suffix: '+' },
+  { value: '2014', key: 'founded', label: 'the year she founded Furthering the Lives of Youth (FLY)' },
+];
+---
+
+<section class="about bg-purple section-padding" id="about" aria-labelledby="about-title">
+  <div class="about-sky" aria-hidden="true">
+    <Star class="as as-1" /><Star class="as as-2" /><Star class="as as-3" />
+  </div>
+  <div class="container">
+    <article class="card-gold about-card animate-in">
+      <h2 class="card-gold-head about-head" id="about-title" data-i18n="home.about.title">About Shakedia</h2>
+      <div class="about-body">
+        <p class="about-intro" data-i18n="home.about.intro">Born and raised in the 1st Ward of Waukegan, Shakedia graduated from Waukegan High School in 1997, ran for UCLA and Team USA, and came home in 2013 to work for Waukegan's kids.</p>
+
+        <ul class="facts">
+          {facts.map((f) => (
+            <li class="fact">
+              <span class="fact-value stat-tabular" {...(f.count ? { 'data-count-to': String(f.count), 'data-count-suffix': f.suffix } : {})}>{f.value}</span>
+              <span class="fact-label" data-i18n={`home.about.${f.key}`}>{f.label}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="about-foot">
+          <p class="about-note" data-i18n="home.about.note">Plus: two-time Gatorade Illinois Player of the Year and Lake County High School Hall of Fame (2019). She has coached the Waukegan High School girls track team.</p>
+          <a href={`${base}/meet/`} class="arrow-link" data-i18n="home.about.cta">Read her story</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .about { position: relative; overflow: hidden; padding-bottom: var(--space-xl); }
+  .about-sky :global(.as) { position: absolute; opacity: 0.85; }
+  .about-sky :global(.as-1) { width: 28px; height: 28px; top: 9%; left: 6%; }
+  .about-sky :global(.as-2) { width: 16px; height: 16px; top: 16%; left: 10%; opacity: 0.6; }
+  .about-sky :global(.as-3) { width: 22px; height: 22px; bottom: 10%; right: 6%; }
+  .about .container { position: relative; }
+
+  .about-card { max-width: 1020px; margin-inline: auto; }
+  .about-head { font-size: var(--text-3xl); margin: 0; color: var(--purple-deep); }
+  .about-body { padding: var(--space-xl) clamp(1.1rem, 4vw, 3rem) var(--space-xl); }
+  .about-intro { font-size: var(--text-lg); color: var(--purple-deep); font-weight: 600; max-width: 64ch; margin: 0 auto var(--space-xl); text-align: center; }
+
+  .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--lilac); }
+  .fact {
+    display: flex; flex-direction: column; gap: var(--space-xs); padding: var(--space-lg) var(--space-lg) var(--space-lg) 0;
+    border-bottom: 1px solid var(--lilac);
+  }
+  .fact:not(:nth-child(3n + 1)) { padding-left: var(--space-lg); border-left: 1px solid var(--lilac); }
+  .fact-value {
+    font-family: var(--font-display); font-weight: 900; line-height: 0.95; color: var(--purple);
+    font-size: clamp(2.6rem, 1.9rem + 2.6vw, 4rem);
+  }
+  .fact-value::after { content: ''; display: block; width: 2.2rem; height: 4px; margin-top: 0.4rem; border-radius: 2px; background: var(--gold); }
+  .fact-label { font-size: var(--text-base); color: var(--ink-soft); line-height: 1.4; max-width: 30ch; }
+
+  .about-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-lg); margin-top: var(--space-xl); }
+  .about-note { font-size: var(--text-sm); color: var(--muted); max-width: 60ch; }
+  .about-card .arrow-link { color: var(--purple); }
+
+  @media (max-width: 860px) {
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fact:not(:nth-child(3n + 1)) { padding-left: 0; border-left: 0; }
+    .fact:nth-child(2n) { padding-left: var(--space-lg); border-left: 1px solid var(--lilac); }
+  }
+  @media (max-width: 480px) {
+    .about-intro { text-align: left; }
+    .fact { padding: var(--space-md) var(--space-md) var(--space-md) 0; }
+    .fact:nth-child(2n) { padding-left: var(--space-md); }
+    .fact-label { font-size: var(--text-sm); }
+  }
+</style>

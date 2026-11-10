@@ -18,7 +18,7 @@ const items = [
     </figure>
 
     <div class="fly-copy">
-      <span class="section-label fly-label"><span class="lane-chip" aria-hidden="true">5</span><span data-i18n="home.fly.label">Furthering the Lives of Youth</span></span>
+      <p class="section-label fly-label"><span class="fly-dot" aria-hidden="true"></span><span data-i18n="home.fly.label">Furthering the Lives of Youth</span></p>
       <h2 class="section-title" id="fly-title">
         <span data-i18n="home.fly.title_1">She built the program</span>
         <span class="fly-accent" data-i18n="home.fly.title_2">she never had.</span>
@@ -40,29 +40,30 @@ const items = [
 </section>
 
 <style>
-  .fly { background: linear-gradient(180deg, var(--chalk) 0%, var(--fly-soft) 100%); }
-  .fly-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: var(--space-3xl); align-items: start; }
-  .fly-photo { width: 100%; aspect-ratio: 4 / 3; box-shadow: var(--shadow-lg); border: 5px solid var(--white); transform: rotate(-2deg); }
-  .fly-label { color: var(--fly-deep); }
-  .fly-copy .section-title { display: flex; flex-direction: column; }
-  .fly-accent { color: var(--fly-deep); }
+  .fly { background: linear-gradient(180deg, var(--cream) 0%, var(--green-soft) 100%); }
+  .fly-grid { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: var(--space-3xl); align-items: start; }
+  .fly-photo { width: 100%; aspect-ratio: 4 / 3; border: 6px solid var(--white); box-shadow: 0 0 0 2px var(--green), var(--shadow-lg); }
+  .fly-label { color: var(--green); }
+  .fly-dot { width: 0.8em; height: 0.8em; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px var(--green-soft), 0 0 0 4px var(--green); }
+  .fly-copy .section-title { display: flex; flex-wrap: wrap; column-gap: 0.25em; }
+  .fly-accent { color: var(--green); }
   .fly-list { margin: var(--space-lg) 0; display: grid; gap: var(--space-sm); }
   .fly-list li { position: relative; padding-left: 2rem; color: var(--ink-soft); }
   .fly-list li::before {
     content: ''; position: absolute; left: 0; top: 0.42em; width: 1.1rem; height: 0.7rem;
-    background: var(--fly); clip-path: polygon(0 100%, 100% 0, 100% 35%, 30% 100%);
+    background: var(--green); clip-path: polygon(0 55%, 18% 38%, 38% 62%, 82% 0, 100% 18%, 38% 100%);
   }
-  .fly-quote { border-left: 5px solid var(--fly); padding: var(--space-sm) var(--space-lg); margin-bottom: var(--space-lg); }
-  .fly-quote p { font-style: italic; font-weight: 500; font-size: var(--text-lg); color: var(--navy); }
-  .fly-quote .tr-line { margin-top: var(--space-xs); font-style: normal; font-weight: 400; font-size: var(--text-base); color: var(--ink-soft); }
+  .fly-quote { background: var(--white); border-left: 5px solid var(--green); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: var(--space-md) var(--space-lg); margin-bottom: var(--space-lg); box-shadow: var(--shadow-sm); }
+  .fly-quote p { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: var(--text-lg); line-height: 1.35; color: var(--purple-deep); }
+  .fly-quote .tr-line { margin-top: var(--space-xs); font-family: var(--font-body); font-style: normal; font-weight: 400; font-size: var(--text-base); color: var(--ink-soft); }
   .tr-line:empty, :global(html[lang="en"]) .tr-line { display: none; }
-  .fly-quote footer { font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-xs); color: var(--muted); margin-top: var(--space-xs); }
-  .fly-note { margin-top: var(--space-2xl); padding-top: var(--space-md); border-top: 1px solid var(--line); font-size: var(--text-sm); color: var(--muted); max-width: 70ch; }
+  .fly-quote footer { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-xs); color: var(--green); margin-top: var(--space-xs); }
+  .fly-note { margin-top: var(--space-2xl); padding-top: var(--space-md); border-top: 1px solid rgba(11, 90, 60, 0.25); font-size: var(--text-sm); color: var(--muted); max-width: 70ch; }
 
   /* On wide screens the photo rides along beside the long copy */
   @media (min-width: 961px) { .fly-photo { position: sticky; top: calc(var(--nav-height) + var(--space-xl)); } }
   @media (max-width: 960px) {
     .fly-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
-    .fly-photo { max-width: 560px; transform: rotate(-1.5deg); }
+    .fly-photo { max-width: 560px; }
   }
 </style>

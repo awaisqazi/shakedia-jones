@@ -1,0 +1,28 @@
+---
+// FAMILY * OPPORTUNITY * SAFER NEIGHBORHOODS * STRONGER COMMUNITIES, as on the flyers.
+// Rendered by Footer.astro on every page; no props needed.
+import Star from './Star.astro';
+import en from '../../i18n/parts/shared.en.json';
+const values = [1, 2, 3, 4].map((n) => ({ key: `ui.values_${n}`, text: en.ui[`values_${n}` as keyof typeof en.ui] }));
+---
+<div class="values-strip" role="list" aria-label="Our values" data-i18n-attr="aria-label:ui.values_label">
+  {values.map((v, i) => (
+    <>
+      {i > 0 && <Star class="vs-star" />}
+      <span class="vs-item" role="listitem" data-i18n={v.key}>{v.text}</span>
+    </>
+  ))}
+</div>
+
+<style>
+  .values-strip {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.6em 1.1em;
+    background: var(--purple); color: var(--white);
+    border-top: 1px solid var(--gold); border-bottom: 1px solid rgba(254, 198, 10, 0.5);
+    padding: 1rem var(--gutter);
+    font-family: var(--font-label); font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em;
+    font-size: clamp(0.85rem, 0.78rem + 0.4vw, 1.1rem); line-height: 1.2; text-align: center;
+  }
+  .values-strip :global(.vs-star) { width: 1.05em; height: 1.05em; }
+  @media (max-width: 560px) { .values-strip { letter-spacing: 0.1em; gap: 0.45em 0.7em; } }
+</style>

@@ -21,9 +21,9 @@ export const SOCIALS = [
 
 // Election calendar (ISO dates). Countdown chips read these.
 export const DATES = {
-  election: '2027-04-06', // consolidated election: the headline date
-  // Feb 23, 2027 primary applies only if she files as a Democrat and it is contested. Not shown yet.
-
+  primary: '2027-02-23', // primary election: the headline date and the countdown target
+  general: '2027-04-06', // consolidated (general) election
+  election: '2027-02-23', // alias of primary, kept so older imports keep working
 };
 
 export const donateHref = (base) => DONATE_URL || `${base}/join/#donate`;

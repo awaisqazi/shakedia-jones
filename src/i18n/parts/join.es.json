@@ -2,28 +2,30 @@
   "join": {
     "hero": {
       "label": "Participe",
-      "title_a": "Corra con",
-      "title_b": "nosotros.",
-      "lede": "Una carrera de relevos la gana un equipo. Shakedia es candidata a concejal del Distrito 1, y cada vecino que se suma lleva una parte de la carrera: una petición, una conversación en la puerta, un letrero en el jardín.",
+      "title_a": "Únase al",
+      "title_b": "equipo.",
+      "lede": "Shakedia Jones es candidata a concejala del 1er Distrito, y esta campaña funciona gracias a los vecinos. Lleve una petición, converse con la gente de su cuadra, ponga un letrero en su jardín. Cada ayuda hace más fuerte al 1er Distrito.",
       "cta_signup": "Únase al equipo",
+      "cta_ways": "Vea cómo ayudar",
       "cta_donate": "Contribuya",
-      "card_title": "La carrera",
-      "clock_label": "Días para la elección",
-      "date_label": "Día de las Elecciones",
-      "date_value": "Martes 6 de abril de 2027",
+      "card_title": "La primaria",
+      "clock_label": "días para la primaria",
+      "date_label": "Elección primaria",
+      "date_value": "Martes 23 de febrero de 2027",
+      "general_label": "Elección general",
+      "general_value": "Martes 6 de abril de 2027",
       "now_label": "Cómo empieza",
-      "now_text": "Las peticiones son el paso para aparecer en la boleta. Los voluntarios ayudan a recoger firmas de votantes del Distrito 1."
+      "now_text": "Las peticiones son el paso para aparecer en la boleta. Los voluntarios ayudan a recoger firmas de votantes del 1er Distrito."
     },
     "ways": {
-      "label": "Elija su carril",
+      "label": "Cómo ayudar",
       "title_a": "Seis maneras",
       "title_a_five": "Cinco maneras",
       "title_b": "de ayudar",
-      "lede": "Cada carril cuenta. Elija uno, elija tres, o díganos cuánto tiempo tiene y le encontramos el lugar indicado.",
-      "now_tag": "Primer paso",
+      "lede": "Elija una, elija tres, o díganos cuánto tiempo tiene y le encontramos el lugar indicado.",
       "petition_title": "Firme y circule peticiones",
-      "petition_text": "Las peticiones son el paso para aparecer en la boleta, y los voluntarios ayudan a recoger firmas de votantes del Distrito 1. Firme una, o recoja firmas en su propia cuadra.",
-      "petition_rules": "Quienes firman deben ser votantes registrados en el Distrito 1. Quienes circulan peticiones deben cumplir los requisitos del estado; le daremos capacitación antes de empezar.",
+      "petition_text": "Las peticiones son el paso para aparecer en la boleta, y los voluntarios ayudan a recoger firmas de votantes del 1er Distrito. Firme una, o recoja firmas en su propia cuadra.",
+      "petition_rules": "Quienes firman deben ser votantes registrados en el 1er Distrito. Quienes circulan peticiones deben cumplir los requisitos del estado; le daremos capacitación antes de empezar.",
       "petition_cta": "Yo llevo una petición",
       "doors_title": "Toque puertas, hable con sus vecinos",
       "doors_text": "La mejor campaña es un vecino en el porche. Le damos una lista corta, algunos puntos clave y alguien que lo acompañe.",
@@ -39,7 +41,8 @@
       "words_cta": "Puedo ayudar a compartir",
       "give_title": "Contribuya",
       "give_text": "Cualquier cantidad compra tablas con clip, volantes y letreros. Las contribuciones pequeñas de los vecinos rinden más.",
-      "give_cta": "Cómo contribuir"
+      "give_cta": "Cómo contribuir",
+      "start_tag": "Empiece aquí"
     },
     "form": {
       "label": "Inscríbase",
@@ -57,7 +60,7 @@
       "contact_hint": "Un teléfono o un correo, el que revise más.",
       "zip_label": "Código postal (opcional)",
       "zip_ph": "60085",
-      "ward_label": "¿Vive en el Distrito 1?",
+      "ward_label": "¿Vive en el 1er Distrito?",
       "ward_choose": "Elija una opción",
       "ward_yes": "Sí",
       "ward_no": "No, pero quiero ayudar",
@@ -83,30 +86,42 @@
       "again": "Editar mi inscripción",
       "soon_title": "La inscripción abre pronto",
       "soon_text": "El formulario para voluntarios está casi listo. Vuelva pronto para unirse al equipo.",
-      "lede_soon": "Peticiones, tocar puertas, letreros, eventos: hay un carril para cada quien. El formulario de inscripción abrirá aquí muy pronto."
+      "lede_soon": "Peticiones, tocar puertas, letreros, eventos: hay un lugar para cada quien. El formulario de inscripción abrirá aquí muy pronto."
     },
     "donate": {
       "label": "Contribuya",
-      "title_a": "Impulse el",
-      "title_b": "último tramo",
-      "lede": "Esta campaña funciona gracias a los vecinos, no a los cheques grandes. Su contribución paga tablas con clip para las peticiones, volantes en español y en inglés, y letreros para el Distrito 1.",
+      "title_a": "Ayude a construir un",
+      "title_b": "1er Distrito más fuerte",
+      "lede": "Esta campaña funciona gracias a los vecinos, no a los cheques grandes. Su contribución paga tablas con clip para las peticiones, volantes en español y en inglés, y letreros para el 1er Distrito.",
       "button": "Donar ahora",
       "button_note": "Abre nuestra página segura de donaciones en otra pestaña.",
-      "legal": "Las contribuciones a [Committee Name] no son deducibles de impuestos. Las contribuciones de más de $150 se detallan en los informes presentados ante la Junta Electoral del Estado de Illinois. Deben hacerse con fondos propios; se prohíben las contribuciones de ciudadanos extranjeros."
+      "legal": "Las contribuciones a [Committee Name] no son deducibles de impuestos. Las contribuciones de más de $150 se detallan en los informes presentados ante la Junta Electoral del Estado de Illinois. Deben hacerse con fondos propios; se prohíben las contribuciones de ciudadanos extranjeros.",
+      "box_title": "Cada aporte cuenta"
     },
     "vote": {
       "label": "Antes de votar",
-      "title_a": "Rumbo al",
-      "title_b": "6 de abril",
-      "lede": "El Día de las Elecciones es el martes 6 de abril de 2027. La Secretaría del Condado de Lake (Lake County Clerk) organiza las elecciones aquí y mantiene al día todas las fechas límite. Consulte directamente con ellos.",
-      "register_title": "Inscríbase o verifique su inscripción",
-      "register_text": "Asegúrese de que su inscripción esté al día con su dirección actual.",
-      "mail_title": "Vote por correo",
-      "mail_text": "Pida una boleta por correo y vote desde la mesa de su cocina.",
-      "polling_title": "Encuentre su lugar de votación",
-      "polling_text": "Busque dónde votar por adelantado o el Día de las Elecciones.",
-      "go": "Lake County Clerk",
-      "clerk_link": "Lake County Clerk: regístrese y encuentre su lugar de votación"
+      "title_a": "Vote el",
+      "title_b": "23 de febrero",
+      "lede": "La primaria es el martes 23 de febrero de 2027, y la elección general sigue el martes 6 de abril de 2027. La Secretaría del Condado de Lake (Lake County Clerk) organiza las elecciones aquí y mantiene al día todas las fechas límite, así que consulte directamente con ellos.",
+      "primary_label": "Elección primaria",
+      "primary_date": "Martes 23 de febrero de 2027",
+      "primary_note": "La primera fecha para marcar. Planee su voto desde ahora.",
+      "general_label": "Elección general",
+      "general_date": "Martes 6 de abril de 2027",
+      "general_note": "La elección consolidada para los cargos de la ciudad.",
+      "clerk_title": "Lake County Clerk",
+      "clerk_text": "Todo lo que necesita antes de votar, en un solo lugar:",
+      "register": "Inscríbase o verifique su inscripción",
+      "mail": "Pida una boleta por correo",
+      "polling": "Encuentre su lugar de votación",
+      "clerk_link": "Lake County Clerk: regístrese y encuentre su lugar de votación",
+      "newtab_note": "Abre el sitio web de la Secretaría en una pestaña nueva."
+    },
+    "share": {
+      "label": "Corra la voz",
+      "title_a": "Cuéntele a un vecino del",
+      "title_b": "23 de febrero",
+      "lede": "Un mensaje a un vecino toma diez segundos y mantiene al 1er Distrito conversando."
     }
   }
 }

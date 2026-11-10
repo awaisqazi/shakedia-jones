@@ -1,0 +1,14 @@
+---
+// The campaign's five-point star. Decorative (aria-hidden). Inherits color by default.
+// <Star /> gold star at 1em; <Star size={28} /> 28px; <Star color="currentColor" />.
+export interface Props { size?: number | string; color?: string; class?: string }
+const { size = '1em', color = 'var(--gold)', class: cls } = Astro.props;
+const dim = typeof size === 'number' ? `${size}px` : size;
+---
+<svg class:list={['star', cls]} style={`width:${dim};height:${dim}`} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <path fill={color} d="M12 1.1L14.7 8.88L22.94 9.05L16.37 14.02L18.76 21.9L12 17.2L5.24 21.9L7.63 14.02L1.06 9.05L9.3 8.88Z" />
+</svg>
+
+<style>
+  .star { display: inline-block; flex-shrink: 0; vertical-align: -0.12em; }
+</style>

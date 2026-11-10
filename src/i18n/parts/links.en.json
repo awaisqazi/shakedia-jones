@@ -1,18 +1,17 @@
 {
   "links": {
     "home": "Full website",
-    "photo_alt": "Dedication day on George Avenue, July 14, 2024: two women smile under the honorary Shakedia Jones Olympic Way sign.",
-    "office": "For 1st Ward Alderperson, Waukegan",
-    "tagline": "USA Olympian. Coach. Neighbor. Excellence from Waukegan.",
+    "photo_alt": "Shakedia Jones smiling, in a green blazer and a gold top.",
     "volunteer": "Volunteer: join the team",
     "volunteer_sub": "Petitions, doors, yard signs",
     "donate": "Donate",
-    "donate_sub": "Fuel the anchor leg",
+    "donate_sub": "Help build a stronger 1st Ward",
     "meet": "Meet Shakedia",
     "meet_sub": "USA Olympian. Coach. Neighbor.",
-    "plan": "The Game Plan",
-    "plan_sub": "Four lanes for the 1st Ward",
-    "election_label": "Election Day",
-    "election_value": "Tuesday, April 6, 2027"
+    "plan": "Priorities",
+    "plan_sub": "Four priorities for the 1st Ward",
+    "election_label": "Primary",
+    "election_value": "Tuesday, February 23, 2027",
+    "lang_label": "Language"
   }
 }

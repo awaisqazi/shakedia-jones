@@ -1,0 +1,111 @@
+---
+// The honors of 2024: the street dedication and the council proclamation, on deep purple with gold.
+// The sign photo is a past-tense record of the dedication; it does not claim the sign is still posted.
+import Star from '../ui/Star.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section class="honor bg-purple-deep section-padding" aria-labelledby="honor-title">
+  <div class="honor-stars" aria-hidden="true"></div>
+  <div class="container honor-grid">
+    <div class="honor-copy">
+      <p class="kicker animate-in" data-i18n="meet.honor.kicker">Shakedia Jones Olympic Way</p>
+      <h2 id="honor-title" class="section-title animate-in">
+        <span data-i18n="meet.honor.title_1">Excellence</span>
+        <span class="accent" data-i18n="meet.honor.title_2">from Waukegan</span>
+      </h2>
+      <p class="section-lede animate-in" data-i18n="meet.honor.lede">In 2024 her hometown honored her twice. She used the moment to ask the city to honor everyone else, too.</p>
+
+      <ol class="dates">
+        <li class="date-card animate-in" style="--reveal-delay: 0.05s">
+          <Star class="date-star" />
+          <p class="date-when"><span data-i18n="meet.honor.d1_day">Sunday</span><span class="sep" aria-hidden="true">/</span><span data-i18n="meet.honor.d1_date">July 14, 2024</span></p>
+          <h3 class="date-title" data-i18n="meet.honor.d1_title">The street dedication</h3>
+          <p class="date-text" data-i18n="meet.honor.d1_text">Waukegan dedicated the honorary street name "Shakedia Jones Olympic Way" on George Avenue, near her childhood home.</p>
+        </li>
+        <li class="date-card animate-in" style="--reveal-delay: 0.1s">
+          <Star class="date-star" />
+          <p class="date-when"><span data-i18n="meet.honor.d2_day">Monday</span><span class="sep" aria-hidden="true">/</span><span data-i18n="meet.honor.d2_date">August 5, 2024</span></p>
+          <h3 class="date-title" data-i18n="meet.honor.d2_title">The council proclamation</h3>
+          <p class="date-text" data-i18n="meet.honor.d2_text">The City Council honored her with a proclamation. The room gave her five standing ovations.</p>
+        </li>
+      </ol>
+
+      <blockquote class="honor-quote animate-in">
+        <p class="q-text" lang="en" data-i18n="meet.honor.q1">Why isn't there a place where we can go to find out the people in Waukegan who have done amazing things,</p>
+        <p class="q-text q-strong" lang="en" data-i18n="meet.honor.q2">...so that people can see excellence from Waukegan.</p>
+        <p class="tr-line" lang="es"><span class="tr-label" data-i18n="meet.honor.tr_label">Translation</span> <span data-i18n="meet.honor.q_tr">¿Por qué no existe un lugar donde podamos conocer a las personas de Waukegan que han hecho cosas increíbles? ...para que la gente vea la excelencia de Waukegan.</span></p>
+        <footer class="q-src" data-i18n="meet.honor.q_src">At the Waukegan City Council, August 2024</footer>
+      </blockquote>
+    </div>
+
+    <div class="honor-visual animate-in" style="--reveal-delay: 0.08s">
+      <figure class="gold-frame sign-photo">
+        <img src={`${base}/images/olympic-way-sign.webp`} width="460" height="262" alt="The green George Av street sign with the brown Shakedia Jones Olympic Way honorary blade beneath it." data-i18n-attr="alt:meet.honor.sign_alt" loading="lazy" decoding="async" />
+        <figcaption data-i18n="meet.honor.sign_cap">The honorary sign as dedicated on July 14, 2024.</figcaption>
+      </figure>
+      <figure class="gold-frame council-photo">
+        <img src={`${base}/images/council-honor-2024.webp`} width="320" height="568" alt="A group gathered at the Waukegan City Council ceremony, one woman holding a framed proclamation." data-i18n-attr="alt:meet.honor.photo_alt" loading="lazy" decoding="async" />
+        <figcaption data-i18n="meet.honor.photo_cap">Honored by the Waukegan City Council, August 2024.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .honor { position: relative; overflow: hidden; isolation: isolate; border-top: 3px solid var(--gold); }
+  /* A faint scatter of gold stars across the night-purple field */
+  .honor-stars {
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background-image:
+      radial-gradient(circle at 15% 20%, var(--gold) 0 1.5px, transparent 2px),
+      radial-gradient(circle at 65% 70%, var(--gold) 0 1px, transparent 1.5px);
+    background-size: 90px 90px, 60px 60px;
+    opacity: 0.35;
+    -webkit-mask-image: linear-gradient(90deg, transparent 20%, #000);
+    mask-image: linear-gradient(90deg, transparent 20%, #000);
+  }
+  .honor-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: var(--space-3xl); align-items: start; }
+
+  .dates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); margin: var(--space-xl) 0; }
+  .date-card { position: relative; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(254, 198, 10, 0.35); border-top: 4px solid var(--gold); border-radius: var(--radius-md); padding: var(--space-lg); }
+  .date-card :global(.date-star) { position: absolute; top: var(--space-md); right: var(--space-md); width: 1.4rem; height: 1.4rem; }
+  .date-when { display: flex; flex-wrap: wrap; gap: 0 0.45em; font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: var(--text-sm); color: var(--gold); padding-right: 2rem; }
+  .sep { opacity: 0.6; }
+  .date-title { font-family: var(--font-display); font-weight: 800; font-size: var(--text-2xl); margin: var(--space-sm) 0; line-height: 1.1; }
+  .date-text { font-size: var(--text-sm); color: rgba(255, 255, 255, 0.84); line-height: 1.55; }
+
+  .honor-quote { border-left: 4px solid var(--gold); padding-left: var(--space-lg); }
+  .q-text { font-size: var(--text-lg); font-style: italic; font-weight: 500; color: rgba(255, 255, 255, 0.9); line-height: 1.45; }
+  .q-text:first-child::before { content: '\201C'; color: var(--gold); }
+  .q-strong { margin-top: var(--space-sm); font-family: var(--font-display); font-style: italic; font-weight: 800; font-size: var(--text-3xl); line-height: 1.08; color: var(--white); font-variant-numeric: lining-nums; }
+  .q-strong::after { content: '\201D'; color: var(--gold); }
+  .tr-line { margin-top: var(--space-md); font-size: var(--text-sm); color: rgba(255, 255, 255, 0.78); }
+  .tr-label { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78em; color: var(--gold); margin-right: 0.3em; }
+  :global(html[lang='en']) .tr-line { display: none; }
+  .q-src { margin-top: var(--space-md); font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: var(--text-sm); color: var(--gold); }
+
+  /* Photos in gold frames */
+  .honor-visual { display: flex; flex-direction: column; align-items: center; gap: var(--space-xl); }
+  .gold-frame { padding: 8px; background: var(--gold-sheen); border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); }
+  .gold-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: calc(var(--radius-lg) - 6px) calc(var(--radius-lg) - 6px) 0 0; }
+  .gold-frame figcaption {
+    background: var(--purple); color: var(--white); padding: 0.6rem 0.9rem;
+    border-radius: 0 0 calc(var(--radius-lg) - 6px) calc(var(--radius-lg) - 6px);
+    font-family: var(--font-label); font-weight: 600; font-size: var(--text-sm); letter-spacing: 0.04em; line-height: 1.35;
+  }
+  .sign-photo { width: min(100%, 460px); transform: rotate(-1.5deg); }
+  .sign-photo img { aspect-ratio: 460 / 262; }
+  .council-photo { width: min(100%, 290px); transform: rotate(1deg); }
+  .council-photo img { aspect-ratio: 320 / 440; object-position: center top; }
+
+  @media (max-width: 960px) {
+    .honor-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-2xl); }
+    .honor-visual { flex-direction: row; justify-content: center; align-items: flex-start; flex-wrap: wrap; }
+    .council-photo { width: min(100%, 240px); }
+    .sign-photo, .council-photo { transform: none; }
+  }
+  @media (max-width: 600px) {
+    .dates { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

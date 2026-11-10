@@ -1,44 +1,48 @@
 ---
 import { donateHref, isExternalDonate, canDonate } from '../../data/campaign.js';
 import ShareBar from '../ui/ShareBar.astro';
+import Swoosh from '../ui/Swoosh.astro';
+import Star from '../ui/Star.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
 ---
 
-<section class="join-band on-dark" id="join" aria-labelledby="joinband-title">
-  <div class="jb-track" aria-hidden="true">
-    <svg viewBox="0 0 600 900" preserveAspectRatio="xMaxYMid slice">
-      <g fill="none" stroke="#fff" stroke-width="5">
-        <path d="M600 40 H330 a290 290 0 0 0 0 580 H600" />
-        <path d="M600 110 H330 a220 220 0 0 0 0 440 H600" />
-        <path d="M600 180 H330 a150 150 0 0 0 0 300 H600" />
-      </g>
-    </svg>
-  </div>
+<section class="join-band bg-purple-deep" id="join" aria-labelledby="joinband-title">
+  <Swoosh class="jb-swoosh jb-swoosh-top" />
   <div class="container jb-inner">
-    <span class="section-label"><span class="lane-chip" aria-hidden="true">6</span><span data-i18n="home.join.label">Your leg</span></span>
+    <p class="kicker" data-i18n="home.join.label">Get involved</p>
     <h2 class="section-title" id="joinband-title">
-      <span data-i18n="home.join.title_1">Take the baton.</span>
+      <span data-i18n="home.join.title_1">Let's build a stronger 1st Ward</span>
+      <span class="accent" data-i18n="home.join.title_2">together.</span>
     </h2>
-    <p class="section-lede" data-i18n="home.join.lede">Sign a petition, knock a few doors, put up a yard sign, or tell a neighbor in English or Spanish. Every leg counts.</p>
+    <p class="section-lede" data-i18n="home.join.lede">Sign a petition, knock a few doors, put up a yard sign, or tell a neighbor in English or Spanish. Every bit of help counts.</p>
     <div class="jb-ctas">
       <a href={`${base}/join/#signup`} class="btn btn-gold btn-massive" data-i18n="home.join.cta_join">Join the team</a>
       {canDonate() && <a href={donateHref(base)} class="btn btn-outline-light" data-i18n="home.join.cta_donate" {...ext}>Chip in</a>}
     </div>
     <ShareBar variant="dark" class="jb-share" />
   </div>
+  <div class="jb-stars" aria-hidden="true">
+    <Star class="js js-1" /><Star class="js js-2" /><Star class="js js-3" />
+  </div>
+  <Swoosh class="jb-swoosh jb-swoosh-bottom" flip />
 </section>
 
 <style>
-  .join-band { position: relative; overflow: hidden; background: var(--navy); padding: var(--space-5xl) 0; }
-  .jb-track { position: absolute; top: 0; right: 0; bottom: 0; width: 55%; opacity: 0.14; pointer-events: none; }
-  .jb-track svg { width: 100%; height: 100%; display: block; }
-  .jb-inner { position: relative; }
-  .jb-inner .section-title { font-size: var(--text-5xl); }
+  .join-band { position: relative; overflow: hidden; padding: var(--space-5xl) 0 calc(var(--space-4xl) + 40px); }
+  .join-band :global(.jb-swoosh) { position: absolute; left: -5%; width: 110%; height: clamp(40px, 6vw, 80px); pointer-events: none; }
+  .join-band :global(.jb-swoosh-top) { top: var(--space-lg); }
+  .join-band :global(.jb-swoosh-bottom) { bottom: var(--space-lg); opacity: 0.7; }
+  .jb-inner { position: relative; z-index: 1; }
+  .jb-inner .section-title { font-size: var(--text-5xl); display: flex; flex-wrap: wrap; column-gap: 0.25em; max-width: 16ch; }
   .jb-ctas { display: flex; gap: var(--space-md); flex-wrap: wrap; margin-top: var(--space-xl); }
-  .jb-share { margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--line-light); }
+  .jb-inner :global(.jb-share) { margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--line-light); }
+  .jb-stars :global(.js) { position: absolute; }
+  .jb-stars :global(.js-1) { width: 46px; height: 46px; top: 22%; right: 9%; }
+  .jb-stars :global(.js-2) { width: 24px; height: 24px; top: 34%; right: 15%; opacity: 0.75; }
+  .jb-stars :global(.js-3) { width: 30px; height: 30px; top: 16%; right: 18%; opacity: 0.5; }
   @media (max-width: 768px) {
     .join-band { padding: var(--space-4xl) 0; }
-    .jb-track { width: 90%; opacity: 0.1; }
+    .jb-stars { display: none; }
   }
 </style>

@@ -1,0 +1,107 @@
+---
+// "By the numbers": six verified stats on gold-topped white cards, then the hometown honors
+// as purple icon badges with gold rings.
+import Star from '../ui/Star.astro';
+
+const stats = [
+  { num: '9', key: 's1', label: 'IHSA state titles', note: '100m and 200m all four years, plus the 400m in 1996' },
+  { num: '2', key: 's2', label: 'Gatorade Illinois Player of the Year awards', note: 'Girls track and field, 1996 and 1997' },
+  { num: '2', key: 's3', label: 'World Junior golds', note: '100m and 4x100m relay, Annecy, France, 1998' },
+  { num: '2', key: 's4', label: 'NCAA team titles with UCLA', note: '2000 and 2001 indoor' },
+  { num: '2000', key: 's5', label: 'U.S. Olympic Team', note: 'Sydney, 4x100m relay pool' },
+  { num: '600+', key: 's6', label: 'young people helped by FLY', note: 'Her 2024 count, since she founded it in 2014', count: 600, fly: true },
+];
+---
+
+<section class="meet-numbers bg-soft section-padding" aria-labelledby="numbers-title">
+  <div class="container">
+    <header class="numbers-head">
+      <p class="kicker" data-i18n="meet.numbers.kicker">By the numbers</p>
+      <h2 id="numbers-title" class="section-title">
+        <span data-i18n="meet.numbers.title_1">A champion's record,</span>
+        <span class="accent" data-i18n="meet.numbers.title_2">made in Waukegan</span>
+      </h2>
+    </header>
+
+    <ul class="stats">
+      {stats.map((s, i) => (
+        <li class:list={['stat card-gold animate-in', { 'stat-fly': s.fly }]} style={`--reveal-delay: ${(i * 0.05).toFixed(2)}s`}>
+          {s.count
+            ? <span class="stat-num stat-tabular" data-count-to={s.count} data-count-suffix="+">{s.num}</span>
+            : <span class="stat-num stat-tabular">{s.num}</span>}
+          <span class="stat-label" data-i18n={`meet.numbers.${s.key}_label`}>{s.label}</span>
+          <span class="stat-note" data-i18n={`meet.numbers.${s.key}_note`}>{s.note}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="honors animate-in">
+      <h3 class="honors-title"><Star class="honors-star" /><span data-i18n="meet.numbers.honors_title">Honored at home</span></h3>
+      <ul class="honors-list">
+        <li class="honor">
+          <span class="icon-badge icon-badge-sm" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="6.5"/><path d="M8 3h3l1 4.5M16 3h-3l-1 4.5"/><path d="M12 11l1 2.1 2.3.3-1.7 1.6.4 2.3-2-1.1-2 1.1.4-2.3-1.7-1.6 2.3-.3z" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <span class="honor-text">
+            <span class="honor-name" data-i18n="meet.numbers.h1_name">Lake County High School Hall of Fame</span>
+            <span class="honor-when" data-i18n="meet.numbers.h1_when">Inducted 2019</span>
+          </span>
+        </li>
+        <li class="honor">
+          <span class="icon-badge icon-badge-sm" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg>
+          </span>
+          <span class="honor-text">
+            <span class="honor-name" data-i18n="meet.numbers.h2_name">Famous Waukeganites</span>
+            <span class="honor-when" data-i18n="meet.numbers.h2_when">City of Waukegan</span>
+          </span>
+        </li>
+        <li class="honor">
+          <span class="icon-badge icon-badge-sm" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V3M4 5h14l2 2.5L18 10H4zM6 12h14v4H6z"/></svg>
+          </span>
+          <span class="honor-text">
+            <span class="honor-name" data-i18n="meet.numbers.h3_name">Shakedia Jones Olympic Way</span>
+            <span class="honor-when" data-i18n="meet.numbers.h3_when">Honorary street name, dedicated July 14, 2024</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .numbers-head { text-align: center; margin-bottom: var(--space-2xl); }
+  .numbers-head .section-title { margin-inline: auto; max-width: 22ch; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-lg); }
+  .stat { display: flex; flex-direction: column; gap: 0.4rem; padding: var(--space-xl) var(--space-lg) var(--space-lg); text-align: center; align-items: center; }
+  .stat-num {
+    font-family: var(--font-display); font-weight: 900; font-size: var(--text-5xl); line-height: 0.95; color: var(--purple);
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .stat-fly .stat-num { color: var(--green); }
+  .stat-fly { border-top-color: var(--green); }
+  .stat-label { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: var(--text-lg); line-height: 1.15; color: var(--purple-deep); max-width: 22ch; }
+  .stat-note { font-size: var(--text-sm); color: var(--muted); line-height: 1.4; max-width: 30ch; }
+
+  .honors { margin-top: var(--space-3xl); }
+  .honors-title { display: flex; align-items: center; justify-content: center; gap: 0.5em; font-family: var(--font-display); font-weight: 800; font-size: var(--text-2xl); color: var(--purple); margin-bottom: var(--space-xl); }
+  .honors-title :global(.honors-star) { width: 0.9em; height: 0.9em; }
+  .honors-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-lg); }
+  .honor { display: flex; align-items: center; gap: var(--space-md); background: var(--white); border-radius: 999px; padding: 0.6rem 1.2rem 0.6rem 0.6rem; box-shadow: var(--shadow-sm); border: 1px solid var(--lilac); }
+  .honor-text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+  .honor-name { font-weight: 700; color: var(--purple-deep); }
+  .honor-when { font-size: var(--text-sm); color: var(--muted); }
+
+  @media (max-width: 960px) {
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .honors-list { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
+  }
+  @media (max-width: 520px) {
+    .stats { grid-template-columns: 1fr; gap: var(--space-md); }
+    .stat { display: grid; grid-template-columns: 6.2rem minmax(0, 1fr); column-gap: var(--space-md); row-gap: 0.2rem; align-items: center; text-align: left; padding: var(--space-lg) var(--space-md); }
+    .stat-num { grid-row: span 2; font-size: var(--text-3xl); text-align: center; }
+    .stat-label { font-size: var(--text-base); }
+    .honor { border-radius: var(--radius-lg); }
+  }
+</style>

@@ -1,52 +1,92 @@
 ---
-import { COUNTY_CLERK_URL, canDonate } from '../../data/campaign.js';
-// Lane number follows the donate block, which is hidden until donations open.
-const lane = canDonate() ? 5 : 4;
-const items = [
-  { k: 'register', title: 'Register or check your registration', text: 'Make sure you are registered at your current address.' },
-  { k: 'mail', title: 'Vote by mail', text: 'Request a mail ballot and vote from your kitchen table.' },
-  { k: 'polling', title: 'Find your polling place', text: 'Look up where to vote early or on Election Day.' },
+// Before you vote: the primary first (the date that matters), the general election second,
+// and one card that sends readers to the Lake County Clerk. No registration deadlines printed:
+// the Clerk keeps those current.
+import Star from '../ui/Star.astro';
+import { COUNTY_CLERK_URL } from '../../data/campaign.js';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const tasks = [
+  { k: 'register', text: 'Register or check your registration' },
+  { k: 'mail', text: 'Request a mail ballot' },
+  { k: 'polling', text: 'Find your polling place' },
 ];
 ---
 
-<section class="section-padding bg-chalk-2 byv" id="before-you-vote" aria-labelledby="byv-title">
+<section class="section-padding bg-soft byv" id="before-you-vote" aria-labelledby="byv-title">
   <div class="container">
-    <span class="section-label animate-in"><span class="lane-chip" aria-hidden="true">{lane}</span><span data-i18n="join.vote.label">Before you vote</span></span>
+    <p class="kicker animate-in" data-i18n="join.vote.label">Before you vote</p>
     <h2 class="section-title animate-in" id="byv-title">
-      <span data-i18n="join.vote.title_a">Be ready for</span>
-      <span class="accent" data-i18n="join.vote.title_b">April 6</span>
+      <span data-i18n="join.vote.title_a">Vote on</span>
+      <span class="accent" data-i18n="join.vote.title_b">February 23</span>
     </h2>
-    <p class="section-lede animate-in" data-i18n="join.vote.lede">Election Day is Tuesday, April 6, 2027. The Lake County Clerk runs elections here and keeps every deadline up to date. Check with them directly.</p>
+    <p class="section-lede animate-in" data-i18n="join.vote.lede">The primary is Tuesday, February 23, 2027, and the general election follows on Tuesday, April 6, 2027. The Lake County Clerk runs elections here and keeps every deadline up to date, so check with them directly.</p>
 
-    <ul class="byv-list">
-      {items.map((it, i) => (
-        <li class="animate-in" style={`--reveal-delay: ${i * 0.05}s`}>
-          <a href={COUNTY_CLERK_URL} class="byv-card card" target="_blank" rel="noopener">
-            <span class="byv-title" data-i18n={`join.vote.${it.k}_title`}>{it.title}</span>
-            <span class="byv-text" data-i18n={`join.vote.${it.k}_text`}>{it.text}</span>
-            <span class="byv-go" data-i18n="join.vote.go">Lake County Clerk</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-    <p class="byv-foot animate-in">
-      <a href={COUNTY_CLERK_URL} class="arrow-link" target="_blank" rel="noopener"><span data-i18n="join.vote.clerk_link">Lake County Clerk: register and find your polling place</span><span class="visually-hidden" data-i18n="ui.newtab">(opens in a new tab)</span></a>
-    </p>
+    <div class="byv-grid">
+      <article class="byv-date byv-primary on-dark animate-in" aria-labelledby="byv-primary-k">
+        <Star size={30} class="byv-star" />
+        <h3 class="byv-k" id="byv-primary-k" data-i18n="join.vote.primary_label">Primary election</h3>
+        <p class="byv-v" data-i18n="join.vote.primary_date">Tuesday, February 23, 2027</p>
+        <p class="byv-note" data-i18n="join.vote.primary_note">The first date to circle. Plan your vote now.</p>
+        <a href={`${base}/election-day.ics`} class="arrow-link byv-cal" download="primary-election-feb-23-2027.ics" data-i18n="share.calendar">Add Feb 23 to my calendar</a>
+      </article>
+
+      <article class="byv-date byv-general animate-in" style="--reveal-delay: 0.05s" aria-labelledby="byv-general-k">
+        <h3 class="byv-k" id="byv-general-k" data-i18n="join.vote.general_label">General election</h3>
+        <p class="byv-v" data-i18n="join.vote.general_date">Tuesday, April 6, 2027</p>
+        <p class="byv-note" data-i18n="join.vote.general_note">The consolidated election for city offices.</p>
+      </article>
+
+      <article class="byv-clerk card-gold animate-in" style="--reveal-delay: 0.1s" aria-labelledby="byv-clerk-title">
+        <h3 class="byv-clerk-title" id="byv-clerk-title" data-i18n="join.vote.clerk_title">Lake County Clerk</h3>
+        <p class="byv-clerk-text" data-i18n="join.vote.clerk_text">One stop for everything before you vote:</p>
+        <ul class="star-list byv-tasks">
+          {tasks.map((t) => <li data-i18n={`join.vote.${t.k}`}>{t.text}</li>)}
+        </ul>
+        <a href={COUNTY_CLERK_URL} class="btn btn-primary byv-go" target="_blank" rel="noopener">
+          <span data-i18n="join.vote.clerk_link">Lake County Clerk: register and find your polling place</span>
+          <span class="visually-hidden" data-i18n="ui.newtab">(opens in a new tab)</span>
+        </a>
+        <p class="byv-newtab" aria-hidden="true" data-i18n="join.vote.newtab_note">Opens the Clerk's website in a new tab.</p>
+      </article>
+    </div>
   </div>
 </section>
 
 <style>
-  .byv-list { margin-top: var(--space-2xl); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
-  .byv-card {
-    height: 100%; display: flex; flex-direction: column; gap: var(--space-sm); padding: var(--space-xl);
-    border-top: 5px solid var(--navy); transition: transform var(--duration-fast), box-shadow var(--duration-normal), border-color var(--duration-normal);
+  .byv-grid { margin-top: var(--space-2xl); display: grid; grid-template-columns: 1.15fr 0.85fr 1.25fr; gap: var(--space-lg); align-items: stretch; }
+  .byv-date {
+    position: relative; border-radius: var(--radius-lg); padding: var(--space-xl);
+    display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-xs);
   }
-  .byv-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-top-color: var(--track); }
-  .byv-title { font-family: var(--font-body); font-weight: 700; font-size: var(--text-lg); color: var(--navy); line-height: 1.15; }
-  .byv-text { color: var(--ink-soft); }
-  .byv-go { margin-top: auto; padding-top: var(--space-sm); font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-sm); color: var(--track-deep); }
-  .byv-go::after { content: ' \2197'; }
-  .byv-foot { margin-top: var(--space-xl); }
-  .byv-foot .arrow-link { white-space: normal; min-height: 44px; }
-  @media (max-width: 860px) { .byv-list { grid-template-columns: 1fr; } .byv-card { padding: var(--space-lg); } }
+  .byv-primary {
+    background: linear-gradient(160deg, var(--purple) 0%, var(--purple-deep) 100%);
+    box-shadow: inset 0 0 0 2px rgba(254, 198, 10, 0.7), var(--shadow-lg);
+  }
+  .byv-primary :global(.byv-star) { margin-bottom: var(--space-sm); }
+  .byv-general { background: var(--white); border: 1px solid var(--lilac); box-shadow: var(--shadow-sm); }
+  .byv-k { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-sm); color: var(--muted); }
+  .byv-primary .byv-k { color: var(--gold); }
+  .byv-v { font-variant-numeric: lining-nums; font-family: var(--font-display); font-weight: 900; line-height: 1.08; font-size: var(--text-2xl); color: var(--purple); max-width: none; }
+  .byv-primary .byv-v { color: var(--white); font-size: var(--text-3xl); }
+  .byv-general .byv-v { font-size: var(--text-xl); }
+  .byv-note { font-size: var(--text-sm); color: var(--ink-soft); margin-top: var(--space-xs); }
+  .byv-primary .byv-note { color: rgba(255, 255, 255, 0.85); }
+  .byv-cal { margin-top: auto; padding-top: var(--space-md); font-size: var(--text-base); min-height: 44px; white-space: normal; }
+
+  .byv-clerk { padding: var(--space-xl); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+  .byv-clerk-title { font-family: var(--font-display); font-weight: 800; font-size: var(--text-2xl); color: var(--purple); line-height: 1.1; }
+  .byv-clerk-text { color: var(--ink-soft); }
+  .byv-tasks { margin: var(--space-xs) 0 var(--space-md); color: var(--ink); font-weight: 600; }
+  .byv-go { white-space: normal; text-align: left; font-size: var(--text-base); min-height: 48px; }
+  .byv-newtab { font-size: var(--text-xs); color: var(--muted); }
+
+  @media (max-width: 1000px) {
+    .byv-grid { grid-template-columns: 1fr 1fr; }
+    .byv-clerk { grid-column: 1 / -1; }
+  }
+  @media (max-width: 620px) {
+    .byv-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+    .byv-date, .byv-clerk { padding: var(--space-lg); }
+    .byv-go { width: 100%; justify-content: center; text-align: center; }
+  }
 </style>

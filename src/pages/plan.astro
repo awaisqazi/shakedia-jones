@@ -1,30 +1,32 @@
 ---
-// /plan/ "The Game Plan": four lanes, how she will work, a quote, and a call to join.
-// DRAFT FOR CANDIDATE APPROVAL: every lane commitment (plan.lanes.*.c1 to c4 in
-// src/i18n/parts/plan.*.json) is proposed wording awaiting Shakedia Jones's sign-off.
+// /plan/ "1st Ward Priorities": the campaign's four priorities (RETHEME.md, exact headlines),
+// how she will work, a quote, and a call to join.
+// DRAFT FOR CANDIDATE APPROVAL: every "why it matters" paragraph and every commitment
+// (plan.p.*.c1 to c3, plus the monthly report-back in plan.how) in src/i18n/parts/plan.*.json
+// is proposed wording awaiting Shakedia Jones's sign-off.
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import PlanHero from '../components/plan/PlanHero.astro';
-import Lane from '../components/plan/Lane.astro';
+import Priority from '../components/plan/Priority.astro';
 import YouthRecord from '../components/plan/YouthRecord.astro';
-import CoachWay from '../components/plan/CoachWay.astro';
+import HowSheWorks from '../components/plan/HowSheWorks.astro';
 import PlanQuote from '../components/plan/PlanQuote.astro';
 import PlanCTA from '../components/plan/PlanCTA.astro';
 ---
 
 <Layout
-  title="The Game Plan | Shakedia Jones for the 1st Ward"
-  description="Four lanes for Waukegan's 1st Ward: safe neighborhoods, youth programming, strong infrastructure and transparent government, with a monthly report back."
+  title="Priorities | Shakedia Jones for 1st Ward Alderman"
+  description="Safer streets, abandoned buildings, home renovation and a community center: Shakedia Jones's priorities for Waukegan's 1st Ward."
 >
   <Navbar />
   <main id="main" tabindex="-1">
     <PlanHero />
-    <Lane id="l1" n={1} tone="chalk-2" />
-    <Lane id="l2" n={2} tone="chalk"><YouthRecord /></Lane>
-    <Lane id="l3" n={3} tone="chalk-2" />
-    <Lane id="l4" n={4} tone="chalk" />
-    <CoachWay />
+    <Priority id="p1" n={1} icon="car" tone="cream" />
+    <Priority id="p2" n={2} icon="buildings" tone="soft" />
+    <Priority id="p3" n={3} icon="home" tone="cream" />
+    <Priority id="p4" n={4} icon="people" tone="soft"><YouthRecord /></Priority>
+    <HowSheWorks />
     <PlanQuote />
     <PlanCTA />
   </main>

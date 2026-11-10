@@ -1,32 +1,43 @@
 {
   "home": {
     "hero": {
-      "kicker": "Waukegan · 1st Ward Alderperson · April 6, 2027",
+      "kicker": "Waukegan · 1st Ward · Primary February 23, 2027",
       "headline_1": "She ran for Team USA.",
       "headline_2": "Now she's running for the 1st Ward.",
-      "sub": "Shakedia Jones is a 2000 U.S. Olympic Team member (4x100m relay pool), a nine-time Illinois state champion, a UCLA graduate with an MBA, and the founder of FLY, which by her 2024 count has helped more than 600 young people. She came home to Waukegan in 2013 and has worked for its kids ever since. Now she wants to work for its neighbors.",
+      "sub": "Born and raised in the 1st Ward of Waukegan. Nine-time Illinois state champion, member of the 2000 U.S. Olympic Team (4x100m relay pool), and founder of FLY, which by her 2024 count has helped more than 600 young people. Now she wants to work for her neighbors.",
       "cta_join": "Join the team",
       "cta_meet": "Meet Shakedia",
-      "countdown": "days to Election Day",
-      "chip_in": "Chip in",
-      "photo_alt": "Two women stand under the street sign for Shakedia Jones Olympic Way on George Avenue; one points up at it.",
-      "photo_caption": "Dedication day on George Avenue, July 14, 2024.",
-      "bib_top": "Waukegan · Ward"
+      "countdown": "days until the primary",
+      "photo_alt": "Shakedia Jones smiling, in a green blazer and a gold top."
     },
-    "splits": {
-      "label": "The splits",
-      "title_1": "A record you can",
-      "title_2": "look up.",
+    "about": {
+      "title": "About Shakedia",
+      "intro": "Born and raised in the 1st Ward of Waukegan, Shakedia graduated from Waukegan High School in 1997, ran for UCLA and Team USA, and came home in 2013 to work for Waukegan's kids.",
       "titles": "IHSA state titles, the most in Illinois girls’ history when she graduated in 1997",
       "wj": "World Junior gold medals for Team USA, 1998",
       "oly": "U.S. Olympic Team, Sydney (4x100m relay pool)",
       "ncaa": "NCAA team titles with UCLA",
       "fly": "young people helped through FLY (her 2024 count)",
       "founded": "the year she founded Furthering the Lives of Youth (FLY)",
-      "note": "Plus: two-time Gatorade Illinois Player of the Year and Lake County High School Hall of Fame (2019). She has coached the Waukegan High School girls track team."
+      "note": "Plus: two-time Gatorade Illinois Player of the Year and Lake County High School Hall of Fame (2019). She has coached the Waukegan High School girls track team.",
+      "cta": "Read her story"
+    },
+    "priorities": {
+      "label": "What she will push for",
+      "title_1": "1st Ward",
+      "title_2": "Priorities",
+      "lede": "Four commitments for the blocks she grew up on. As alderman, she will advocate, vote and work with the city to get them done.",
+      "p1": "Add more speed bumps to make our ward safer.",
+      "p2": "Advocate for the removal of old and abandoned buildings.",
+      "p3": "Support the renovation and revitalization of homes in the 1st Ward.",
+      "p4": "Create a community center for the 1st Ward with resources for all ages.",
+      "p4_a": "Youth enrichment and after-school programs",
+      "p4_b": "Career, workforce, and small business resources",
+      "p4_c": "Family support and senior services",
+      "cta": "See how she will work on each one"
     },
     "excellence": {
-      "label": "The honorary sign",
+      "label": "The honorary street name",
       "title_1": "Excellence from",
       "title_2": "Waukegan.",
       "p1": "In July 2024, Waukegan dedicated the honorary street name \"Shakedia Jones Olympic Way\" on George Avenue, near her childhood home. That August, the City Council honored her with a proclamation.",
@@ -35,22 +46,10 @@
       "quote_cite": "Shakedia Jones, Waukegan City Council, August 2024",
       "p2": "She asked the city to give that place a home, so people can see excellence from Waukegan. She was asking for the next kid on the block, the one who needs to see that champions come from here. That is the job she wants: making excellence ordinary in the 1st Ward.",
       "still_alt": "Holding a framed proclamation, she speaks into a microphone in the Waukegan City Council chambers.",
-      "still_caption": "Honored by the City Council, August 2024."
-    },
-    "plan": {
-      "label": "The game plan",
-      "title_1": "Four lanes.",
-      "title_2": "One finish line.",
-      "lede": "A coach sets the goal, makes the plan, and posts the splits. That is how Shakedia will work for the 1st Ward.",
-      "safe_title": "Safe neighborhoods",
-      "safe_body": "Parks, blocks and walks home where kids and seniors feel safe, built with neighbors and block clubs.",
-      "youth_title": "Youth programming",
-      "youth_body": "More open doors after school and all summer, and help for families who can’t cover the fees.",
-      "infra_title": "Strong infrastructure",
-      "infra_body": "Streets, sidewalks, alleys and lead line replacement, tracked block by block and reported back.",
-      "open_title": "Transparent government",
-      "open_body": "Ward meetings in English and Spanish, major votes explained, and a monthly report to the 1st Ward.",
-      "cta": "See the full game plan"
+      "still_caption": "Honored by the City Council, August 2024.",
+      "tile_name": "Shakedia Jones Olympic Way",
+      "tile_line": "Honorary street name on George Avenue",
+      "tile_date": "Dedicated July 14, 2024"
     },
     "fly": {
       "label": "Furthering the Lives of Youth",
@@ -69,9 +68,10 @@
       "separation": "Furthering the Lives of Youth is a nonprofit organization. It is separate from this campaign and does not endorse candidates."
     },
     "join": {
-      "label": "Your leg",
-      "title_1": "Take the baton.",
-      "lede": "Sign a petition, knock a few doors, put up a yard sign, or tell a neighbor in English or Spanish. Every leg counts.",
+      "label": "Get involved",
+      "title_1": "Let's build a stronger 1st Ward",
+      "title_2": "together.",
+      "lede": "Sign a petition, knock a few doors, put up a yard sign, or tell a neighbor in English or Spanish. Every bit of help counts.",
       "cta_join": "Join the team",
       "cta_donate": "Chip in"
     }

@@ -3,13 +3,13 @@
     "skip": "Skip to content",
     "home": "Home",
     "meet": "Meet Shakedia",
-    "plan": "The Game Plan",
+    "plan": "Priorities",
     "join": "Get Involved",
     "volunteer_cta": "Volunteer",
     "donate": "Donate",
     "menu": "Menu",
-    "tagline": "Excellence from Waukegan.",
-    "wordmark_sub": "1st Ward · Waukegan",
+    "tagline": "Building a Stronger 1st Ward Together",
+    "wordmark_sub": "For 1st Ward Alderman",
     "main_label": "Main",
     "home_label": "Shakedia Jones, home"
   },
@@ -20,18 +20,25 @@
   },
   "ui": {
     "sign_label": "The honorary sign as dedicated on July 14, 2024: Shakedia Jones Olympic Way, George Avenue.",
-    "newtab": "(opens in a new tab)"
+    "newtab": "(opens in a new tab)",
+    "ribbon": "For 1st Ward Alderman",
+    "slogan": "Building a Stronger 1st Ward Together",
+    "values_label": "Our values",
+    "values_1": "Family",
+    "values_2": "Opportunity",
+    "values_3": "Safer Neighborhoods",
+    "values_4": "Stronger Communities"
   },
   "footer": {
-    "band_label": "Run with us",
-    "band_text": "Every neighbor who joins makes this team faster.",
-    "motto": "Excellence from Waukegan.",
+    "band_label": "Join us",
+    "band_text": "Every neighbor who joins makes the 1st Ward stronger.",
+    "motto": "Building a Stronger 1st Ward Together",
     "links_title": "Explore",
     "dates_title": "Key dates",
-    "when_1": "How it starts",
-    "date_1": "1st Ward voters’ signatures put Shakedia on the ballot",
+    "when_1": "Feb 23, 2027",
+    "date_1": "Primary election",
     "when_2": "Apr 6, 2027",
-    "date_2": "Election Day",
+    "date_2": "General election",
     "when_3": "Before you vote",
     "date_3": "Check your registration with the Lake County Clerk",
     "follow_title": "Follow",
@@ -47,28 +54,28 @@
     "sms": "Text a neighbor",
     "whatsapp": "WhatsApp",
     "copy": "Copy link",
-    "calendar": "Add April 6 to my calendar"
+    "calendar": "Add Feb 23 to my calendar"
   },
   "meta": {
     "home": {
-      "title": "Shakedia Jones for 1st Ward Alderperson | Waukegan",
-      "description": "2000 U.S. Olympic Team member, nine-time Illinois state champion and FLY founder, running for Waukegan's 1st Ward. Election Day is April 6, 2027."
+      "title": "Shakedia Jones for 1st Ward Alderman | Waukegan",
+      "description": "USA Olympian, nine-time Illinois state champion and FLY founder Shakedia Jones is running for 1st Ward Alderman in Waukegan. Primary: Feb 23, 2027."
     },
     "meet": {
       "title": "Meet Shakedia Jones | USA Olympian, Coach, Neighbor",
-      "description": "Nine IHSA state titles, the 2000 U.S. Olympic Team, the founder of FLY: how a kid from Waukegan's South Side came home to run for the 1st Ward."
+      "description": "Born and raised in Waukegan's 1st Ward: nine IHSA state titles, the 2000 U.S. Olympic Team, and FLY. Now running for 1st Ward Alderman."
     },
     "plan": {
-      "title": "The Game Plan | Shakedia Jones for the 1st Ward",
-      "description": "Four lanes for Waukegan's 1st Ward: safe neighborhoods, youth programming, strong infrastructure and transparent government, with a monthly report back."
+      "title": "Priorities | Shakedia Jones for 1st Ward Alderman",
+      "description": "Safer streets, abandoned buildings, home renovation and a community center: Shakedia Jones's priorities for Waukegan's 1st Ward."
     },
     "join": {
-      "title": "Get Involved | Shakedia Jones for 1st Ward Alderperson",
-      "description": "Carry a petition, knock doors, host a yard sign or help at events for Shakedia Jones's campaign for Waukegan's 1st Ward. Election Day is April 6, 2027."
+      "title": "Get Involved | Shakedia Jones for 1st Ward Alderman",
+      "description": "Volunteer, knock doors, host a yard sign or help at events for Shakedia Jones in Waukegan's 1st Ward. Vote in the primary on Feb 23, 2027."
     },
     "links": {
       "title": "Shakedia Jones | Links",
-      "description": "Every link for Shakedia Jones's campaign for 1st Ward Alderperson in Waukegan: volunteer, meet Shakedia and read the Game Plan."
+      "description": "Every link for Shakedia Jones's campaign for 1st Ward Alderman in Waukegan: volunteer, meet Shakedia and read her priorities."
     }
   }
 }

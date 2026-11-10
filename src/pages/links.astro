@@ -2,6 +2,8 @@
 // Link-in-bio page for social profiles. No navbar, footer or action bar: just the links.
 import Layout from '../layouts/Layout.astro';
 import Wordmark from '../components/ui/Wordmark.astro';
+import Ribbon from '../components/ui/Ribbon.astro';
+import Star from '../components/ui/Star.astro';
 import ShareBar from '../components/ui/ShareBar.astro';
 import { SOCIALS, canDonate, donateHref, isExternalDonate } from '../data/campaign.js';
 
@@ -11,25 +13,22 @@ const socials = SOCIALS.filter((s) => s.href);
 
 // Donate shows only once donations are open (no solicitation before the committee exists).
 const links = [
-  { href: `${base}/join/#signup`, key: 'links.volunteer', label: 'Volunteer: join the team', sub: 'links.volunteer_sub', subLabel: 'Petitions, doors, yard signs', style: 'primary' },
-  { href: donateHref(base), key: 'links.donate', label: 'Donate', sub: 'links.donate_sub', subLabel: 'Fuel the anchor leg', style: 'gold', attrs: ext, donate: true },
+  { href: `${base}/join/#signup`, key: 'links.volunteer', label: 'Volunteer: join the team', sub: 'links.volunteer_sub', subLabel: 'Petitions, doors, yard signs', style: 'gold' },
   { href: `${base}/meet/`, key: 'links.meet', label: 'Meet Shakedia', sub: 'links.meet_sub', subLabel: 'USA Olympian. Coach. Neighbor.' },
-  { href: `${base}/plan/`, key: 'links.plan', label: 'The Game Plan', sub: 'links.plan_sub', subLabel: 'Four lanes for the 1st Ward' },
+  { href: `${base}/plan/`, key: 'links.plan', label: 'Priorities', sub: 'links.plan_sub', subLabel: 'Four priorities for the 1st Ward' },
+  { href: donateHref(base), key: 'links.donate', label: 'Donate', sub: 'links.donate_sub', subLabel: 'Help build a stronger 1st Ward', style: 'outline', attrs: ext, donate: true },
 ].filter((l) => !l.donate || canDonate());
-const description = canDonate()
-  ? "Every link for Shakedia Jones's campaign for 1st Ward Alderperson in Waukegan: volunteer, donate, meet Shakedia and read the Game Plan."
-  : "Every link for Shakedia Jones's campaign for 1st Ward Alderperson in Waukegan: volunteer, meet Shakedia and read the Game Plan.";
 ---
 
 <Layout
   title="Shakedia Jones | Links"
-  description={description}
+  description="Every link for Shakedia Jones's campaign for 1st Ward Alderman in Waukegan: volunteer, meet Shakedia and read her priorities."
   actionBar={false}
 >
-  <main id="main" tabindex="-1" class="lk">
+  <main id="main" tabindex="-1" class="lk on-dark">
     <div class="lk-top">
       <a href={`${base}/`} class="lk-home" data-i18n="links.home">Full website</a>
-      <div class="lk-lang" role="group" aria-label="Language / Idioma">
+      <div class="lk-lang" role="group" aria-label="Language" data-i18n-attr="aria-label:links.lang_label">
         <button type="button" data-lang-toggle="en" class="lk-lang-btn active" aria-label="English" lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang-toggle="es" class="lk-lang-btn" aria-label="Español" lang="es" aria-pressed="false">ES</button>
       </div>
@@ -38,15 +37,15 @@ const description = canDonate()
     <header class="lk-head">
       <div class="lk-photo">
         <img
-          src={`${base}/images/olympic-way-sign-portrait.webp`}
-          width="440" height="1100" decoding="async" fetchpriority="high"
-          alt="Dedication day on George Avenue, July 14, 2024: two women smile under the honorary Shakedia Jones Olympic Way sign."
+          src={`${base}/images/campaign/avatar.webp`}
+          width="480" height="480" decoding="async" fetchpriority="high"
+          alt="Shakedia Jones smiling, in a green blazer and a gold top."
           data-i18n-attr="alt:links.photo_alt"
         />
       </div>
       <h1 class="lk-wordmark"><Wordmark light size="lg" /></h1>
-      <p class="lk-office" data-i18n="links.office">For 1st Ward Alderperson, Waukegan</p>
-      <p class="lk-tag" data-i18n="links.tagline">USA Olympian. Coach. Neighbor. Excellence from Waukegan.</p>
+      <Ribbon size="sm" class="lk-ribbon" />
+      <p class="lk-slogan script" data-i18n="ui.slogan">Building a Stronger 1st Ward Together</p>
     </header>
 
     <ul class="lk-list">
@@ -75,12 +74,16 @@ const description = canDonate()
     )}
 
     <div class="lk-date">
-      <span class="lk-date-k" data-i18n="links.election_label">Election Day</span>
-      <span class="lk-date-v" data-i18n="links.election_value">Tuesday, April 6, 2027</span>
+      <Star size={22} />
+      <p class="lk-date-text">
+        <span class="lk-date-k" data-i18n="links.election_label">Primary</span>
+        <span class="lk-date-v" data-i18n="links.election_value">Tuesday, February 23, 2027</span>
+      </p>
+      <Star size={22} />
     </div>
 
     <footer class="lk-foot">
-      <div class="finish-rule" aria-hidden="true"></div>
+      <div class="gold-rule lk-rule" aria-hidden="true"></div>
       <ShareBar variant="dark" class="lk-share" compact />
       <p class="lk-paid" data-i18n="footer.paid_for">Paid for by [Committee Name]</p>
       <!-- Statutory ISBE notice: the English text stays visible in both languages; the Spanish line is added under it. -->
@@ -98,10 +101,14 @@ const description = canDonate()
     color: rgba(255, 255, 255, 0.88);
   }
   :global(body:has(.lk)) {
-    background-color: var(--navy);
+    background-color: var(--purple-deep);
     background-image:
-      linear-gradient(180deg, rgba(13, 27, 62, 0) 0, var(--navy) 420px),
-      repeating-linear-gradient(90deg, transparent 0 calc(12.5% - 2px), rgba(255, 255, 255, 0.06) calc(12.5% - 2px) 12.5%);
+      radial-gradient(70% 420px at 50% 0, rgba(106, 31, 160, 0.9), transparent 75%),
+      radial-gradient(60% 300px at 50% 100%, rgba(224, 69, 123, 0.28), transparent 75%),
+      radial-gradient(circle at 20% 30%, rgba(254, 198, 10, 0.18) 0 1.2px, transparent 1.8px),
+      radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 0 1.2px, transparent 1.8px);
+    background-size: auto, auto, 52px 52px, 74px 74px;
+    background-repeat: no-repeat, no-repeat, repeat, repeat;
   }
 
   .lk-top { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); }
@@ -110,73 +117,77 @@ const description = canDonate()
     font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.9rem;
     color: var(--gold); text-decoration: underline; text-underline-offset: 4px;
   }
-  .lk-lang { display: flex; gap: 2px; background: rgba(255, 255, 255, 0.1); border-radius: 999px; padding: 3px; }
+  .lk-lang { display: flex; gap: 2px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(254, 198, 10, 0.35); border-radius: 999px; padding: 3px; }
   .lk-lang-btn {
     font-family: var(--font-label); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.08em;
     min-width: 44px; min-height: 44px; padding: 0 12px; border-radius: 999px; color: var(--white);
     transition: background var(--duration-fast), color var(--duration-fast);
   }
-  .lk-lang-btn.active { background: var(--gold); color: var(--navy); }
+  .lk-lang-btn.active { background: var(--gold); color: var(--purple-deep); }
   .lk-lang-btn:hover:not(.active) { background: rgba(255, 255, 255, 0.16); }
 
-  .lk-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-sm); }
+  .lk-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-md); }
   .lk-photo {
-    width: 160px; height: 160px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
-    box-shadow: 0 0 0 5px var(--gold), 0 0 0 10px rgba(233, 178, 60, 0.18), var(--shadow-lg);
-    margin-bottom: var(--space-md); background: var(--navy-2);
+    width: 168px; height: 168px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+    background: var(--purple);
+    box-shadow: 0 0 0 5px var(--gold), 0 0 0 11px rgba(254, 198, 10, 0.2), var(--shadow-xl);
+    margin: var(--space-sm) 0 var(--space-sm);
   }
-  /* 440x1100 source: the two women sit at about x 56%, y 62%. Cover fills the width, then a 1.5x zoom frames them. */
-  .lk-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%; transform: scale(1.5); transform-origin: 67% 50%; }
+  /* 480x480 source has part of a lettered graphic on the right edge: zoom slightly toward the face. */
+  .lk-photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transform-origin: 46% 42%; }
   .lk-wordmark { font-size: inherit; line-height: 1; }
-  .lk-office {
-    font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-sm);
-    color: var(--gold); max-width: none;
-  }
-  .lk-tag { font-size: var(--text-base); color: rgba(255, 255, 255, 0.8); max-width: 36ch; }
+  .lk-wordmark :global(.wm-name) { font-size: 2.5rem; }
+  /* The ribbon right under the name carries the office line, so the wordmark's own sub-line steps aside */
+  .lk-wordmark :global(.wm-sub) { display: none; }
+  .lk-slogan { font-size: clamp(1.35rem, 1.2rem + 0.8vw, 1.7rem); color: var(--gold); max-width: none; margin-top: var(--space-xs); }
 
-  .lk-list { width: 100%; display: flex; flex-direction: column; gap: var(--space-sm); }
+  .lk-list { width: 100%; display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-sm); }
   .lk-btn {
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-align: center;
-    min-height: 64px; width: 100%; padding: 0.7rem 1.2rem;
-    background: var(--white); color: var(--navy); border-radius: var(--radius-md); border: 2px solid var(--white);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center;
+    min-height: 66px; width: 100%; padding: 0.75rem 1.2rem;
+    background: var(--white); color: var(--purple); border-radius: var(--radius-lg); border: 2px solid var(--white);
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
     transition: transform var(--duration-fast) var(--ease-default), background var(--duration-normal), border-color var(--duration-normal);
   }
-  .lk-btn:hover { transform: translateY(-2px); background: var(--chalk); }
-  .lk-btn-main { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.45rem; line-height: 1.05; letter-spacing: 0.01em; }
-  .lk-btn-sub { font-family: var(--font-label); font-weight: 600; font-size: 0.92rem; letter-spacing: 0.06em; color: var(--muted); line-height: 1.2; }
-  .lk-primary { background: var(--track); border-color: var(--track); color: var(--white); }
-  .lk-primary:hover { background: var(--track-deep); border-color: var(--track-deep); }
-  .lk-primary .lk-btn-sub { color: var(--white); }
-  .lk-gold { background: var(--gold); border-color: var(--gold); color: var(--navy); }
-  .lk-gold:hover { background: #f3c25a; }
-  .lk-gold .lk-btn-sub { color: var(--navy-2); }
+  .lk-btn:hover { transform: translateY(-2px); background: var(--cream); }
+  .lk-btn:focus-visible { outline-color: var(--gold); }
+  .lk-btn-main { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; line-height: 1.1; }
+  .lk-btn-sub { font-family: var(--font-label); font-weight: 600; text-transform: uppercase; font-size: 0.86rem; letter-spacing: 0.1em; color: var(--muted); line-height: 1.2; }
+  .lk-gold { background: var(--gold-sheen); border-color: var(--gold); color: var(--purple-deep); }
+  .lk-gold:hover { background: var(--gold-light); }
+  .lk-gold .lk-btn-sub { color: var(--purple-deep); }
+  .lk-outline { background: transparent; border-color: rgba(255, 255, 255, 0.75); border-top-color: var(--gold); color: var(--white); box-shadow: none; }
+  .lk-outline:hover { background: rgba(255, 255, 255, 0.1); }
+  .lk-outline .lk-btn-sub { color: rgba(255, 255, 255, 0.8); }
 
   .lk-social { display: flex; gap: var(--space-sm); }
   .lk-social-link {
     display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1); color: var(--white); transition: background var(--duration-fast);
+    background: rgba(255, 255, 255, 0.1); color: var(--white); box-shadow: inset 0 0 0 1px rgba(254, 198, 10, 0.45); transition: background var(--duration-fast);
   }
-  .lk-social-link:hover { background: var(--track); }
+  .lk-social-link:hover { background: var(--purple); }
 
-  .lk-date { display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .lk-date-k { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: var(--text-xs); color: rgba(255, 255, 255, 0.7); }
-  .lk-date-v { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--text-2xl); color: var(--gold); line-height: 1.05; }
+  .lk-date { display: flex; align-items: center; justify-content: center; gap: var(--space-md); }
+  .lk-date-text { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: none; }
+  .lk-date-k { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: var(--text-xs); color: rgba(255, 255, 255, 0.8); }
+  .lk-date-v { font-variant-numeric: lining-nums; font-family: var(--font-display); font-weight: 800; font-size: var(--text-xl); color: var(--gold); line-height: 1.15; }
 
-  .lk-foot { width: 100%; margin-top: var(--space-2xl); display: flex; flex-direction: column; align-items: center; gap: var(--space-md); }
-  .lk-foot .finish-rule { width: 100%; }
-  .lk-share { margin: var(--space-xl) 0; }
+  .lk-foot { width: 100%; margin-top: var(--space-lg); display: flex; flex-direction: column; align-items: center; gap: var(--space-md); }
+  .lk-rule { width: 100%; }
+  .lk-share { margin: var(--space-md) 0 var(--space-lg); }
   .lk-share :global(.sb-row) { justify-content: center; }
   .lk-paid {
     font-family: var(--font-label); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: var(--text-xs);
-    color: var(--white); border: 1px solid rgba(255, 255, 255, 0.35); padding: 5px 12px; border-radius: 4px; text-align: center; max-width: 100%;
+    color: var(--white); border: 1px solid rgba(254, 198, 10, 0.5); padding: 5px 12px; border-radius: 4px; text-align: center; max-width: 100%;
   }
-  .lk-disc { font-size: 0.78rem; line-height: 1.5; color: rgba(255, 255, 255, 0.66); text-align: center; max-width: 46ch; margin: 0; }
+  .lk-disc { font-size: 0.78rem; line-height: 1.5; color: rgba(255, 255, 255, 0.72); text-align: center; max-width: 46ch; margin: 0; }
   .lk-disc-es:empty { display: none; }
 
   @media (max-width: 380px) {
-    .lk-photo { width: 132px; height: 132px; }
-    .lk-btn-main { font-size: 1.25rem; }
-    .lk-wordmark :global(.wm-name) { font-size: 1.8rem; }
+    .lk-photo { width: 140px; height: 140px; }
+    .lk-btn-main { font-size: 1.22rem; }
+    .lk-wordmark :global(.wm-name) { font-size: 1.95rem; }
+    .lk-date-v { font-size: 1.15rem; }
   }
 </style>

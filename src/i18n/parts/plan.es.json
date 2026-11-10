@@ -1,93 +1,94 @@
 {
   "plan": {
-    "hero_label": "El plan de juego",
-    "hero_title_1": "Cuatro carriles.",
-    "hero_title_2": "Una sola meta.",
-    "hero_lede": "Un distrito mejora igual que un corredor se vuelve más rápido: con una meta clara, un plan que se puede seguir y tiempos honestos en el camino. Esto es en lo que Shakedia Jones trabajará por el Distrito 1, y así le rendirá cuentas a usted.",
-    "clock_label": "Días para la elección",
-    "hero_date": "Día de las Elecciones: martes 6 de abril de 2027",
-    "index_label": "Elija un carril",
-    "index_aria": "Ir a un carril del plan",
-    "lane_word": "Carril",
+    "hero": {
+      "kicker": "Shakedia Jones para Concejala del 1er Distrito",
+      "title": "Prioridades del 1er Distrito",
+      "lede": "El trabajo de una concejala es estar presente, escuchar y luchar por la cuadra. Estas son las cuatro cosas en las que Shakedia Jones trabajará primero por el 1er Distrito, y así le rendirá cuentas a usted.",
+      "clock_label": "días para la primaria",
+      "date_primary": "Primaria: martes 23 de febrero de 2027",
+      "date_general": "Elección general: martes 6 de abril de 2027",
+      "index_label": "Ir a una prioridad",
+      "index_aria": "Ir a una prioridad"
+    },
+    "priority_word": "Prioridad",
     "why_label": "Por qué importa",
-    "commit_label": "Lo que hará",
-    "split": "Paso",
-    "lanes": {
-      "l1": {
-        "name": "Vecindarios seguros",
-        "title_1": "Calles seguras.",
-        "title_2": "Parques donde uno se siente como en casa.",
-        "why_1": "El Distrito 1 se extiende junto al lago, y en él están los parques Washington, Roosevelt, King, Kirk, Smith, Woodard, Besley y Bedrosian. Esos parques deberían ser los lugares más seguros del vecindario.",
-        "why_2": "Las familias quieren que sus hijos estén seguros al caminar a la escuela y al jugar en el parque. La seguridad empieza con vecinos que se conocen y una ciudad que trabaja junto con ellos.",
-        "c1": "Encabezará caminatas regulares por el distrito con los vecinos y trabajará con los clubes de cuadra, para que las preocupaciones lleguen directo de la cuadra a la alcaldía.",
-        "c2": "Luchará ante la ciudad, y trabajará con el Distrito de Parques, por mejor alumbrado y mejoras de seguridad en los parques del Distrito 1 y en las calles a su alrededor, empezando donde los vecinos dicen sentirse menos seguros.",
-        "c3": "Reunirá a residentes, policía, personal de parques y grupos comunitarios en la misma mesa en las reuniones del distrito, para que los planes de seguridad se hagan con el vecindario, no sin él.",
-        "c4": "Dará seguimiento a cada preocupación de seguridad que presente un vecino, y le informará qué hizo la ciudad al respecto."
+    "commit_label": "Lo que hará Shakedia",
+    "p": {
+      "p1": {
+        "short": "Reductores de velocidad",
+        "title": "Agregar más reductores de velocidad para hacer nuestro distrito más seguro.",
+        "why_1": "Los autos que van a alta velocidad por las calles residenciales ponen en riesgo a niños, personas mayores y familias. Los niños caminan a la Escuela Primaria Carman-Buckner y a los parques junto al lago, y deben poder cruzar la calle con seguridad.",
+        "why_2": "Los reductores de velocidad son una forma sencilla de calmar el tráfico en una cuadra. Los vecinos saben qué calles los necesitan más.",
+        "c1": "Luchará por más reductores de velocidad en las calles residenciales del 1er Distrito, empezando cerca de las escuelas y los parques.",
+        "c2": "Trabajará con la ciudad para que los vecinos y los clubes de cuadra sepan cómo pedir uno y puedan ver en qué va su solicitud.",
+        "c3": "Informará qué cuadras se revisaron y qué decidió la ciudad."
       },
-      "l2": {
-        "name": "Programas para jóvenes",
-        "title_1": "Que cada niño tenga",
-        "title_2": "la oportunidad de llegar a su propia meta.",
-        "why_1": "Casi uno de cada cuatro residentes de Waukegan es menor de 18 años. Cuando Shakedia era niña, su familia no podía pagarle deportes organizados hasta que llegó a la preparatoria. Un primo la convenció de probar el atletismo, y eso le cambió la vida.",
-        "why_2": "Todavía hay muchos niños del Distrito 1 que se quedan fuera por una cuota, por falta de transporte o por una puerta cerrada. Ella ha dedicado su carrera a abrir esas puertas, y quiere que el distrito abra muchas más.",
-        "c1": "Trabajará con el Distrito de Parques de Waukegan para que los programas de los parques y del centro recreativo Smith sigan abiertos hasta más tarde en el verano.",
-        "c2": "Conectará a las familias con ayuda para pagar cuotas de deportes, arte y campamentos, para que el costo deje de ser la razón por la que un niño se quede fuera.",
-        "c3": "Reunirá a entrenadores, mentores, escuelas y negocios locales para ampliar los programas para jóvenes en el distrito.",
-        "c4": "Organizará sesiones para escuchar a los jóvenes, para que ellos ayuden a decidir las prioridades del distrito.",
+      "p2": {
+        "short": "Edificios abandonados",
+        "title": "Promover la eliminación de edificios antiguos y abandonados.",
+        "why_1": "Un edificio viejo que pasa años vacío desgasta a toda la cuadra. Acumula basura, queda a oscuras por la noche y les dice a las familias de al lado que nadie está prestando atención.",
+        "why_2": "Los vecinos que llevan años viendo el mismo edificio vacío merecen una respuesta clara sobre lo que sigue.",
+        "c1": "Insistirá ante la ciudad para que actúe sobre los edificios antiguos y abandonados del 1er Distrito, con reparación por parte del dueño o eliminación cuando un edificio ya no se pueda salvar.",
+        "c2": "Trabajará con los vecinos para hacer una lista de los edificios vacíos que más les preocupan, y la llevará al personal de la ciudad.",
+        "c3": "Pedirá informes regulares sobre cada edificio y le rendirá cuentas al distrito."
+      },
+      "p3": {
+        "short": "Renovación de viviendas",
+        "title": "Apoyar la renovación y revitalización de viviendas en el 1er Distrito.",
+        "why_1": "El 1er Distrito está lleno de casas que las familias han cuidado por generaciones. Mantener esas casas en buen estado mantiene a los vecinos en el vecindario y fortalece cada cuadra.",
+        "why_2": "Las reparaciones cuestan, y muchos dueños no saben qué ayuda existe. Arreglar una casa puede levantar toda la calle.",
+        "c1": "Luchará por programas de reparación y revitalización de viviendas que lleguen a los dueños de casa del 1er Distrito, incluidas las personas mayores y los residentes de toda la vida.",
+        "c2": "Trabajará con la ciudad y con organizaciones locales para dar a conocer la ayuda para reparaciones que existe, en inglés y en español.",
+        "c3": "Pedirá que las cuadras del 1er Distrito reciban la atención que les corresponde cuando la ciudad planifique inversiones en los vecindarios."
+      },
+      "p4": {
+        "short": "Centro comunitario",
+        "title": "Crear un centro comunitario para el 1er Distrito con recursos para todas las edades.",
+        "resources_label": "Recursos para todas las edades",
+        "r1": "Programas de enriquecimiento juvenil y actividades después de la escuela",
+        "r2": "Recursos para el desarrollo profesional, la fuerza laboral y las pequeñas empresas",
+        "r3": "Apoyo para las familias y servicios para personas mayores",
+        "why_1": "Casi uno de cada cuatro residentes de Waukegan es menor de 18 años. Los niños necesitan un lugar adonde ir después de la escuela, los adultos necesitan apoyo para capacitarse y encontrar trabajo, y las personas mayores necesitan servicios cerca de casa.",
+        "why_2": "Un centro comunitario puede reunir esos recursos bajo un mismo techo, abierto a todas las edades, aquí mismo en el 1er Distrito.",
+        "c1": "Luchará por un centro comunitario que sirva al 1er Distrito, con programas para jóvenes, adultos que trabajan, familias y personas mayores.",
+        "c2": "Trabajará con la ciudad, el Distrito de Parques de Waukegan, las escuelas y los grupos comunitarios para encontrar el lugar y los aliados adecuados.",
+        "c3": "Les preguntará a los vecinos qué quieren que tenga, y les informará a medida que el plan tome forma.",
         "record_label": "Su trayectoria con los jóvenes",
-        "record_1": "Fundó Furthering the Lives of Youth (FLY) en 2014. Más de 600 jóvenes han recibido ayuda (su cifra de 2024).",
-        "record_2": "Ha entrenado al equipo femenil de atletismo de Waukegan High School.",
+        "record_1": "Fundó Furthering the Lives of Youth (FLY) en 2014. Más de 600 jóvenes han recibido ayuda (según su cuenta de 2024).",
+        "record_2": "Ha sido entrenadora del equipo femenino de atletismo de Waukegan High School.",
+        "record_note": "Furthering the Lives of Youth es una organización sin fines de lucro. Es independiente de esta campaña y no respalda a candidatos.",
         "photo_alt": "Un grupo grande de niños y adultos reunidos afuera de un estadio al atardecer.",
-        "photo_caption": "Una salida de verano con niños de Waukegan, 2026.",
-        "record_note": "Furthering the Lives of Youth es una organización sin fines de lucro, independiente de esta campaña, y no respalda a candidatos."
-      },
-      "l3": {
-        "name": "Infraestructura sólida",
-        "title_1": "Calles, banquetas, callejones",
-        "title_2": "y tuberías de plomo reemplazadas a tiempo.",
-        "why_1": "El presupuesto municipal de 2026 destina $30.6 millones a calles, banquetas y callejones. Los vecinos del Distrito 1 merecen saber dónde y cuándo se hará el trabajo.",
-        "why_2": "El reemplazo de las tuberías de servicio de plomo, que exige el estado, comienza a más tardar en enero de 2027 y es gratuito para los residentes. Cada familia debe saber cuándo le toca a su cuadra y qué esperar.",
-        "c1": "Compartirá el calendario de la ciudad para el reemplazo de tuberías de plomo cuadra por cuadra, en inglés y en español, para que cada hogar sepa qué esperar y que el trabajo es gratuito.",
-        "c2": "Ayudará a los vecinos a reportar a la ciudad banquetas rotas, baches y problemas en los callejones, y dará seguimiento a cada reporte hasta que se arregle.",
-        "c3": "Luchará por una lista clara y pública de las obras planeadas en calles, banquetas y callejones del Distrito 1.",
-        "c4": "Recorrerá el distrito con el personal de la ciudad para que los puntos en peor estado sean los primeros en arreglarse."
-      },
-      "l4": {
-        "name": "Gobierno transparente",
-        "title_1": "Usted siempre sabrá",
-        "title_2": "de qué lado está ella.",
-        "why_1": "Más de la mitad de los residentes de Waukegan hablan en casa un idioma distinto al inglés. El gobierno de la ciudad debe ser fácil de seguir y fácil de contactar, en los dos idiomas.",
-        "why_2": "La confianza se gana como se ganan las carreras: a la vista de todos, tramo por tramo.",
-        "c1": "Celebrará reuniones regulares del distrito en inglés y en español, en horarios y lugares a los que puedan llegar las familias trabajadoras.",
-        "c2": "Publicará cómo vota en las decisiones importantes del concejo y explicará por qué, en palabras sencillas.",
-        "c3": "Publicará un informe mensual sencillo del distrito: en qué trabajó, qué se arregló y qué sigue pendiente.",
-        "c4": "Atenderá a los vecinos directamente y dará seguimiento a cada llamada y mensaje."
+        "photo_caption": "Una salida de verano con niños de Waukegan, 2026."
       }
     },
-    "how_label": "Cómo trabajará",
-    "how_title_1": "Como una",
-    "how_title_2": "entrenadora.",
-    "how_lede": "Los campeones se forman con disciplina, no con suerte. Shakedia une el plan de entrenamiento de una entrenadora con una maestría en Administración de Empresas (MBA) en Keller Graduate School of Management y más de diez años al frente de una organización sin fines de lucro. Ese es el enfoque que traerá al Distrito 1.",
-    "leg": "Tramo",
     "how": {
+      "label": "Cómo trabajará",
+      "title_1": "Estar presente, escuchar",
+      "title_2": "y rendir cuentas.",
+      "lede": "Shakedia combina una maestría en administración de empresas (MBA) de Keller Graduate School of Management con más de diez años al frente de una organización sin fines de lucro. Traerá esa misma disciplina al 1er Distrito.",
       "s1_title": "Estar presente",
-      "s1_text": "En el parque, en el club de cuadra y en la reunión del distrito. No se puede entrenar desde las gradas.",
-      "s2_title": "Fijar la meta",
-      "s2_text": "Ponerse de acuerdo con los vecinos sobre qué significa ganar, cuadra por cuadra.",
-      "s3_title": "Hacer el plan",
-      "s3_text": "Convertir cada meta en pasos y fechas claros, con la misma disciplina que exigen una organización sin fines de lucro y una temporada de entrenamiento.",
-      "s4_title": "Mostrar los tiempos",
-      "s4_text": "Rendir cuentas cada mes: qué avanzó, qué se atoró y qué sigue."
+      "s1_text": "En el parque, en el club de cuadra y en la reunión del distrito, en persona y a tiempo.",
+      "s2_title": "Escuchar",
+      "s2_text": "Oír de cada cuadra lo que más necesita antes de decidir qué va primero.",
+      "s3_title": "Hacer un plan",
+      "s3_text": "Convertir cada prioridad en pasos claros, con fechas que los vecinos puedan verificar.",
+      "s4_title": "Rendir cuentas",
+      "s4_text": "Cada mes, en inglés y en español: qué avanzó, qué está detenido y qué sigue."
     },
-    "quote_label": "En sus palabras",
-    "quote": "I tell them whatever it is you do, make it your Olympics.",
-    "quote_cite": "Shakedia Jones, Chicago Tribune, 2016",
-    "quote_context": "Traducción: \"Les digo que, sea lo que sea que hagan, lo conviertan en sus Olimpiadas.\" Es lo que ella les dice a los jóvenes, y es el mismo estándar que se exigirá a sí misma en el Distrito 1.",
-    "cta_label": "Su tramo del relevo",
-    "cta_title_1": "Este plan",
-    "cta_title_2": "necesita un equipo.",
-    "cta_text": "Ayude a poner a Shakedia en la boleta y toque puertas en el Distrito 1, o cuéntele qué es lo que más necesita su cuadra.",
-    "cta_join": "Participe",
-    "cta_donate": "Donar"
+    "quote": {
+      "label": "En sus palabras",
+      "text": "I tell them whatever it is you do, make it your Olympics.",
+      "cite": "Shakedia Jones, Chicago Tribune, 2016",
+      "quote_tr": "Traducción: Yo les digo que, sea lo que sea que hagan, lo conviertan en sus Olimpiadas.",
+      "context": "Es lo que les dice a los jóvenes. También es la exigencia que se pondrá a sí misma en el 1er Distrito."
+    },
+    "cta": {
+      "label": "Únase al equipo",
+      "title_1": "Estas prioridades",
+      "title_2": "necesitan un equipo.",
+      "text": "Ayude a poner a Shakedia en la boleta, converse con sus vecinos o cuéntele lo que más necesita su cuadra.",
+      "join": "Participe",
+      "donate": "Donar"
+    }
   }
 }

@@ -1,93 +1,94 @@
 {
   "plan": {
-    "hero_label": "The Game Plan",
-    "hero_title_1": "Four lanes.",
-    "hero_title_2": "One finish line.",
-    "hero_lede": "A ward gets better the way a runner gets faster: a clear goal, a plan you can follow, and honest splits along the way. Here is what Shakedia Jones will work on for the 1st Ward, and how she will report back to you.",
-    "clock_label": "Days to Election Day",
-    "hero_date": "Election Day: Tuesday, April 6, 2027",
-    "index_label": "Pick a lane",
-    "index_aria": "Jump to a lane of the plan",
-    "lane_word": "Lane",
+    "hero": {
+      "kicker": "Shakedia Jones for 1st Ward Alderman",
+      "title": "1st Ward Priorities",
+      "lede": "An alderman's job is to show up, listen and fight for the block. These are the four things Shakedia Jones will work on first for the 1st Ward, and how she will report back to you.",
+      "clock_label": "days until the primary",
+      "date_primary": "Primary: Tuesday, February 23, 2027",
+      "date_general": "General election: Tuesday, April 6, 2027",
+      "index_label": "Jump to a priority",
+      "index_aria": "Jump to a priority"
+    },
+    "priority_word": "Priority",
     "why_label": "Why it matters",
-    "commit_label": "What she will do",
-    "split": "Split",
-    "lanes": {
-      "l1": {
-        "name": "Safe neighborhoods",
-        "title_1": "Safe streets.",
-        "title_2": "Parks that feel like home.",
-        "why_1": "The 1st Ward stretches along the lakefront, home to Washington, Roosevelt, King, Kirk, Smith, Woodard, Besley and Bedrosian parks. Those parks should be the safest places in the neighborhood.",
-        "why_2": "Families want their kids to be safe walking to school and playing in the park. Safety starts with neighbors who know each other and a city that works with them.",
-        "c1": "Lead regular ward walks with neighbors and partner with block clubs, so concerns travel straight from the block to City Hall.",
-        "c2": "Push the city, and work with the Park District, for better lighting and safety upgrades in 1st Ward parks and on the streets around them, starting where neighbors say they feel least safe.",
-        "c3": "Bring residents, police, park staff and community groups to the same table at ward meetings, so safety plans are made with the neighborhood, not for it.",
-        "c4": "Follow up on every safety concern a neighbor raises, and report back on what the city did about it."
+    "commit_label": "What Shakedia will do",
+    "p": {
+      "p1": {
+        "short": "Speed bumps",
+        "title": "Add more speed bumps to make our ward safer.",
+        "why_1": "Cars that speed down residential streets put kids, seniors and families at risk. Children walk to Carman-Buckner Elementary and to the parks along the lakefront, and they should be able to cross the street safely.",
+        "why_2": "Speed bumps are a simple way to slow traffic on a block. Neighbors know which streets need them most.",
+        "c1": "Will push for more speed bumps on 1st Ward residential streets, starting near schools and parks.",
+        "c2": "Will work with the city so neighbors and block clubs know how to request one and can see where a request stands.",
+        "c3": "Will report back on which blocks were reviewed and what the city decided."
       },
-      "l2": {
-        "name": "Youth programming",
-        "title_1": "Every kid gets",
-        "title_2": "a shot at their own finish line.",
-        "why_1": "Nearly one in four Waukegan residents is under 18. Growing up, Shakedia's family could not pay for organized sports until high school. A cousin talked her into going out for track, and it changed her life.",
-        "why_2": "Too many 1st Ward kids still sit out because of a fee, a ride or a locked door. She has spent her career opening those doors, and she wants the ward to open more.",
-        "c1": "Work with the Waukegan Park District to keep park and Smith recreation center programs open later in the summer.",
-        "c2": "Connect families to fee help for sports, arts and camps, so cost is less often the reason a kid sits out.",
-        "c3": "Bring coaches, mentors, schools and local businesses together to grow youth programs in the ward.",
-        "c4": "Hold youth listening sessions, so young people help decide what the ward fights for.",
-        "record_label": "Her record with kids",
+      "p2": {
+        "short": "Abandoned buildings",
+        "title": "Advocate for the removal of old and abandoned buildings.",
+        "why_1": "An old building left empty for years wears on the whole block. It collects trash, it sits dark at night, and it tells the families next door that no one is paying attention.",
+        "why_2": "Neighbors who have watched the same empty building for years deserve a clear answer about what happens next.",
+        "c1": "Will push the city to act on old and abandoned buildings in the 1st Ward, with repair by the owner or removal when a building cannot be saved.",
+        "c2": "Will work with neighbors to list the empty buildings that concern them most, and bring that list to city staff.",
+        "c3": "Will ask for regular updates on each building and report back to the ward."
+      },
+      "p3": {
+        "short": "Home renovation",
+        "title": "Support the renovation and revitalization of homes in the 1st Ward.",
+        "why_1": "The 1st Ward is full of homes that families have kept up for generations. Keeping those homes in good shape keeps neighbors in the neighborhood and makes every block stronger.",
+        "why_2": "Repairs are expensive, and many owners do not know what help exists. Fixing up one house can lift the whole street.",
+        "c1": "Will push for home repair and revitalization efforts that reach 1st Ward homeowners, including seniors and longtime residents.",
+        "c2": "Will work with the city and local partners to share what repair help is available, in English and Spanish.",
+        "c3": "Will ask that 1st Ward blocks get their fair share of attention when the city plans neighborhood investment."
+      },
+      "p4": {
+        "short": "Community center",
+        "title": "Create a community center for the 1st Ward with resources for all ages.",
+        "resources_label": "Resources for all ages",
+        "r1": "Youth enrichment and after-school programs",
+        "r2": "Career, workforce, and small business resources",
+        "r3": "Family support and senior services",
+        "why_1": "Nearly one in four Waukegan residents is under 18. Kids need somewhere to go after school, adults need help with training and work, and seniors need services close to home.",
+        "why_2": "A community center can bring those resources under one roof, open to every age, right here in the 1st Ward.",
+        "c1": "Will push for a community center that serves the 1st Ward, with programs for youth, working adults, families and seniors.",
+        "c2": "Will work with the city, the Waukegan Park District, schools and community groups to find the right place and partners.",
+        "c3": "Will ask neighbors what they want inside it, and report back as the plan takes shape.",
+        "record_label": "Her record with young people",
         "record_1": "Founded Furthering the Lives of Youth (FLY) in 2014. More than 600 young people helped (her 2024 count).",
         "record_2": "Has coached the Waukegan High School girls track team.",
+        "record_note": "Furthering the Lives of Youth is a nonprofit organization. It is separate from this campaign and does not endorse candidates.",
         "photo_alt": "A large group of kids and adults gathered outside an arena at dusk.",
-        "photo_caption": "A summer outing with Waukegan kids, 2026.",
-        "record_note": "Furthering the Lives of Youth is a nonprofit organization. It is separate from this campaign and does not endorse candidates."
-      },
-      "l3": {
-        "name": "Strong infrastructure",
-        "title_1": "Streets, sidewalks, alleys",
-        "title_2": "and lead lines replaced on schedule.",
-        "why_1": "The city's 2026 budget sets aside $30.6 million for streets, sidewalks and alleys. 1st Ward neighbors deserve to know where the work is happening and when.",
-        "why_2": "State-required lead service line replacement begins by January 2027, and it is free to residents. Every family should know when their block is up and what to expect.",
-        "c1": "Share the city's lead service line replacement schedule by block, in English and Spanish, so every household knows what to expect and that the work is free.",
-        "c2": "Help neighbors report broken sidewalks, potholes and alley problems through the city, and track each report until it is fixed.",
-        "c3": "Push for a clear, public list of planned street, sidewalk and alley work in the 1st Ward.",
-        "c4": "Walk the ward with city staff to move the worst spots to the front of the line."
-      },
-      "l4": {
-        "name": "Transparent government",
-        "title_1": "You will always know",
-        "title_2": "where she stands.",
-        "why_1": "More than half of Waukegan residents speak a language other than English at home. City government should be easy to follow and easy to reach, in both languages.",
-        "why_2": "Trust is built the way races are won: in the open, one split at a time.",
-        "c1": "Hold regular ward meetings in English and Spanish, at times and places working families can make.",
-        "c2": "Post how she votes on major council decisions and explain why, in plain language.",
-        "c3": "Publish a simple monthly ward report: what she worked on, what got fixed, and what is still open.",
-        "c4": "Answer neighbors directly and follow up on every call and message."
+        "photo_caption": "A summer outing with Waukegan kids, 2026."
       }
     },
-    "how_label": "How she'll work",
-    "how_title_1": "Like a",
-    "how_title_2": "coach.",
-    "how_lede": "Champions are built on discipline, not luck. Shakedia pairs a coach's training plan with an MBA from Keller Graduate School of Management and more than ten years running a nonprofit. That is the approach she will bring to the 1st Ward.",
-    "leg": "Leg",
     "how": {
+      "label": "How she'll work",
+      "title_1": "Show up, listen,",
+      "title_2": "and report back.",
+      "lede": "Shakedia pairs an MBA from Keller Graduate School of Management with more than ten years running a nonprofit. She will bring that same discipline to the 1st Ward.",
       "s1_title": "Show up",
-      "s1_text": "At the park, the block club and the ward meeting. You cannot coach from the bleachers.",
-      "s2_title": "Set the goal",
-      "s2_text": "Agree with neighbors on what winning looks like, block by block.",
-      "s3_title": "Make the plan",
-      "s3_text": "Turn every goal into clear steps and dates, with the same discipline it takes to run a nonprofit and a training season.",
-      "s4_title": "Show the splits",
-      "s4_text": "Report back every month: what moved, what stalled, and what comes next."
+      "s1_text": "At the park, the block club and the ward meeting, in person and on time.",
+      "s2_title": "Listen",
+      "s2_text": "Hear from each block about what it needs most before deciding what comes first.",
+      "s3_title": "Make a plan",
+      "s3_text": "Turn each priority into clear steps, with dates neighbors can check.",
+      "s4_title": "Report back",
+      "s4_text": "Every month, in English and Spanish: what moved, what is stuck and what comes next."
     },
-    "quote_label": "In her words",
-    "quote": "I tell them whatever it is you do, make it your Olympics.",
-    "quote_cite": "Shakedia Jones, Chicago Tribune, 2016",
-    "quote_context": "It is what she tells young people. It is also the standard she will hold herself to in the 1st Ward.",
-    "cta_label": "Your leg of the relay",
-    "cta_title_1": "This plan",
-    "cta_title_2": "needs a team.",
-    "cta_text": "Help put Shakedia on the ballot and knock doors in the 1st Ward, or tell her what your block needs most.",
-    "cta_join": "Get involved",
-    "cta_donate": "Donate"
+    "quote": {
+      "label": "In her words",
+      "text": "I tell them whatever it is you do, make it your Olympics.",
+      "cite": "Shakedia Jones, Chicago Tribune, 2016",
+      "quote_tr": "",
+      "context": "It is what she tells young people. It is also the standard she will hold herself to in the 1st Ward."
+    },
+    "cta": {
+      "label": "Join the team",
+      "title_1": "These priorities",
+      "title_2": "need a team.",
+      "text": "Help put Shakedia on the ballot, talk with your neighbors, or tell her what your block needs most.",
+      "join": "Get involved",
+      "donate": "Donate"
+    }
   }
 }

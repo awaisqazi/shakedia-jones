@@ -1,0 +1,53 @@
+---
+// "How she'll work": four plain steps, each marked with a numbered gold star.
+// DRAFT FOR CANDIDATE APPROVAL: the monthly bilingual report-back is a proposed commitment.
+import Star from '../ui/Star.astro';
+import en from '../../i18n/parts/plan.en.json';
+
+const t = en.plan.how;
+const steps = ['s1', 's2', 's3', 's4'] as const;
+---
+
+<section class="how section-padding bg-cream-2" id="how">
+  <div class="container">
+    <header class="how-head">
+      <p class="kicker animate-in" data-i18n="plan.how.label">{t.label}</p>
+      <h2 class="section-title animate-in">
+        <span data-i18n="plan.how.title_1">{t.title_1}</span>
+        <span class="accent" data-i18n="plan.how.title_2">{t.title_2}</span>
+      </h2>
+      <p class="section-lede animate-in" data-i18n="plan.how.lede">{t.lede}</p>
+    </header>
+
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step card animate-in" style={`--reveal-delay:${i * 0.08}s`}>
+          <span class="step-star" aria-hidden="true">
+            <Star size={64} />
+            <span class="step-num">{i + 1}</span>
+          </span>
+          <h3 class="step-title" data-i18n={`plan.how.${s}_title`}>{t[`${s}_title`]}</h3>
+          <p data-i18n={`plan.how.${s}_text`}>{t[`${s}_text`]}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .how-head { margin-bottom: var(--space-2xl); }
+  .how-head .section-title span:first-child { display: block; }
+  .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-lg); }
+  .step { padding: var(--space-xl) var(--space-lg); border-top: 4px solid var(--gold); }
+  .step-star { position: relative; display: inline-grid; place-items: center; width: 64px; height: 64px; margin-bottom: var(--space-md); }
+  .step-star :global(.star) { position: absolute; inset: 0; filter: drop-shadow(0 2px 4px rgba(43, 7, 71, 0.25)); }
+  .step-num {
+    font-variant-numeric: lining-nums;
+    position: relative; margin-top: 0.3rem; font-family: var(--font-display); font-weight: 900; font-size: 1.35rem; line-height: 1; color: var(--purple-deep);
+  }
+  .step-title { font-family: var(--font-display); font-weight: 800; font-size: var(--text-2xl); color: var(--purple); line-height: 1.1; margin-bottom: var(--space-sm); overflow-wrap: break-word; }
+  .step p { color: var(--ink-soft); font-size: var(--text-sm); line-height: 1.55; }
+
+  @media (max-width: 1024px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+</style>

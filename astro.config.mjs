@@ -12,19 +12,27 @@ export default defineConfig({
     sitemap({ filter: (page) => !/\/404\/?$/.test(page) }),
   ],
   // Self-hosted fonts (Astro Fonts API). The --ff-* variables are aliased to the
-  // --font-display / --font-body / --font-label design tokens in global.css.
+  // --font-display / --font-script / --font-body / --font-label design tokens in global.css.
   fonts: [
     {
-      // Google's metadata API now lists only the merged "Big Shoulders" family, so the
-      // Google provider cannot resolve "Big Shoulders Display". Fontsource mirrors the
-      // same Google files under the original name (the face the site was designed with).
-      provider: fontProviders.fontsource(),
-      name: 'Big Shoulders Display',
+      // The heavy mixed-case serif of the campaign's flyers and signs.
+      provider: fontProviders.google(),
+      name: 'Playfair Display',
       cssVariable: '--ff-display',
       weights: [700, 800, 900],
+      styles: ['normal', 'italic'],
+      subsets: ['latin'],
+      fallbacks: ['Georgia', 'Times New Roman', 'serif'],
+    },
+    {
+      // The slogan script ("Building a Stronger 1st Ward Together"). Slogan only.
+      provider: fontProviders.google(),
+      name: 'Kaushan Script',
+      cssVariable: '--ff-script',
+      weights: [400],
       styles: ['normal'],
       subsets: ['latin'],
-      fallbacks: ['Impact', 'Arial Narrow', 'sans-serif'],
+      fallbacks: ['Brush Script MT', 'cursive'],
     },
     {
       provider: fontProviders.google(),
@@ -39,7 +47,7 @@ export default defineConfig({
       provider: fontProviders.google(),
       name: 'Barlow Condensed',
       cssVariable: '--ff-label',
-      weights: [600, 700],
+      weights: [500, 600, 700],
       styles: ['normal'],
       subsets: ['latin'],
       fallbacks: ['Arial Narrow', 'sans-serif'],

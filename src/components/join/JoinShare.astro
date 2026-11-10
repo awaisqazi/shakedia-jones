@@ -1,0 +1,32 @@
+---
+// Closing band: tell a neighbor and save the primary date. While the sign-up form is not open
+// (EMAIL empty) the "opens soon" card already carries the ShareBar, so this band steps aside.
+import ShareBar from '../ui/ShareBar.astro';
+import Swoosh from '../ui/Swoosh.astro';
+import { EMAIL } from '../../data/campaign.js';
+const show = Boolean(EMAIL);
+---
+
+{show && (
+<section class="section-padding bg-purple-deep jsh-band" aria-labelledby="jsh-title">
+  <Swoosh class="jsh-swoosh" />
+  <div class="container jsh-inner">
+    <p class="kicker animate-in" data-i18n="join.share.label">Spread the word</p>
+    <h2 class="section-title animate-in" id="jsh-title">
+      <span data-i18n="join.share.title_a">Tell a neighbor about</span>
+      <span class="accent" data-i18n="join.share.title_b">February 23</span>
+    </h2>
+    <p class="section-lede animate-in" data-i18n="join.share.lede">A text to a neighbor takes ten seconds and keeps the 1st Ward talking.</p>
+    <ShareBar variant="dark" class="jsh-share animate-in" />
+  </div>
+</section>
+)}
+
+<style>
+  .jsh-band { position: relative; overflow: hidden; }
+  .jsh-band :global(.jsh-swoosh) { position: absolute; bottom: 16px; left: -5%; width: 110%; height: 60px; opacity: 0.5; pointer-events: none; }
+  .jsh-inner { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .jsh-inner .section-lede { margin-inline: auto; }
+  .jsh-band :global(.jsh-share) { margin-top: var(--space-lg); align-items: center; }
+  .jsh-band :global(.jsh-share .sb-row) { justify-content: center; }
+</style>

@@ -1,20 +1,21 @@
 ---
-import StreetSign from '../ui/StreetSign.astro';
+import Star from '../ui/Star.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <section class="excellence section-padding" id="excellence" aria-labelledby="excellence-title">
   <div class="container ex-grid">
     <div class="ex-copy">
-      <span class="section-label"><span class="lane-chip" aria-hidden="true">3</span><span data-i18n="home.excellence.label">The honorary sign</span></span>
+      <p class="kicker" data-i18n="home.excellence.label">The honorary street name</p>
       <h2 class="section-title" id="excellence-title">
         <span data-i18n="home.excellence.title_1">Excellence from</span>
         <span class="accent" data-i18n="home.excellence.title_2">Waukegan.</span>
       </h2>
       <p class="section-lede" data-i18n="home.excellence.p1">In July 2024, Waukegan dedicated the honorary street name "Shakedia Jones Olympic Way" on George Avenue, near her childhood home. That August, the City Council honored her with a proclamation.</p>
 
-      <blockquote class="ex-quote">
-        <p lang="en" data-i18n="home.excellence.quote">“Why isn't there a place where we can go to find out the people in Waukegan who have done amazing things...”</p>
+      <blockquote class="card-gold ex-quote">
+        <Star class="ex-quote-star" />
+        <p class="quote-text" lang="en" data-i18n="home.excellence.quote">“Why isn't there a place where we can go to find out the people in Waukegan who have done amazing things...”</p>
         <p class="tr-line" data-i18n="home.excellence.quote_tr"></p>
         <footer data-i18n="home.excellence.quote_cite">Shakedia Jones, Waukegan City Council, August 2024</footer>
       </blockquote>
@@ -23,7 +24,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
 
     <div class="ex-visual">
-      <StreetSign class="ex-sign" />
+      <div class="ex-honor bg-purple">
+        <Star class="ex-honor-star" />
+        <p class="ex-honor-name" data-i18n="home.excellence.tile_name">Shakedia Jones Olympic Way</p>
+        <p class="ex-honor-line" data-i18n="home.excellence.tile_line">Honorary street name on George Avenue</p>
+        <p class="ex-honor-date" data-i18n="home.excellence.tile_date">Dedicated July 14, 2024</p>
+      </div>
       <figure class="ex-still photo">
         <img src={`${base}/images/council-honor-2024.webp`} width="320" height="568" loading="lazy" decoding="async"
           alt="Holding a framed proclamation, she speaks into a microphone in the Waukegan City Council chambers."
@@ -35,22 +41,41 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 </section>
 
 <style>
-  .ex-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--space-3xl); align-items: center; }
-  .ex-copy .section-title { display: flex; flex-direction: column; }
-  .ex-quote { margin: var(--space-xl) 0; padding: var(--space-lg) var(--space-xl); border-left: 6px solid var(--track); background: var(--white); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; box-shadow: var(--shadow-sm); }
-  .ex-quote p { font-family: var(--font-display); font-weight: 700; font-size: var(--text-2xl); line-height: 1.1; color: var(--navy); text-transform: none; }
-  .ex-quote .tr-line { margin-top: var(--space-sm); font-family: var(--font-body); font-weight: 400; font-size: var(--text-base); line-height: 1.5; color: var(--ink-soft); }
+  .excellence { background: var(--purple-soft); }
+  .ex-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: var(--space-3xl); align-items: center; }
+  .ex-copy .section-title { display: flex; flex-wrap: wrap; column-gap: 0.25em; }
+
+  .ex-quote { position: relative; margin: var(--space-xl) 0; padding: var(--space-xl) var(--space-xl) var(--space-lg) calc(var(--space-xl) + 2.4rem); }
+  .ex-quote :global(.ex-quote-star) { position: absolute; left: var(--space-lg); top: calc(var(--space-xl) + 0.2rem); width: 1.6rem; height: 1.6rem; filter: drop-shadow(0 0 0.6px rgba(43, 7, 71, 0.6)); }
+  .ex-quote .quote-text { font-size: var(--text-2xl); color: var(--purple); }
+  .ex-quote .tr-line { margin-top: var(--space-sm); font-family: var(--font-body); font-size: var(--text-base); line-height: 1.5; color: var(--ink-soft); }
   .tr-line:empty, :global(html[lang="en"]) .tr-line { display: none; }
-  .ex-quote footer { margin-top: var(--space-sm); font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-sm); color: var(--muted); }
+  .ex-quote footer { margin-top: var(--space-md); font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-sm); color: var(--gold-deep); }
   .ex-p2 { color: var(--ink-soft); }
 
-  .ex-visual { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--space-lg); }
-  .ex-still { width: 200px; aspect-ratio: 320 / 440; transform: rotate(3deg); box-shadow: var(--shadow-lg); border: 5px solid var(--white); margin-top: -40px; margin-left: 140px; }
+  .ex-visual { position: relative; display: flex; flex-direction: column; align-items: center; }
+  /* A purple honor tile with gold lines, standing in for the sign */
+  .ex-honor {
+    position: relative; width: min(320px, 100%); text-align: center; border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-lg) 2.4rem;
+    box-shadow: inset 0 0 0 2px var(--gold), inset 0 0 0 6px var(--purple), inset 0 0 0 7px rgba(254, 198, 10, 0.6), var(--shadow-lg);
+  }
+  .ex-honor :global(.ex-honor-star) { width: 30px; height: 30px; margin: 0 auto var(--space-sm); display: block; }
+  .ex-honor-name { font-family: var(--font-display); font-weight: 900; font-size: var(--text-2xl); line-height: 1.05; color: var(--white); margin: 0 auto var(--space-sm); }
+  .ex-honor-line { font-size: var(--text-sm); color: rgba(255, 255, 255, 0.85); margin: 0 auto; }
+  .ex-honor-date { font-family: var(--font-label); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; font-size: var(--text-xs); color: var(--gold); margin: var(--space-sm) auto 0; }
+
+  /* The council still is low resolution: keep it small */
+  .ex-still { width: 190px; aspect-ratio: 320 / 440; margin-top: -14px; margin-left: 150px; border: 5px solid var(--white); box-shadow: 0 0 0 2px var(--gold), var(--shadow-lg); transform: rotate(3deg); }
   .ex-still img { object-position: center 30%; }
 
   @media (max-width: 960px) {
     .ex-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
-    .ex-still { margin-left: 90px; width: 190px; }
+    .ex-still { margin-left: 120px; }
   }
-  @media (max-width: 420px) { .ex-still { margin-left: 40px; width: 170px; } }
+  @media (max-width: 480px) {
+    .ex-quote { padding: var(--space-lg) var(--space-lg) var(--space-md) calc(var(--space-lg) + 2rem); }
+    .ex-quote :global(.ex-quote-star) { left: var(--space-md); top: calc(var(--space-lg) + 0.2rem); width: 1.3rem; height: 1.3rem; }
+    .ex-still { width: 170px; margin-left: 70px; }
+  }
 </style>

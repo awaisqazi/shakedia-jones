@@ -1,0 +1,99 @@
+---
+// The four 1st Ward priorities, in the campaign's own words and order (RETHEME.md).
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const left = [
+  { key: 'p1', icon: 'car', text: 'Add more speed bumps to make our ward safer.' },
+  { key: 'p2', icon: 'buildings', text: 'Advocate for the removal of old and abandoned buildings.' },
+  { key: 'p3', icon: 'home', text: 'Support the renovation and revitalization of homes in the 1st Ward.' },
+];
+const center = [
+  { key: 'p4_a', text: 'Youth enrichment and after-school programs' },
+  { key: 'p4_b', text: 'Career, workforce, and small business resources' },
+  { key: 'p4_c', text: 'Family support and senior services' },
+];
+---
+
+<section class="priorities on-dark section-padding" id="priorities" aria-labelledby="priorities-title">
+  <div class="container">
+    <div class="pr-head">
+      <p class="kicker" data-i18n="home.priorities.label">What she will push for</p>
+      <h2 class="section-title" id="priorities-title">
+        <span data-i18n="home.priorities.title_1">1st Ward</span>
+        <span class="accent" data-i18n="home.priorities.title_2">Priorities</span>
+      </h2>
+      <p class="section-lede" data-i18n="home.priorities.lede">Four commitments for the blocks she grew up on. As alderman, she will advocate, vote and work with the city to get them done.</p>
+    </div>
+
+    <div class="card-gold pr-card animate-in">
+      <ul class="pr-list">
+        {left.map((p) => (
+          <li class="pr-item">
+            <span class="icon-badge pr-badge" aria-hidden="true">
+              {p.icon === 'car' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5v-4l2-5.1A2 2 0 0 1 6.9 6h10.2a2 2 0 0 1 1.9 1.4l2 5.1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3.5 12h17"/><path d="M6 17.5v2M18 17.5v2"/><path d="M6.5 14.5h1.5M16 14.5h1.5"/></svg>
+              )}
+              {p.icon === 'buildings' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 21h19"/><path d="M5 21V4h9v17"/><path d="M14 9h5v12"/><path d="M8 7.5h3M8 11h3M8 14.5h3M16.5 12.5v.01M16.5 16v.01"/></svg>
+              )}
+              {p.icon === 'home' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>
+              )}
+            </span>
+            <p class="pr-text" data-i18n={`home.priorities.${p.key}`}>{p.text}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div class="pr-center">
+        <div class="pr-item pr-item-center">
+          <span class="icon-badge pr-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="2.8"/><circle cx="5" cy="9" r="2"/><circle cx="19" cy="9" r="2"/><path d="M7 20v-1.5a5 5 0 0 1 10 0V20"/><path d="M1.8 19v-.8a3.3 3.3 0 0 1 4.4-3.1"/><path d="M22.2 19v-.8a3.3 3.3 0 0 0-4.4-3.1"/></svg>
+          </span>
+          <p class="pr-text" data-i18n="home.priorities.p4">Create a community center for the 1st Ward with resources for all ages.</p>
+        </div>
+        <ul class="star-list pr-sub">
+          {center.map((c) => (<li data-i18n={`home.priorities.${c.key}`}>{c.text}</li>))}
+        </ul>
+      </div>
+    </div>
+
+    <a href={`${base}/plan/`} class="arrow-link pr-cta" data-i18n="home.priorities.cta">See how she will work on each one</a>
+  </div>
+</section>
+
+<style>
+  .priorities { background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%); color: rgba(255, 255, 255, 0.88); }
+  .priorities :global(:focus-visible) { outline-color: var(--gold); }
+  .priorities .pr-card :global(:focus-visible) { outline-color: var(--purple); }
+  /* Section header on the purple field */
+  .pr-head { text-align: center; display: flex; flex-direction: column; align-items: center; margin-bottom: var(--space-2xl); }
+  .pr-head .kicker { color: var(--gold); }
+  .pr-head .section-title { color: var(--white); display: flex; flex-wrap: wrap; justify-content: center; column-gap: 0.28em; }
+  .pr-head .accent { color: var(--gold); background: none; }
+  .pr-head .section-lede { color: rgba(255, 255, 255, 0.84); margin-inline: auto; }
+
+  .pr-card { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); padding: var(--space-lg) var(--space-xl); }
+  .pr-list { display: flex; flex-direction: column; padding-right: var(--space-xl); border-right: 2px solid var(--gold); }
+  .pr-item { display: flex; align-items: center; gap: var(--space-lg); padding: var(--space-lg) 0; }
+  .pr-list .pr-item + .pr-item { border-top: 1px solid rgba(254, 198, 10, 0.75); }
+  .pr-badge { --badge-size: 66px; }
+  .pr-text { font-family: var(--font-body); font-weight: 700; font-size: var(--text-lg); line-height: 1.3; color: var(--purple-deep); }
+
+  .pr-center { padding-left: var(--space-xl); align-self: start; }
+  .pr-sub { margin: var(--space-xs) 0 var(--space-lg); padding-left: calc(66px + var(--space-lg)); color: var(--purple); font-weight: 500; }
+
+  .pr-cta { margin-top: var(--space-2xl); color: var(--gold); }
+  .priorities .container > .pr-cta { display: flex; width: fit-content; margin-inline: auto; }
+
+  @media (max-width: 860px) {
+    .pr-card { grid-template-columns: 1fr; padding: var(--space-sm) var(--space-lg) var(--space-md); }
+    .pr-list { padding-right: 0; border-right: 0; }
+    .pr-center { padding-left: 0; border-top: 2px solid var(--gold); }
+  }
+  @media (max-width: 480px) {
+    .pr-badge { --badge-size: 52px; }
+    .pr-item { gap: var(--space-md); }
+    .pr-text { font-size: var(--text-base); }
+    .pr-sub { padding-left: 0; }
+  }
+</style>
