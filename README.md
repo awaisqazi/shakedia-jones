@@ -8,7 +8,7 @@ Built with Astro and vanilla CSS. It has a client-side English/Spanish toggle an
 
 ```sh
 npm install
-npm run dev        # http://localhost:4410/shakedia-jones/ (via .claude/launch.json) or 4321 by default
+npm run dev        # http://localhost:4410/ (via .claude/launch.json) or 4321 by default
 npm run build      # static output in dist/
 npm run check      # build + EN/ES audit + internal link check (what CI runs)
 npm run check:types
@@ -42,7 +42,7 @@ The site matches the campaign's own flyers, sign and banner (`public/images/camp
 
 - **Office and ward.** The city's ward GIS puts the 300 block of George Ave in the 1st Ward. Confirm she is running for 1st Ward Alderman and that her voter registration is in Ward 1. The ward appears in `src/data/campaign.js` (`WARD`) and in copy across the i18n files.
 - **Primary.** The site now treats the Tuesday, Feb 23, 2027 primary as the headline date (she asked voters for Feb 23 on video) and names April 6, 2027 as the general election. `DATES.primary` / `DATES.general` in `src/data/campaign.js`; `public/election-day.ics` is the Feb 23 primary.
-- **Committee name** for "Paid for by" (`footer.paid_for` in `src/i18n/parts/shared.*.json`). No ISBE committee exists yet.
+- **Committee name**: "Friends of Shakedia Jones" is now in "Paid for by" and the donation legal line. Confirm it matches the ISBE filing once registered.
 - **Donate link.** Set `DONATE_URL` in `src/data/campaign.js`. Until then every Donate button goes to `/join/#donate`, which says online giving opens soon.
 - **Campaign email and social accounts.** Set `EMAIL` and `SOCIALS` in `src/data/campaign.js`. Social icons stay hidden while empty.
 - **Sign-up form.** Contact info was removed from the site at the campaign's request, so `/join/` shows an "online sign-up opens soon" card. Setting `EMAIL` in `src/data/campaign.js` turns on a form that opens a prefilled email; a real backend (Google Form, ActBlue, Supabase) is better.
@@ -55,7 +55,7 @@ The site matches the campaign's own flyers, sign and banner (`public/images/camp
 
 ## Deploy
 
-`.github/workflows/deploy.yml` builds and publishes `dist/` to GitHub Pages on every push to `main` (Pages source: GitHub Actions). The site is live at `https://awaisqazi.github.io/shakedia-jones/` from the `awaisqazi/shakedia-jones` repo. `npm run check` (build, translation audit, link check) runs in CI before every deploy, and a daily rebuild keeps the countdown current.
+`.github/workflows/deploy.yml` builds and publishes `dist/` to GitHub Pages on every push to `main` (Pages source: GitHub Actions). The site is live at `https://shakediafor1stward.com/` (custom domain via `public/CNAME`; DNS at Squarespace points to GitHub Pages) from the `awaisqazi/shakedia-jones` repo. `npm run check` (build, translation audit, link check) runs in CI before every deploy, and a daily rebuild keeps the countdown current.
 
 ## i18n in one paragraph
 

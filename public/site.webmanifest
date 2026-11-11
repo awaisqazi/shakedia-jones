@@ -1,13 +1,13 @@
 {
   "name": "Shakedia Jones for 1st Ward Alderman",
   "short_name": "Shakedia Jones",
-  "start_url": "/shakedia-jones/",
-  "scope": "/shakedia-jones/",
+  "start_url": "/",
+  "scope": "/",
   "display": "browser",
   "theme_color": "#4a0375",
   "background_color": "#fbf7ef",
   "icons": [
-    { "src": "/shakedia-jones/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
-    { "src": "/shakedia-jones/brand/avatar-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/brand/avatar-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
   ]
 }

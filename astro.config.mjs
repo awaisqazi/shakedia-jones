@@ -2,11 +2,10 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// GitHub Pages project site: https://awaisqazi.github.io/shakedia-jones/
-// When a custom domain is registered: set site to it, base to '/', and add public/CNAME.
+// GitHub Pages with the custom domain https://shakediafor1stward.com (see public/CNAME).
 export default defineConfig({
-  site: 'https://awaisqazi.github.io',
-  base: '/shakedia-jones',
+  site: 'https://shakediafor1stward.com',
+  base: '/',
   trailingSlash: 'always',
   integrations: [
     sitemap({ filter: (page) => !/\/404\/?$/.test(page) }),

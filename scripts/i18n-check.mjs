@@ -16,7 +16,7 @@ import { mergeDictionaries } from '../src/i18n/merge.js';
 //   *_tr, tr_*, *.quote_tr: Spanish-only "Traduccion:" lines (empty in EN by design)
 const ALLOW_EMPTY = [/^footer\.disclosure$/, /(^|\.)tr_[^.]*$/, /_tr$/, /\.quote_tr$/];
 // Intentional placeholder until the committee is named.
-const ALLOW_PLACEHOLDER = ['[Committee Name]'];
+const ALLOW_PLACEHOLDER = [];
 const PLACEHOLDER = /\[[^\]]*\]|TODO|TBD/g;
 
 requireDist();
