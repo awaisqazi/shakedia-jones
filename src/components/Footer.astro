@@ -1,5 +1,5 @@
 ---
-import Wordmark from './ui/Wordmark.astro';
+import Logo from './ui/Logo.astro';
 import ValuesStrip from './ui/ValuesStrip.astro';
 import Star from './ui/Star.astro';
 import { EMAIL, SOCIALS, COUNTY_CLERK_URL, donateHref, isExternalDonate, canDonate } from '../data/campaign.js';
@@ -16,7 +16,7 @@ const socials = SOCIALS.filter((s) => s.href);
   <div class="footer-main">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <Wordmark light size="lg" />
+        <Logo variant="wide" tone="dark" width={320} class="footer-logo" />
         <p class="footer-motto script" data-i18n="footer.motto">Building a Stronger 1st Ward Together</p>
         {EMAIL && <a href={`mailto:${EMAIL}`} class="footer-contact">{EMAIL}</a>}
       </div>

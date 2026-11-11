@@ -2,7 +2,7 @@
 import { donateHref, isExternalDonate, canDonate } from '../../data/campaign.js';
 import ShareBar from '../ui/ShareBar.astro';
 import Swoosh from '../ui/Swoosh.astro';
-import Star from '../ui/Star.astro';
+import Logo from '../ui/Logo.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
 ---
@@ -10,6 +10,8 @@ const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
 <section class="join-band bg-purple-deep" id="join" aria-labelledby="joinband-title">
   <Swoosh class="jb-swoosh jb-swoosh-top" />
   <div class="container jb-inner">
+    <!-- The campaign seal as a stamp: right of the heading on wide screens, above the kicker on narrow ones -->
+    <div class="jb-seal"><Logo variant="seal" width={200} /></div>
     <p class="kicker" data-i18n="home.join.label">Get involved</p>
     <h2 class="section-title" id="joinband-title">
       <span data-i18n="home.join.title_1">Let's build a stronger 1st Ward</span>
@@ -21,9 +23,6 @@ const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
       {canDonate() && <a href={donateHref(base)} class="btn btn-outline-light" data-i18n="home.join.cta_donate" {...ext}>Chip in</a>}
     </div>
     <ShareBar variant="dark" class="jb-share" />
-  </div>
-  <div class="jb-stars" aria-hidden="true">
-    <Star class="js js-1" /><Star class="js js-2" /><Star class="js js-3" />
   </div>
   <Swoosh class="jb-swoosh jb-swoosh-bottom" flip />
 </section>
@@ -37,12 +36,15 @@ const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
   .jb-inner .section-title { font-size: var(--text-5xl); display: flex; flex-wrap: wrap; column-gap: 0.25em; max-width: 16ch; }
   .jb-ctas { display: flex; gap: var(--space-md); flex-wrap: wrap; margin-top: var(--space-xl); }
   .jb-inner :global(.jb-share) { margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--line-light); }
-  .jb-stars :global(.js) { position: absolute; }
-  .jb-stars :global(.js-1) { width: 46px; height: 46px; top: 22%; right: 9%; }
-  .jb-stars :global(.js-2) { width: 24px; height: 24px; top: 34%; right: 15%; opacity: 0.75; }
-  .jb-stars :global(.js-3) { width: 30px; height: 30px; top: 16%; right: 18%; opacity: 0.5; }
+  /* 120px minimum: the rim lettering stops reading below that */
+  .jb-seal { width: 128px; margin-bottom: var(--space-lg); }
+  .jb-seal :global(img) { width: 100%; height: auto; }
+  @media (min-width: 1024px) {
+    .jb-seal { position: absolute; top: 84px; right: calc(var(--gutter) + 32px); width: 200px; margin: 0; }
+    /* keep the heading clear of the seal (the Spanish lines run longer) */
+    .jb-inner .section-title { max-width: min(16ch, 100% - 330px); }
+  }
   @media (max-width: 768px) {
     .join-band { padding: var(--space-4xl) 0; }
-    .jb-stars { display: none; }
   }
 </style>

@@ -14,7 +14,8 @@
     "i18n:check": "node scripts/i18n-check.mjs",
     "links:check": "node scripts/link-check.mjs",
     "check": "astro build && node scripts/i18n-check.mjs && node scripts/link-check.mjs",
-    "check:types": "astro check"
+    "check:types": "astro check",
+    "brand": "node scripts/brand-assets.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

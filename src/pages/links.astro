@@ -1,8 +1,7 @@
 ---
 // Link-in-bio page for social profiles. No navbar, footer or action bar: just the links.
 import Layout from '../layouts/Layout.astro';
-import Wordmark from '../components/ui/Wordmark.astro';
-import Ribbon from '../components/ui/Ribbon.astro';
+import Logo from '../components/ui/Logo.astro';
 import Star from '../components/ui/Star.astro';
 import ShareBar from '../components/ui/ShareBar.astro';
 import { SOCIALS, canDonate, donateHref, isExternalDonate } from '../data/campaign.js';
@@ -43,8 +42,7 @@ const links = [
           data-i18n-attr="alt:links.photo_alt"
         />
       </div>
-      <h1 class="lk-wordmark"><Wordmark light size="lg" /></h1>
-      <Ribbon size="sm" class="lk-ribbon" />
+      <h1 class="lk-wordmark"><Logo variant="stacked" tone="dark" width={264} loading="eager" /></h1>
       <p class="lk-slogan script" data-i18n="ui.slogan">Building a Stronger 1st Ward Together</p>
     </header>
 
@@ -135,10 +133,7 @@ const links = [
   }
   /* 480x480 source has part of a lettered graphic on the right edge: zoom slightly toward the face. */
   .lk-photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transform-origin: 46% 42%; }
-  .lk-wordmark { font-size: inherit; line-height: 1; }
-  .lk-wordmark :global(.wm-name) { font-size: 2.5rem; }
-  /* The ribbon right under the name carries the office line, so the wordmark's own sub-line steps aside */
-  .lk-wordmark :global(.wm-sub) { display: none; }
+  .lk-wordmark { font-size: inherit; line-height: 1; width: 264px; max-width: 100%; }
   .lk-slogan { font-size: clamp(1.35rem, 1.2rem + 0.8vw, 1.7rem); color: var(--gold); max-width: none; margin-top: var(--space-xs); }
 
   .lk-list { width: 100%; display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-sm); }
@@ -187,7 +182,6 @@ const links = [
   @media (max-width: 380px) {
     .lk-photo { width: 140px; height: 140px; }
     .lk-btn-main { font-size: 1.22rem; }
-    .lk-wordmark :global(.wm-name) { font-size: 1.95rem; }
     .lk-date-v { font-size: 1.15rem; }
   }
 </style>

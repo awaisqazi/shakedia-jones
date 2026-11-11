@@ -28,15 +28,47 @@ npm run check:types
 
 The site matches the campaign's own flyers, sign and banner (`public/images/campaign/`): royal purple (`#4a0375`) and dark purple fields, the campaign gold (`#fec60a`, on purple only), a sunset-sky gradient, and a sparing blazer green. Headlines use **Playfair Display** (heavy, mixed case), the slogan uses **Kaushan Script**, body text is **Barlow** and labels are **Barlow Condensed** in caps. Motifs: gold stars, the ribbon band ("For 1st Ward Alderman"), thin gold swooshes and hairlines, white cards with a gold top edge, round purple icon badges with a gold ring, and the values strip (Family, Opportunity, Safer Neighborhoods, Stronger Communities) above the footer. Tokens and utilities are documented at the top of `src/styles/global.css`.
 
-**The mark:** a purple tile with a gold star over a white "1" for the 1st Ward. Source of truth: `src/components/ui/Mark.astro` (variants: purple, deep, mono). Ready-made files in `public/brand/`:
+### Logos and brand files
+
+The logos were built in Canva (Personal workspace) and approved by the campaign's design lead. All lettering is outlined, so nothing depends on installed fonts. Canva designs:
+
+- **"Shakedia Jones - Campaign Mark"**: the round seal (the small round "1st" header mark was made alongside it)
+- **"Shakedia Jones - Favicon Glyph"**: the favicon (plain disc with a "1")
+- **"Shakedia Jones - Wide Logo"**: the one-line, stacked and yard-sign logos, each in a light and a dark version
+
+"Light" versions are for light backgrounds (all purple with gold accents); "dark" versions are for purple backgrounds (white "Shakedia", gold "Jones", gold band).
+
+**Licensing note:** the laurel wreath in the seal is a free Canva library element ("corona circulo" by Oscar Atehortua). The seal can be used under Canva's content license, but because it contains a stock element it cannot be registered as a trademark. The wordmark logos contain no stock elements.
+
+On the site: the header uses the "1st" mark with live, translated text (`src/components/ui/Wordmark.astro`, `Mark.astro`); the footer uses the one-line dark logo; `/links/` uses the stacked dark logo; the seal sits beside the closing "Let's build a stronger 1st Ward together" band on the home page and on the 404 page. Logos go on the page through `src/components/ui/Logo.astro` (`variant` wide | stacked | sign | seal, `tone` light | dark, `width`), which sets width/height from `src/data/brand-sizes.json` and translated alt text (`brand.logo_alt`, `brand.seal_alt` in `src/i18n/parts/shared.*.json`).
+
+Files in `public/brand/` (SVGs are cleaned and optimized, with the viewBox cropped to the artwork plus about 2% padding, so they size by width; PNGs are transparent):
 
 | File | Use |
 |---|---|
-| `mark.svg` | Vector mark for print and video |
-| `avatar-512.png` | Social profile picture |
-| `lockups.png` | Horizontal and stacked lockups on cream, purple and dark purple |
+| `logo-wide-light.svg` / `.png` | Main logo, one line ("Shakedia Jones" over the "For 1st Ward Alderman" band), for light backgrounds. PNG 2000 px wide |
+| `logo-wide-dark.svg` / `.png` | The same for purple backgrounds (site footer) |
+| `logo-stacked-light.svg` / `.png` | Stacked logo (Shakedia / big Jones, band tucked beside the J), light backgrounds. PNG 2000 px wide |
+| `logo-stacked-dark.svg` / `.png` | The same for purple backgrounds (`/links/`, share card) |
+| `logo-sign-light.svg` / `.png` | Yard-sign version: stacked with a full-width band, light backgrounds |
+| `logo-sign-dark.svg` / `.png` | The same for purple backgrounds |
+| `seal.svg` / `.png` | Round campaign seal. PNG 1000 px. Do not show it smaller than 120 px: the rim lettering stops reading |
+| `avatar-512.png` | The seal at 512x512 with transparent corners: social profile picture and the web manifest's 512 icon |
+| `mark.svg`, `mark-small.svg` | The round "1st" header mark (44 px and up) and its simplified small version |
+| `lockups.png` | Brand sheet: header mark, one-line logo, stacked logo and seal on cream, purple and deep purple |
 
-`public/images/og-card.jpg` is the link preview (1200x630). Brand images are rendered from HTML with Playwright's headless shell.
+The Canva SVG exports these are made from live in `brand-src/` (not deployed). `public/favicon.svg`, `favicon-32x32.png` and `apple-touch-icon.png` are separate (Favicon Glyph design).
+
+**Regenerating:** after a new Canva export, run
+
+```sh
+npm run brand -- --seal=/path/to/new-seal.svg   # copies it to brand-src/seal.svg, then rebuilds
+npm run brand                                   # rebuild everything from brand-src/
+```
+
+Other sources swap the same way (`--wide-light`, `--wide-dark`, `--stacked-light`, `--stacked-dark`, `--sign-light`, `--sign-dark`). `scripts/brand-assets.mjs` strips Canva's redundant clip-paths (keeping each removal only if a render is unchanged), runs svgo, crops the viewBox, checks the result against the original export pixel by pixel (it stops with an error if they differ), and rewrites every SVG/PNG above plus `avatar-512.png`, `lockups.png` and `src/data/brand-sizes.json`. It uses svgo and sharp, which come with Astro. Then run `npm run check` and look at the footer, `/links/` and the home join band.
+
+`public/images/og-card.jpg` is the link preview (1200x630): the campaign portrait, the stacked dark logo and the slogan. It is rendered from HTML with Playwright's headless shell (not by the script), so re-render it by hand if the stacked logo changes.
 
 ## Before launch: open items
 

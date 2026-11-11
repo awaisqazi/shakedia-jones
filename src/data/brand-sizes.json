@@ -1,0 +1,30 @@
+{
+  "seal": {
+    "w": 750,
+    "h": 750
+  },
+  "logo-wide-light": {
+    "w": 1404,
+    "h": 378
+  },
+  "logo-wide-dark": {
+    "w": 1404,
+    "h": 378
+  },
+  "logo-stacked-light": {
+    "w": 906.75,
+    "h": 584.25
+  },
+  "logo-stacked-dark": {
+    "w": 906.75,
+    "h": 584.25
+  },
+  "logo-sign-light": {
+    "w": 906.75,
+    "h": 646.5
+  },
+  "logo-sign-dark": {
+    "w": 906.75,
+    "h": 646.5
+  }
+}
