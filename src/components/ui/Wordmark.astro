@@ -1,12 +1,15 @@
 ---
-// Text wordmark: mark + "Shakedia Jones" in the display serif, office line under it.
-// <Wordmark /> on light surfaces; <Wordmark light /> on purple. size: sm | md | lg.
+// Text wordmark: the round "1st" medal mark + "Shakedia Jones" in the display serif, office line
+// under it. The mark itself works on any surface; `light` only recolours the text for purple
+// backgrounds. size: sm (34px mark) | md (44px; the navbar shrinks it to 36/30px at <=420/<=360px)
+// | lg (56px). Below 44px the simpler mark-small.svg is used (see Mark.astro).
 import Mark from './Mark.astro';
 export interface Props { light?: boolean; size?: 'sm' | 'md' | 'lg' }
 const { light = false, size = 'md' } = Astro.props;
+const markSize = size === 'lg' ? 56 : size === 'sm' ? 34 : 44;
 ---
 <span class:list={['wordmark', `wm-${size}`, { 'wm-light': light }]}>
-  <Mark class="wm-mark" size={size === 'lg' ? 56 : size === 'sm' ? 34 : 44} />
+  <Mark class="wm-mark" size={markSize} smallBelow={size === 'md' ? 420 : 300} />
   <span class="wm-text">
     <span class="wm-name"><span class="wm-first">Shakedia</span> <span class="wm-last">Jones</span></span>
     <span class="wm-sub" data-i18n="nav.wordmark_sub">For 1st Ward Alderman</span>
@@ -15,7 +18,6 @@ const { light = false, size = 'md' } = Astro.props;
 
 <style>
   .wordmark { display: inline-flex; align-items: center; gap: 0.65rem; line-height: 1; }
-  .wm-mark { flex-shrink: 0; }
   .wm-text { display: flex; flex-direction: column; gap: 5px; }
   .wm-name { font-family: var(--font-display); font-weight: 900; font-size: 1.55rem; letter-spacing: -0.01em; color: var(--purple); white-space: nowrap; line-height: 1; }
   .wm-last { color: var(--purple); background: linear-gradient(transparent 84%, var(--gold) 84%, var(--gold) 96%, transparent 96%); }
@@ -23,7 +25,8 @@ const { light = false, size = 'md' } = Astro.props;
   .wm-sm .wm-name { font-size: 1.25rem; }
   .wm-lg .wm-name { font-size: 2.1rem; }
   .wm-lg .wm-sub { font-size: 0.82rem; }
-  @media (max-width: 300px) { .wm-mark { width: 28px; height: 28px; } }
+  /* .wm-mark lives on Mark's <img>, outside this component's scope, hence :global */
+  @media (max-width: 300px) { .wordmark :global(.wm-mark) { width: 28px; height: 28px; } }
   .wm-light .wm-first { color: var(--white); }
   .wm-light .wm-last { color: var(--gold); background: none; }
   .wm-light .wm-sub { color: rgba(255, 255, 255, 0.75); }

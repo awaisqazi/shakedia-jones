@@ -1,14 +1,31 @@
 ---
-// The campaign mark: a purple tile with a gold star over a white serif "1" (the 1st Ward).
-// Drawn with plain shapes, no font dependency. Mirrored in public/favicon.svg and public/brand/;
-// keep them in sync. Variants: purple (default), deep (dark purple tile), mono (currentColor tile).
-export interface Props { size?: number; class?: string; variant?: 'purple' | 'deep' | 'mono' }
-const { size = 40, class: cls, variant = 'purple' } = Astro.props;
-const tile = variant === 'deep' ? '#2b0747' : variant === 'mono' ? 'currentColor' : '#4a0375';
-const star = variant === 'mono' ? '#fbf7ef' : '#fec60a';
+// The campaign mark: a round purple-and-gold "1st" medal (gold ring, gold "1", raised white "ST"
+// over a gold bar). Made in Canva as a sibling of the campaign seal; it reads on light and dark
+// surfaces alike, so there is one mark and no colour variants. Text is outlined, no font dependency.
+// Files: public/brand/mark.svg (44px and up), public/brand/mark-small.svg (below 44px: the same
+// disc with just the "1", since "ST" turns to mush), public/favicon.svg (plain disc + "1").
+// smallBelow: viewport width (px) at or under which CSS shrinks this mark below 44px, so the
+// small artwork is swapped in there.
+export interface Props { size?: number; class?: string; smallBelow?: number }
+const { size = 44, class: cls, smallBelow } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const full = `${base}/brand/mark.svg`;
+const small = `${base}/brand/mark-small.svg`;
+const src = size < 44 ? small : full;
 ---
-<svg class={cls} width={size} height={size} viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-  <rect width="48" height="48" rx="11" fill={tile} />
-  <path fill={star} d="M24 5.6L25.56 10.06L30.28 10.16L26.52 13.02L27.88 17.54L24 14.85L20.12 17.54L21.48 13.02L17.72 10.16L22.44 10.06Z" />
-  <path fill="#fff" d="M27.2 20.5V36.9H31V40.6H17V36.9H21.4V26.4L17.4 28V24.4L25 20.5Z" />
-</svg>
+{smallBelow && src === full ? (
+  <picture class="mark-pic">
+    <source media={`(max-width: ${smallBelow}px)`} srcset={small} />
+    <img class:list={['mark', cls]} src={full} width={size} height={size} alt="" />
+  </picture>
+) : (
+  <img class:list={['mark', cls]} src={src} width={size} height={size} alt="" />
+)}
+
+<style>
+  /* the <picture> wrapper must not become its own box, so flex/size rules hit the <img> */
+  .mark-pic { display: contents; }
+  /* ...and its <source> must not either, or it becomes an empty flex item that eats a gap */
+  .mark-pic > source { display: none; }
+  .mark { display: block; flex-shrink: 0; }
+</style>
