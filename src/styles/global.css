@@ -43,7 +43,7 @@
    Forms (the Google Forms sign-ups on /join/; behavior in src/scripts/forms.js)
      .fm-form .fm-field .fm-label .fm-req .fm-opt .fm-input .fm-hint .fm-error .fm-status
      .fm-set (fieldset) .chip (checkbox/radio pill: <label class="chip"><input><span class="chip-box">)
-     .fm-submit .fm-privacy .fm-success
+     .fm-submit .fm-success
    Motion / misc
      .animate-in (+ --reveal-delay), .stat-tabular, .visually-hidden, .hide-mobile, .hide-desktop
    Legacy (kept so pages build until page agents replace them)
@@ -450,7 +450,7 @@ textarea.fm-input { resize: vertical; min-height: 104px; }
 }
 .fm-linkbtn:hover { color: var(--purple-deep); }
 
-/* Submit, privacy, success */
+/* Submit, success */
 .fm-submit { align-self: flex-start; white-space: normal; min-height: 56px; }
 .fm-submit.is-busy { opacity: 0.85; cursor: progress; transform: none; }
 .fm-submit.is-busy::before {
@@ -458,8 +458,6 @@ textarea.fm-input { resize: vertical; min-height: 104px; }
   animation: fm-spin 0.8s linear infinite;
 }
 @keyframes fm-spin { to { transform: rotate(360deg); } }
-.fm-privacy { display: flex; gap: 8px; align-items: flex-start; font-size: var(--text-sm); color: var(--muted); line-height: 1.5; max-width: none; }
-.fm-privacy svg { flex: none; width: 1.05em; height: 1.05em; margin-top: 0.2em; color: var(--purple); }
 .fm-hp { position: absolute !important; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 .fm-form[hidden], .fm-success[hidden] { display: none; }
 
