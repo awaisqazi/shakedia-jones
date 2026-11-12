@@ -19,7 +19,8 @@ const ext = isExternalDonate() ? { target: '_blank', rel: 'noopener' } : {};
   btn?.addEventListener('click', () => {
     const native = document.querySelector<HTMLButtonElement>('[data-share-native]:not([hidden])');
     if (native) { native.click(); return; }
-    const bar = document.querySelector('[data-share-bar]');
+    // First share bar that is actually shown (the one in /join/'s sign-up thank-you panel is hidden until a submit)
+    const bar = [...document.querySelectorAll<HTMLElement>('[data-share-bar]')].find((b) => b.getClientRects().length > 0);
     if (bar) {
       bar.scrollIntoView({ behavior: 'smooth', block: 'center' });
       bar.querySelector<HTMLElement>('a, button:not([hidden])')?.focus({ preventScroll: true });

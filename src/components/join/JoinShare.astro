@@ -1,13 +1,9 @@
 ---
-// Closing band: tell a neighbor and save the primary date. While the sign-up form is not open
-// (EMAIL empty) the "opens soon" card already carries the ShareBar, so this band steps aside.
+// Closing band: tell a neighbor and save the primary date.
 import ShareBar from '../ui/ShareBar.astro';
 import Swoosh from '../ui/Swoosh.astro';
-import { EMAIL } from '../../data/campaign.js';
-const show = Boolean(EMAIL);
 ---
 
-{show && (
 <section class="section-padding bg-purple-deep jsh-band" aria-labelledby="jsh-title">
   <Swoosh class="jsh-swoosh" />
   <div class="container jsh-inner">
@@ -20,7 +16,6 @@ const show = Boolean(EMAIL);
     <ShareBar variant="dark" class="jsh-share animate-in" />
   </div>
 </section>
-)}
 
 <style>
   .jsh-band { position: relative; overflow: hidden; }

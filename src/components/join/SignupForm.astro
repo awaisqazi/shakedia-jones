@@ -1,248 +1,233 @@
 ---
-import { EMAIL, canDonate } from '../../data/campaign.js';
+// Volunteer sign-up (/join/#signup; other pages link here, keep the id). A native form that posts
+// into the campaign's "Volunteer Sign-Up" Google Form: field names and option values come from
+// FORMS.volunteer in src/data/campaign.js and must match the Google Form exactly (values stay in
+// English in both languages; only labels are translated). Behavior: src/scripts/forms.js.
+// English fallbacks are read from join.en.json so the HTML always matches the dictionary.
+import { FORMS, FORM_STATIC_FIELDS } from '../../data/campaign.js';
+import en from '../../i18n/parts/join.en.json';
 import ShareBar from '../ui/ShareBar.astro';
+import Logo from '../ui/Logo.astro';
 
-// Checkbox values stay in English so the campaign reads every sign-up the same way.
-const allInterests = [
-  { id: 'petition', label: 'Sign or carry a petition', val: 'Petitions' },
-  { id: 'doors', label: 'Knock doors', val: 'Doors' },
-  { id: 'sign', label: 'Host a yard sign', val: 'Yard sign' },
-  { id: 'events', label: 'Help at events', val: 'Events' },
-  { id: 'words', label: 'Share online or translate', val: 'Spread the word / translate' },
-  { id: 'give', label: 'Give', val: 'Give', donate: true },
+const F = FORMS.volunteer;
+const E = F.entries;
+const v = en.join.volunteer as Record<string, string>;
+const f = en.join.forms as Record<string, string>;
+const otherName = `${E.events}${F.otherSuffix}`;
+const msgKeys = ['err_name', 'err_email', 'err_email_shape', 'err_phone', 'err_avail', 'err_other', 'err_summary', 'err_network', 'busy'];
+const weekend = [
+  { k: 'sat', legend: 'sat_legend', slots: F.availability.saturday },
+  { k: 'sun', legend: 'sun_legend', slots: F.availability.sunday },
 ];
-const interests = allInterests.filter((o) => !o.donate || canDonate());
-// No campaign email yet: show an 'opens soon' card instead of a form that cannot send.
-const viaEmail = Boolean(EMAIL);
 ---
 
 <section class="section-padding sf" id="signup" aria-labelledby="sf-title">
   <div class="container sf-grid">
     <header class="sf-head">
-      <p class="kicker animate-in" data-i18n="join.form.label">Sign up</p>
+      <p class="kicker animate-in" data-i18n="join.volunteer.label">{v.label}</p>
       <h2 class="section-title animate-in" id="sf-title">
-        <span data-i18n="join.form.title_a">Join the</span>
-        <span class="accent" data-i18n="join.form.title_b">team</span>
+        <span data-i18n="join.volunteer.title_a">{v.title_a}</span>
+        <span class="accent" data-i18n="join.volunteer.title_b">{v.title_b}</span>
       </h2>
-      <p class="section-lede animate-in" data-i18n={viaEmail ? "join.form.lede" : "join.form.lede_soon"}>{viaEmail ? "Tell us a little about yourself and how you would like to help. A real person from the campaign will get back to you." : "Petitions, doors, yard signs, events: there is a place for everyone. The sign-up form opens right here soon."}</p>
-      {viaEmail && (
-        <div class="sf-how animate-in">
-          <h3 class="sf-how-title" data-i18n="join.form.how_title">How this form works</h3>
-          <p data-i18n="join.form.how_email">When you press the button, your email app opens with your details filled in. Just press send.</p>
-        </div>
-      )}
+      <p class="section-lede animate-in" data-i18n="join.volunteer.lede">{v.lede}</p>
+      <div class="sf-how animate-in">
+        <h3 class="sf-how-title" data-i18n="join.volunteer.next_title">{v.next_title}</h3>
+        <ul class="star-list sf-steps">
+          <li data-i18n="join.volunteer.next_1">{v.next_1}</li>
+          <li data-i18n="join.volunteer.next_2">{v.next_2}</li>
+          <li data-i18n="join.volunteer.next_3">{v.next_3}</li>
+        </ul>
+      </div>
     </header>
 
-    <!-- TODO: swap this mailto handoff for a real form backend (Google Form, ActBlue, Action Network or similar) once the campaign has one. -->
-    {viaEmail ? (
-    <form class="sf-form card-gold animate-in" id="signup-form" novalidate data-email={EMAIL}>
-      <div class="sf-field">
-        <label for="sf-name" data-i18n="join.form.name_label">Full name (required)</label>
-        <input id="sf-name" name="name" type="text" autocomplete="name" required placeholder="First and last name" data-i18n="join.form.name_ph" />
-      </div>
-      <div class="sf-row">
-        <div class="sf-field">
-          <label for="sf-phone" data-i18n="join.form.phone_label">Phone</label>
-          <input id="sf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Your phone number" data-i18n="join.form.phone_ph" aria-describedby="sf-contact-hint" />
-        </div>
-        <div class="sf-field">
-          <label for="sf-email" data-i18n="join.form.email_label">Email</label>
-          <input id="sf-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" data-i18n="join.form.email_ph" aria-describedby="sf-contact-hint" />
-        </div>
-      </div>
-      <p class="sf-hint" id="sf-contact-hint" data-i18n="join.form.contact_hint">A phone number or an email, whichever you check more.</p>
+    <div class="sf-card card-gold animate-in" data-form-card>
+      <h3 class="card-gold-head sf-card-title" data-i18n="join.volunteer.card_title">{v.card_title}</h3>
 
-      <div class="sf-row">
-        <div class="sf-field">
-          <label for="sf-zip" data-i18n="join.form.zip_label">ZIP code (optional)</label>
-          <input id="sf-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="10" placeholder="60085" data-i18n="join.form.zip_ph" />
-        </div>
-        <div class="sf-field">
-          <label for="sf-ward" data-i18n="join.form.ward_label">Do you live in the 1st Ward?</label>
-          <select id="sf-ward" name="ward">
-            <option value="" data-i18n="join.form.ward_choose">Choose one</option>
-            <option value="Yes" data-i18n="join.form.ward_yes">Yes</option>
-            <option value="No" data-i18n="join.form.ward_no">No, but I want to help</option>
-            <option value="Not sure" data-i18n="join.form.ward_unsure">Not sure</option>
-          </select>
-        </div>
-      </div>
+      <form class="fm-form" id="volunteer-form" data-gform method="POST" action={F.action} target="_blank" accept-charset="UTF-8" aria-labelledby="sf-title">
+        {Object.entries(FORM_STATIC_FIELDS).map(([k, val]) => <input type="hidden" name={k} value={val} />)}
 
-      <fieldset class="sf-set">
-        <legend data-i18n="join.form.lang_legend">Preferred language</legend>
-        <div class="sf-radios">
-          <label class="sf-pill"><input type="radio" name="lang" value="English" checked /><span data-i18n="join.form.lang_en">English</span></label>
-          <label class="sf-pill"><input type="radio" name="lang" value="Spanish" /><span data-i18n="join.form.lang_es">Español</span></label>
-          <label class="sf-pill"><input type="radio" name="lang" value="Either" /><span data-i18n="join.form.lang_both">Either one</span></label>
+        <div class="fm-field" data-field data-msg="err_name" data-error="vf-name-err">
+          <label class="fm-label" for="vf-name"><span data-i18n="join.volunteer.name_label">{v.name_label}</span> <span class="fm-req" data-i18n="join.forms.required">{f.required}</span></label>
+          <input class="fm-input" id="vf-name" name={E.name} type="text" autocomplete="name" required />
+          <p class="fm-error" id="vf-name-err" hidden></p>
         </div>
-      </fieldset>
 
-      <fieldset class="sf-set">
-        <legend data-i18n="join.form.help_legend">I can help with</legend>
-        <div class="sf-checks">
-          {interests.map((o) => (
-            <label class="sf-check">
-              <input type="checkbox" name="help" value={o.val} />
-              <span data-i18n={`join.form.opt_${o.id}`}>{o.label}</span>
+        <div class="fm-row">
+          <div class="fm-field" data-field data-msg="err_email" data-error="vf-email-err">
+            <label class="fm-label" for="vf-email"><span data-i18n="join.volunteer.email_label">{v.email_label}</span> <span class="fm-req" data-i18n="join.forms.required">{f.required}</span></label>
+            <input class="fm-input" id="vf-email" name={F.email} type="email" autocomplete="email" inputmode="email" spellcheck="false" autocapitalize="off" required />
+            <p class="fm-error" id="vf-email-err" hidden></p>
+          </div>
+          <div class="fm-field" data-field data-msg="err_phone" data-error="vf-phone-err">
+            <label class="fm-label" for="vf-phone"><span data-i18n="join.volunteer.phone_label">{v.phone_label}</span> <span class="fm-req" data-i18n="join.forms.required">{f.required}</span></label>
+            <input class="fm-input" id="vf-phone" name={E.phone} type="tel" autocomplete="tel" inputmode="tel" required />
+            <p class="fm-error" id="vf-phone-err" hidden></p>
+          </div>
+        </div>
+
+        <fieldset class="fm-set" aria-describedby="vf-events-hint">
+          <legend><span data-i18n="join.volunteer.events_legend">{v.events_legend}</span> <span class="fm-opt" data-i18n="join.forms.optional">{f.optional}</span></legend>
+          <p class="fm-hint" id="vf-events-hint" data-i18n="join.volunteer.events_hint">{v.events_hint}</p>
+          <div class="chip-grid">
+            {F.events.map((o) => (
+              <label class="chip">
+                <input type="checkbox" name={E.events} value={o.value} />
+                <span class="chip-box" aria-hidden="true"></span>
+                <span class="chip-text" data-i18n={`join.volunteer.ev_${o.k}`}>{v[`ev_${o.k}`]}</span>
+              </label>
+            ))}
+            <label class="chip">
+              <input type="checkbox" name={E.events} value={F.otherValue} data-other="vf-other-wrap" aria-controls="vf-other-wrap" />
+              <span class="chip-box" aria-hidden="true"></span>
+              <span class="chip-text" data-i18n="join.volunteer.ev_other">{v.ev_other}</span>
             </label>
-          ))}
-        </div>
-      </fieldset>
+          </div>
+          <div class="fm-field sf-other" id="vf-other-wrap" data-field data-msg="err_other" data-error="vf-other-err">
+            <label class="fm-label" for="vf-other"><span data-i18n="join.volunteer.other_label">{v.other_label}</span> <span class="fm-req" data-i18n="join.forms.required">{f.required}</span></label>
+            <input class="fm-input" id="vf-other" name={otherName} type="text" autocomplete="off" data-required />
+            <p class="fm-error" id="vf-other-err" hidden></p>
+          </div>
+        </fieldset>
 
-      <div class="sf-field">
-        <label for="sf-msg" data-i18n="join.form.msg_label">Anything else? (optional)</label>
-        <textarea id="sf-msg" name="message" rows="3" placeholder="Times you are free, questions, ideas" data-i18n="join.form.msg_ph"></textarea>
+        <fieldset class="fm-set sf-avail" data-field data-group data-msg="err_avail" data-error="vf-avail-err">
+          <legend><span data-i18n="join.volunteer.avail_legend">{v.avail_legend}</span> <span class="fm-req" data-i18n="join.forms.required">{f.required}</span></legend>
+          <p class="fm-hint" data-i18n="join.volunteer.avail_hint">{v.avail_hint}</p>
+          <p class="fm-error" id="vf-avail-err" hidden></p>
+          <div class="sf-schedule">
+            <fieldset class="sf-day sf-weekdays" id="vf-weekdays">
+              <legend data-i18n="join.volunteer.weekday_legend">{v.weekday_legend}</legend>
+              <div class="chip-grid sf-days">
+                {F.availability.weekday.map((o) => (
+                  <label class="chip chip-day">
+                    <input type="checkbox" name={E.availability} value={o.value} />
+                    <span class="chip-box" aria-hidden="true"></span>
+                    <span class="chip-text" aria-hidden="true" data-i18n={`join.volunteer.day_${o.k}`}>{v[`day_${o.k}`]}</span>
+                    <span class="visually-hidden" data-i18n={`join.volunteer.day_${o.k}_full`}>{v[`day_${o.k}_full`]}</span>
+                  </label>
+                ))}
+              </div>
+              <button type="button" class="fm-linkbtn" data-select-all="vf-weekdays" hidden data-i18n="join.volunteer.select_weekdays">{v.select_weekdays}</button>
+            </fieldset>
+            {weekend.map((d) => (
+              <fieldset class="sf-day">
+                <legend data-i18n={`join.volunteer.${d.legend}`}>{v[d.legend]}</legend>
+                <div class="chip-grid sf-slots">
+                  {d.slots.map((o) => (
+                    <label class="chip">
+                      <input type="checkbox" name={E.availability} value={o.value} />
+                      <span class="chip-box" aria-hidden="true"></span>
+                      <span class="chip-text" data-i18n={`join.volunteer.slot_${o.k}`}>{v[`slot_${o.k}`]}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            ))}
+          </div>
+        </fieldset>
+
+        <div class="fm-field">
+          <label class="fm-label" for="vf-others"><span data-i18n="join.volunteer.others_label">{v.others_label}</span> <span class="fm-opt" data-i18n="join.forms.optional">{f.optional}</span></label>
+          <p class="fm-hint" id="vf-others-hint" data-i18n="join.volunteer.others_hint">{v.others_hint}</p>
+          <input class="fm-input" id="vf-others" name={E.others} type="text" autocomplete="off" aria-describedby="vf-others-hint" />
+        </div>
+
+        <fieldset class="fm-set">
+          <legend><span data-i18n="join.volunteer.heard_legend">{v.heard_legend}</span> <span class="fm-opt" data-i18n="join.forms.optional">{f.optional}</span></legend>
+          <div class="chip-grid sf-heard">
+            {F.heard.map((o) => (
+              <label class="chip">
+                <input type="radio" name={E.heard} value={o.value} />
+                <span class="chip-box" aria-hidden="true"></span>
+                <span class="chip-text" data-i18n={`join.volunteer.heard_${o.k}`}>{v[`heard_${o.k}`]}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <!-- Decoy for bots: no name, so it is never sent to Google -->
+        <div class="fm-hp" aria-hidden="true">
+          <label for="vf-hp">Leave this field empty</label>
+          <input id="vf-hp" type="text" tabindex="-1" autocomplete="off" data-honeypot />
+        </div>
+
+        <p class="fm-status" data-status role="alert" hidden></p>
+        <button type="submit" class="btn btn-primary btn-massive fm-submit"><span data-btn-label data-i18n="join.volunteer.submit">{v.submit}</span></button>
+        <p class="fm-privacy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <span data-i18n="join.volunteer.privacy">{v.privacy}</span>
+        </p>
+        <noscript><p class="fm-hint" data-i18n="join.forms.nojs_note">{f.nojs_note}</p></noscript>
+      </form>
+
+      <div class="fm-success" data-success hidden>
+        <Logo variant="seal" width={136} />
+        <h3 class="fm-success-title" tabindex="-1" data-success-title data-i18n="join.volunteer.thanks_title">{v.thanks_title}</h3>
+        <p class="script" data-i18n="ui.slogan">Building a Stronger 1st Ward Together</p>
+        <p data-i18n="join.volunteer.thanks_text">{v.thanks_text}</p>
+        <div class="sf-next">
+          <h4 class="sf-next-title" data-i18n="join.volunteer.thanks_share">{v.thanks_share}</h4>
+          <ShareBar class="sf-share" compact />
+        </div>
+        <button type="button" class="btn btn-outline fm-again" data-again data-i18n="join.forms.again">{f.again}</button>
       </div>
 
-      <p class="sf-error" id="sf-error" role="alert" hidden data-i18n="join.form.error">Please add your name and a phone number or email so we can reach you.</p>
-      <button type="submit" class="btn btn-primary btn-massive sf-submit">
-        <span data-i18n="join.form.submit_email">Open my email to send</span>
-      </button>
-      <p class="sf-note" data-i18n="join.form.note_email">This opens your email app with your sign-up ready. Nothing is sent until you press send.</p>
-    </form>
-    ) : (
-    <div class="sf-soon card-gold animate-in">
-      <span class="icon-badge sf-soon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2.8h6V4"/><path d="M8.5 11l2.2 2.2 4.8-4.7"/><path d="M8.5 17h7"/></svg></span>
-      <h3 data-i18n="join.form.soon_title">Sign-up opens soon</h3>
-      <p data-i18n="join.form.soon_text">The volunteer form is almost ready. Check back here soon to join the team.</p>
-      <ShareBar class="sf-share" />
-    </div>
-    )}
-
-    <div class="sf-thanks card-gold" id="sf-thanks" role="status" tabindex="-1" hidden>
-      <h3 data-i18n="join.form.thanks_title">You are on the team.</h3>
-      <p data-i18n="join.form.thanks_email">Check your email app: your sign-up is ready. Press send and we will be in touch soon.</p>
-      <button type="button" class="btn btn-outline" id="sf-again" data-i18n="join.form.again">Edit my sign-up</button>
+      <p class="visually-hidden" data-live aria-live="polite"></p>
+      <div data-msgs hidden>
+        {msgKeys.map((k) => <span data-msg={k} data-i18n={`join.forms.${k}`}>{f[k]}</span>)}
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  const form = document.getElementById('signup-form') as HTMLFormElement | null;
-  const thanks = document.getElementById('sf-thanks');
-  const err = document.getElementById('sf-error');
-  const again = document.getElementById('sf-again');
-
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const v = (n: string) => ((form.elements.namedItem(n) as HTMLInputElement | null)?.value || '').trim();
-    const name = v('name');
-    const phone = v('phone');
-    const email = v('email');
-    const okEmail = /^\S+@\S+\.\S+$/.test(email);
-    const okPhone = phone.replace(/\D/g, '').length >= 7;
-    const bad = !name || !(okEmail || okPhone);
-    ['name', 'phone', 'email'].forEach((n) => {
-      const el = form.elements.namedItem(n) as HTMLInputElement | null;
-      if (!el) return;
-      const invalid = bad && (n === 'name' ? !name : !(okEmail || okPhone));
-      el.setAttribute('aria-invalid', String(invalid));
-      const ids = (el.getAttribute('aria-describedby') || '').split(' ').filter(Boolean).filter((id) => id !== 'sf-error');
-      if (invalid) ids.push('sf-error');
-      el.setAttribute('aria-describedby', ids.join(' '));
-    });
-    if (bad) {
-      if (err) { err.hidden = false; const t = err.textContent; err.textContent = ''; requestAnimationFrame(() => { err.textContent = t; }); }
-      (form.elements.namedItem(name ? 'phone' : 'name') as HTMLInputElement | null)?.focus();
-      return;
-    }
-    if (err) err.hidden = true;
-
-    const lang = (form.querySelector('input[name="lang"]:checked') as HTMLInputElement | null)?.value || '';
-    const helps = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="help"]:checked')).map((c) => c.value);
-    const lines = [
-      'Volunteer sign-up: Shakedia Jones for 1st Ward',
-      `Name: ${name}`,
-      phone && `Phone: ${phone}`,
-      email && `Email: ${email}`,
-      v('zip') && `ZIP: ${v('zip')}`,
-      v('ward') && `Lives in 1st Ward: ${v('ward')}`,
-      lang && `Language: ${lang}`,
-      `Can help with: ${helps.length ? helps.join(', ') : 'Not sure yet'}`,
-      v('message') && `Message: ${v('message')}`,
-    ].filter(Boolean) as string[];
-
-    const to = form.dataset.email;
-    const href = `mailto:${to}?subject=${encodeURIComponent('Volunteer sign-up: ' + name)}&body=${encodeURIComponent(lines.join('\n'))}`;
-    window.location.href = href;
-
-    form.hidden = true;
-    if (thanks) { thanks.hidden = false; thanks.focus({ preventScroll: true }); thanks.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-  });
-
-  again?.addEventListener('click', () => {
-    if (!form || !thanks) return;
-    thanks.hidden = true;
-    form.hidden = false;
-    (form.elements.namedItem('name') as HTMLInputElement | null)?.focus();
-  });
+  import { initForms } from '../../scripts/forms.js';
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initForms);
+  else initForms();
 </script>
 
 <style>
   #signup { scroll-margin-top: calc(var(--nav-height) + var(--space-md)); }
-  .sf-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: var(--space-3xl); align-items: start; }
+  .sf-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr); gap: var(--space-3xl); align-items: start; }
   .sf-head { position: sticky; top: calc(var(--nav-height) + var(--space-lg)); }
   .sf-how { margin-top: var(--space-xl); padding: var(--space-lg); border-left: 5px solid var(--gold); background: var(--white); border-radius: 0 var(--radius-md) var(--radius-md) 0; box-shadow: var(--shadow-sm); }
-  .sf-how-title { font-family: var(--font-label); font-size: var(--text-sm); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--purple); margin-bottom: var(--space-xs); }
-  .sf-how p { color: var(--ink-soft); font-size: var(--text-sm); }
+  .sf-how-title { font-family: var(--font-label); font-size: var(--text-sm); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--purple); margin-bottom: var(--space-sm); }
+  .sf-steps { color: var(--ink-soft); font-size: var(--text-base); }
 
-  .sf-soon { padding: var(--space-2xl) var(--space-xl); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
-  .sf-soon-badge { margin-bottom: var(--space-sm); }
-  .sf-soon h3 { font-family: var(--font-display); font-weight: 800; font-size: var(--text-3xl); color: var(--purple); line-height: 1.1; }
-  .sf-soon p { color: var(--ink-soft); }
-  .sf-soon :global(.sf-share) { margin-top: var(--space-md); padding-top: var(--space-lg); border-top: 1px solid var(--lilac); width: 100%; }
+  .sf-card-title { margin: 0; }
+  .sf-other { padding: var(--space-md); background: var(--cream); border-radius: var(--radius-md); }
 
-  .sf-form { padding: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-lg); }
-  .sf-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: end; }
-  .sf-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-  .sf-field label, .sf-set legend {
-    font-family: var(--font-label); font-weight: 700; font-size: var(--text-sm); letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple-deep);
+  .sf-schedule { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm) var(--space-md); }
+  .sf-day { grid-column: span 1; border: none; margin: 0; min-width: 0; padding: var(--space-sm) var(--space-md) var(--space-md); background: var(--cream); border-radius: var(--radius-md); display: flex; flex-direction: column; gap: var(--space-sm); }
+  .sf-weekdays { grid-column: 1 / -1; }
+  .sf-day > legend {
+    float: left; width: 100%; padding: 0; font-family: var(--font-label); font-weight: 700; font-size: 0.95rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple);
   }
-  .sf-field input, .sf-field select, .sf-field textarea {
-    font: inherit; font-size: 1rem; width: 100%; min-height: 48px; padding: 0.7rem 0.9rem;
-    border: 2px solid var(--muted); border-radius: var(--radius-sm); background: var(--white); color: var(--ink);
-    transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
-  }
-  .sf-field textarea { resize: vertical; min-height: 96px; }
-  /* Placeholder text keeps AA contrast (muted on white is about 6:1) */
-  .sf-field ::placeholder { color: var(--muted); opacity: 1; }
-  .sf-field [aria-invalid='true'] { border-color: #a3123a; box-shadow: 0 0 0 3px rgba(163, 18, 58, 0.14); }
-  .sf-field input:focus, .sf-field select:focus, .sf-field textarea:focus { outline: none; border-color: var(--purple); box-shadow: 0 0 0 3px rgba(74, 3, 117, 0.22); background: var(--white); }
-  .sf-hint { margin-top: calc(var(--space-md) * -1); font-size: var(--text-xs); color: var(--muted); }
+  .sf-day > legend + * { clear: both; }
+  .sf-days { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .sf-slots { grid-template-columns: 1fr; }
+  .chip-day { justify-content: center; padding-inline: 0.5rem; gap: 8px; }
+  .sf-heard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-  .sf-set { border: none; padding: 0; min-width: 0; }
-  .sf-set legend { margin-bottom: var(--space-sm); }
-  .sf-radios { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
-  .sf-pill, .sf-check {
-    display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0.55rem 0.95rem;
-    border: 2px solid var(--lilac); border-radius: var(--radius-md); cursor: pointer; font-weight: 500;
-    transition: border-color var(--duration-fast), background var(--duration-fast);
-  }
-  .sf-pill { border-radius: 999px; }
-  .sf-pill:hover, .sf-check:hover, .sf-pill:has(input:checked), .sf-check:has(input:checked) { border-color: var(--purple); background: var(--purple-soft); }
-  .sf-pill:has(input:focus-visible), .sf-check:has(input:focus-visible) { outline: 3px solid var(--purple); outline-offset: 2px; }
-  .sf-pill input, .sf-check input { width: 20px; height: 20px; accent-color: var(--purple); flex: none; }
-  .sf-checks { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
-
-  .sf-error {
-    color: #a3123a; font-weight: 700; font-size: var(--text-sm);
-    background: #fdeef2; border-left: 4px solid #a3123a; padding: 0.6rem 0.8rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; max-width: none;
-  }
-  .sf-error[hidden], .sf-thanks[hidden], .sf-form[hidden] { display: none; }
-  .sf-submit { align-self: flex-start; white-space: normal; }
-  .sf-note { font-size: var(--text-sm); color: var(--muted); }
-
-  .sf-thanks { padding: var(--space-2xl) var(--space-xl); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
-  .sf-thanks h3 { font-family: var(--font-display); font-weight: 800; font-size: var(--text-3xl); color: var(--purple); }
-  .sf-thanks:focus { outline: none; }
+  .sf-next { width: 100%; margin-top: var(--space-sm); padding-top: var(--space-lg); border-top: 1px solid var(--lilac); display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); }
+  .sf-next-title { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: var(--text-sm); color: var(--purple); }
+  .sf-card :global(.sf-share .sb-row) { justify-content: center; }
 
   @media (max-width: 900px) {
     .sf-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
     .sf-head { position: static; }
   }
+  @media (max-width: 640px) {
+    .sf-days { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
   @media (max-width: 560px) {
-    .sf-form, .sf-soon, .sf-thanks { padding: var(--space-lg); }
-    .sf-row, .sf-checks { grid-template-columns: 1fr; }
-    .sf-submit { width: 100%; }
+    .sf-schedule { grid-template-columns: 1fr; }
+    .sf-slots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .sf-day { padding-inline: var(--space-sm); }
+  }
+  /* Small phones: day chips stack the box over the short day name; slots and radios go one per row */
+  @media (max-width: 420px) {
+    .chip-day { flex-direction: column; gap: 4px; padding: 0.5rem 0.25rem; min-height: 64px; }
+    .sf-slots, .sf-heard { grid-template-columns: 1fr; }
   }
 </style>

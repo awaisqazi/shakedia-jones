@@ -21,7 +21,7 @@ npm run check:types
 | `/` | Sunset hero with the campaign portrait, About Shakedia stats, the four priorities, the honorary street name, FLY, join band |
 | `/meet/` | Full biography, honors, the street dedication, in the news |
 | `/plan/` | 1st Ward Priorities: the campaign's four priorities with draft steps (for candidate approval), how she will work |
-| `/join/` | Ways to help, sign-up (opens soon), donate block, voter info |
+| `/join/` | Ways to help, volunteer sign-up form (`#signup`), host-a-yard-sign form (`#yard-sign`), donate block, voter info |
 | `/links/` | Linktree page for social bios |
 
 ## The look: "Building a Stronger 1st Ward Together"
@@ -77,13 +77,34 @@ Other sources swap the same way (`--wide-light`, `--wide-dark`, `--stacked-light
 - **Committee name**: "Friends of Shakedia Jones" is now in "Paid for by" and the donation legal line. Confirm it matches the ISBE filing once registered.
 - **Donate link.** Set `DONATE_URL` in `src/data/campaign.js`. Until then every Donate button goes to `/join/#donate`, which says online giving opens soon.
 - **Campaign email and social accounts.** Set `EMAIL` and `SOCIALS` in `src/data/campaign.js`. Social icons stay hidden while empty.
-- **Sign-up form.** Contact info was removed from the site at the campaign's request, so `/join/` shows an "online sign-up opens soon" card. Setting `EMAIL` in `src/data/campaign.js` turns on a form that opens a prefilled email; a real backend (Google Form, ActBlue, Supabase) is better.
+- **Sign-up forms.** Live: both post into the campaign's Google Forms (see "Sign-up forms" below). Contact info stays off the site at the campaign's request, so `EMAIL` stays empty.
 - **Plan commitments** on `/plan/` are a draft. The candidate should approve every line.
 - **The D60 job.** She is Waukegan Public Schools' Family and Community Engagement Manager. The site mentions it. Check conflict-of-interest and incompatibility rules for an alderperson who works for the school district.
 - **Photos.** Ask for a recent solo portrait. The hero uses the July 2024 dedication photo. Do not use the Getty relay photo unless it is licensed.
 - **Photo releases.** The FLY group photos include minors. Get signed parental releases (and permission from the adults shown) or replace them before launch.
 - **Legal review.** Have counsel review the donation notice, the FLY and District 60 separation lines, and petition circulator rules.
 - **Domain.** Set `site` and `base` in `astro.config.mjs` and add `public/CNAME` once a domain is registered.
+
+## Sign-up forms
+
+`/join/` has two native forms that submit straight into the campaign's two Google Forms: **Volunteer Sign-Up** (`src/components/join/SignupForm.astro`, `#signup`) and **Host a Yard Sign** (`src/components/join/YardSignForm.astro`, `#yard-sign`). Responses land in those Google Forms (and any linked Sheet) exactly as if they were filled in on Google.
+
+- **Where the IDs live.** `FORMS` in `src/data/campaign.js` holds each form's public ID, its `formResponse` URL, every `entry.NNN` key and every option value. Components read from there; nothing is hard-coded in them. One shared script, `src/scripts/forms.js`, runs both forms.
+- **Option values must match Google exactly** (capitals, spacing, `&`, the `Monday: 5pm - 8pm` format) and stay in English in both site languages. Only the visible labels are translated (`join.volunteer.*`, `join.yard.*`, `join.forms.*` in `src/i18n/parts/join.*.json`). If the campaign edits a question or an option in Google Forms, update the matching key or value in `src/data/campaign.js`, or answers to that question will silently stop arriving.
+- **`emailAddress` is required.** Both Google Forms have Settings > Responses > **Collect email addresses: Responder input**, which adds a required built-in email field. Google rejects any submission without `emailAddress`. The volunteer form's Email input is named `emailAddress`. The yard-sign form asks for email once and the script sends it under both `emailAddress` and the form's own Email question (`entry.1045781291`); with JavaScript off, a second "Confirm your email" input appears (from `<noscript>`) so the plain POST still carries both. If the campaign switches that setting **off**, remove `emailAddress` (the `email` field in `FORMS`, and the volunteer Email input if they no longer want it). If they switch it to **Verified**, Google requires a signed-in Google account and anonymous submissions from the site stop working.
+- **How it submits.** Each form is a real `<form method="POST" action=".../formResponse" target="_blank">` with inputs named `entry.NNN`, so it works without JavaScript (Google's confirmation opens in a new tab). With JavaScript, the script validates inline, then sends the same fields with `fetch(..., { mode: 'no-cors' })` and shows a thank-you panel in the card. A `no-cors` response is opaque: **the site cannot see if Google rejected a submission**, which is why the keys above must be exactly right. Each submission also sends `fvv=1` and `pageHistory=0`, as Google's own single-page form does (`FORM_STATIC_FIELDS`); per-load tokens such as `fbzx` are not sent. Spam friction: an unnamed honeypot input (never sent; if filled, the thank-you shows and nothing is sent) and submits within 2 seconds of page load are ignored.
+- **After any change, test once for real**: submit each form on the live site and check the response appears in Google Forms (Responses tab).
+
+**Re-reading the entry keys.** Open the form's public link `https://docs.google.com/forms/d/e/<PUBLIC_ID>/viewform` (no sign-in needed), view the page source and find `FB_PUBLIC_LOAD_DATA_`. It is JSON: `data[1][1]` is the list of questions. For each question, `[1]` is its title, `[3]` its type (0 short text, 1 paragraph, 2 multiple choice, 4 checkboxes), and `[4][0]` holds `[entryId, options, required]`: the input name is `entry.<entryId>`, each option's string is `options[i][0]` (an option flagged as "Other" has an empty string and is sent as `__other_option__` plus `entry.<entryId>.other_option_response`), and `required` is 1 for required questions. A quick script:
+
+```sh
+curl -sL "https://docs.google.com/forms/d/e/<PUBLIC_ID>/viewform" | node -e '
+  let h="";process.stdin.on("data",d=>h+=d).on("end",()=>{
+  const d=JSON.parse(h.match(/FB_PUBLIC_LOAD_DATA_ = (.*?);<\/script>/s)[1]);
+  for(const q of d[1][1]) for(const s of q[4]||[]) console.log(`entry.${s[0]}`,s[2]?"required":"optional",JSON.stringify(q[1]),(s[1]||[]).map(o=>o[0]));})'
+```
+
+Do not test by POSTing to `formResponse` from a script: every POST is a real response in the campaign's form.
 
 ## Deploy
 

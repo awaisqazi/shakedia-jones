@@ -1,0 +1,138 @@
+---
+// Host a yard sign (/join/#yard-sign). A native form that posts into the campaign's "Host a Yard Sign"
+// Google Form (FORMS.yardSign in src/data/campaign.js). Behavior: src/scripts/forms.js.
+// Email: Google needs the one answer twice, as the built-in `emailAddress` (the form's "Collect email
+// addresses" setting) and as the form's own Email question. With JavaScript the visible input is sent
+// under both names (data-mirror); without it, a second "Confirm your email" input appears from
+// <noscript> so the plain POST still carries both. Visitors with JavaScript are asked once.
+import { FORMS, FORM_STATIC_FIELDS } from '../../data/campaign.js';
+import en from '../../i18n/parts/join.en.json';
+import Logo from '../ui/Logo.astro';
+import Swoosh from '../ui/Swoosh.astro';
+
+const F = FORMS.yardSign;
+const E = F.entries;
+const y = en.join.yard as Record<string, string>;
+const f = en.join.forms as Record<string, string>;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const msgKeys = ['err_name', 'err_email', 'err_email_shape', 'err_address', 'err_summary', 'err_network', 'busy'];
+---
+
+<section class="section-padding bg-purple-deep ys" id="yard-sign" aria-labelledby="ys-title">
+  <Swoosh class="ys-swoosh" />
+  <div class="container ys-grid">
+    <div class="ys-copy">
+      <p class="kicker animate-in" data-i18n="join.yard.label">{y.label}</p>
+      <h2 class="section-title animate-in" id="ys-title">
+        <span data-i18n="join.yard.title_a">{y.title_a}</span>
+        <span class="accent" data-i18n="join.yard.title_b">{y.title_b}</span>
+      </h2>
+      <p class="section-lede animate-in" data-i18n="join.yard.lede">{y.lede}</p>
+      <figure class="ys-sign animate-in">
+        <img src={`${base}/images/campaign/sign-en.webp`} width="1536" height="1024" loading="lazy" decoding="async" alt={y.sign_alt} data-i18n-attr="alt:join.yard.sign_alt" />
+        <figcaption data-i18n="join.yard.sign_caption">{y.sign_caption}</figcaption>
+      </figure>
+    </div>
+
+    <div class="ys-card card-gold animate-in" data-form-card>
+      <h3 class="card-gold-head ys-card-title" data-i18n="join.yard.card_title">{y.card_title}</h3>
+
+      <form class="fm-form" id="yard-sign-form" data-gform method="POST" action={F.action} target="_blank" accept-charset="UTF-8" aria-labelledby="ys-title">
+        {Object.entries(FORM_STATIC_FIELDS).map(([k, val]) => <input type="hidden" name={k} value={val} />)}
+
+        <div class="fm-field" data-field data-msg="err_name" data-error="ys-name-err">
+          <label class="fm-label" for="ys-name"><span data-i18n="join.yard.name_label">{y.name_label}</span> <span class="fm-req" data-i18n="join.forms.required">{f.required}</span></label>
+          <input class="fm-input" id="ys-name" name={E.name} type="text" autocomplete="name" required />
+          <p class="fm-error" id="ys-name-err" hidden></p>
+        </div>
+
+        <div class="fm-field" data-field data-msg="err_email" data-error="ys-email-err">
+          <label class="fm-label" for="ys-email"><span data-i18n="join.yard.email_label">{y.email_label}</span> <span class="fm-req" data-i18n="join.forms.required">{f.required}</span></label>
+          <input class="fm-input" id="ys-email" name={F.email} data-mirror={E.email} type="email" autocomplete="email" inputmode="email" spellcheck="false" autocapitalize="off" required />
+          <p class="fm-error" id="ys-email-err" hidden></p>
+        </div>
+        <noscript>
+          <div class="fm-field">
+            <label class="fm-label" for="ys-email-2"><span data-i18n="join.yard.email_again_label">{y.email_again_label}</span> <span class="fm-req" data-i18n="join.forms.required">{f.required}</span></label>
+            <input class="fm-input" id="ys-email-2" name={E.email} type="email" autocomplete="email" required />
+          </div>
+        </noscript>
+
+        <div class="fm-field" data-field data-msg="err_address" data-error="ys-address-err">
+          <label class="fm-label" for="ys-address"><span data-i18n="join.yard.address_label">{y.address_label}</span> <span class="fm-req" data-i18n="join.forms.required">{f.required}</span></label>
+          <p class="fm-hint" id="ys-address-hint" data-i18n="join.yard.address_hint">{y.address_hint}</p>
+          <textarea class="fm-input" id="ys-address" name={E.address} rows="3" autocomplete="street-address" required aria-describedby="ys-address-hint"></textarea>
+          <p class="fm-error" id="ys-address-err" hidden></p>
+        </div>
+
+        <div class="fm-field">
+          <label class="fm-label" for="ys-phone"><span data-i18n="join.yard.phone_label">{y.phone_label}</span> <span class="fm-opt" data-i18n="join.forms.optional">{f.optional}</span></label>
+          <input class="fm-input" id="ys-phone" name={E.phone} type="tel" autocomplete="tel" inputmode="tel" />
+        </div>
+
+        <!-- Decoy for bots: no name, so it is never sent to Google -->
+        <div class="fm-hp" aria-hidden="true">
+          <label for="ys-hp">Leave this field empty</label>
+          <input id="ys-hp" type="text" tabindex="-1" autocomplete="off" data-honeypot />
+        </div>
+
+        <p class="fm-status" data-status role="alert" hidden></p>
+        <button type="submit" class="btn btn-primary btn-massive fm-submit"><span data-btn-label data-i18n="join.yard.submit">{y.submit}</span></button>
+        <p class="fm-privacy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <span data-i18n="join.yard.privacy">{y.privacy}</span>
+        </p>
+        <noscript><p class="fm-hint" data-i18n="join.forms.nojs_note">{f.nojs_note}</p></noscript>
+      </form>
+
+      <div class="fm-success" data-success hidden>
+        <Logo variant="seal" width={136} />
+        <h3 class="fm-success-title" tabindex="-1" data-success-title data-i18n="join.yard.thanks_title">{y.thanks_title}</h3>
+        <p class="script" data-i18n="ui.slogan">Building a Stronger 1st Ward Together</p>
+        <p data-i18n="join.yard.thanks_text">{y.thanks_text}</p>
+        <p data-i18n="join.yard.thanks_next">{y.thanks_next}</p>
+        <button type="button" class="btn btn-outline fm-again" data-again data-i18n="join.forms.again">{f.again}</button>
+      </div>
+
+      <p class="visually-hidden" data-live aria-live="polite"></p>
+      <div data-msgs hidden>
+        {msgKeys.map((k) => <span data-msg={k} data-i18n={`join.forms.${k}`}>{f[k]}</span>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initForms } from '../../scripts/forms.js';
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initForms);
+  else initForms();
+</script>
+
+<style>
+  #yard-sign { scroll-margin-top: calc(var(--nav-height) + var(--space-md)); }
+  .ys { position: relative; overflow: hidden; isolation: isolate; }
+  .ys :global(.ys-swoosh) { position: absolute; top: 18px; left: -5%; width: 110%; height: 60px; opacity: 0.5; pointer-events: none; z-index: -1; }
+  .ys-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-3xl); align-items: start; }
+  .ys-copy { position: sticky; top: calc(var(--nav-height) + var(--space-lg)); }
+
+  .ys-sign { margin-top: var(--space-xl); max-width: 460px; }
+  .ys-sign img {
+    width: 100%; height: auto; border-radius: var(--radius-md); transform: rotate(-1.5deg);
+    box-shadow: 0 0 0 4px var(--gold), 0 0 0 10px rgba(254, 198, 10, 0.18), var(--shadow-xl);
+  }
+  .ys-sign figcaption {
+    margin-top: var(--space-lg); font-family: var(--font-label); font-weight: 700; font-size: var(--text-sm);
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+  }
+
+  .ys-card-title { margin: 0; }
+
+  @media (max-width: 900px) {
+    .ys-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
+    .ys-copy { position: static; }
+    .ys-sign { max-width: 380px; margin-top: var(--space-lg); }
+  }
+  @media (max-width: 560px) {
+    .ys-sign { max-width: 300px; }
+  }
+</style>

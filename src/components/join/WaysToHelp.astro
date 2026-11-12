@@ -1,7 +1,8 @@
 ---
 // Ways to help: gold-topped white cards on purple, each with a round icon badge (the flyers'
 // priority icons). The "Give" card renders only once donations are open (canDonate):
-// no solicitation before the committee exists.
+// no solicitation before the committee exists. Volunteering asks go to the volunteer form (#signup);
+// the yard-sign card goes to its own form (#yard-sign).
 import { canDonate } from '../../data/campaign.js';
 
 const icons: Record<string, string> = {
@@ -16,7 +17,7 @@ const icons: Record<string, string> = {
 const allWays = [
   { k: 'petition', title: 'Sign and carry petitions', text: 'Petitions are how a candidate gets on the ballot, and volunteers help gather signatures from 1st Ward voters. Sign one, or gather signatures on your own block.', rules: 'Petition signers must be registered voters in the 1st Ward. Circulators must meet state eligibility rules; we will train you before you start.', cta: 'I can carry a petition', href: '#signup', hot: true },
   { k: 'doors', title: 'Knock doors, talk to neighbors', text: 'The best campaign is a neighbor on the porch. We give you a short list, a few talking points and a partner.', cta: 'Count me in', href: '#signup' },
-  { k: 'sign', title: 'Host a yard sign', text: 'One sign in one window starts the conversation on a whole block. We drop it off.', cta: 'Request a sign', href: '#signup' },
+  { k: 'sign', title: 'Host a yard sign', text: 'One sign in one window starts the conversation on a whole block. We drop it off.', cta: 'Request a sign', href: '#yard-sign' },
   { k: 'events', title: 'Help at events', text: 'Set up tables, greet neighbors, hand out water at the park. Every event needs a crew.', cta: 'Join the crew', href: '#signup' },
   { k: 'words', title: 'Spread the word in Spanish and English', text: 'Share posts, translate a flyer, talk about the campaign with your neighbors, team or group chat, in whichever language they speak.', cta: 'I can help share', href: '#signup' },
   { k: 'give', title: 'Give', text: 'Any amount buys clipboards, flyers and yard signs. Small gifts from neighbors go the farthest.', cta: 'How to give', href: '#donate', donate: true },

@@ -12,7 +12,8 @@ const socials = SOCIALS.filter((s) => s.href);
 
 // Donate shows only once donations are open (no solicitation before the committee exists).
 const links = [
-  { href: `${base}/join/#signup`, key: 'links.volunteer', label: 'Volunteer: join the team', sub: 'links.volunteer_sub', subLabel: 'Petitions, doors, yard signs', style: 'gold' },
+  { href: `${base}/join/#signup`, key: 'links.volunteer', label: 'Volunteer: join the team', sub: 'links.volunteer_sub', subLabel: 'Canvassing, phone banking, events', style: 'gold' },
+  { href: `${base}/join/#yard-sign`, key: 'links.yard_sign', label: 'Host a yard sign', sub: 'links.yard_sign_sub', subLabel: 'Show your support on your block' },
   { href: `${base}/meet/`, key: 'links.meet', label: 'Meet Shakedia', sub: 'links.meet_sub', subLabel: 'USA Olympian. Coach. Neighbor.' },
   { href: `${base}/plan/`, key: 'links.plan', label: 'Priorities', sub: 'links.plan_sub', subLabel: 'Four priorities for the 1st Ward' },
   { href: donateHref(base), key: 'links.donate', label: 'Donate', sub: 'links.donate_sub', subLabel: 'Help build a stronger 1st Ward', style: 'outline', attrs: ext, donate: true },
