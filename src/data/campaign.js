@@ -3,9 +3,9 @@
 // Anything marked TO CONFIRM is a placeholder until the campaign supplies it.
 
 export const CANDIDATE = 'Shakedia Jones';
-// Campaign email. Kept empty on purpose: the campaign asked for contact info to stay off the site.
+// Campaign email, shown in the footer. The campaign supplied it on 2026-11-11; phone numbers stay off the site.
 // (Only the footer reads it; the sign-up forms post to Google Forms, see FORMS below.)
-export const EMAIL = '';
+export const EMAIL = 'shakediafor1stward@gmail.com';
 
 // TO CONFIRM: donation page (ActBlue or similar). While empty, every Donate button is
 // hidden: a campaign must not solicit contributions before its committee (ISBE D-1) exists.

@@ -77,7 +77,7 @@ Other sources swap the same way (`--wide-light`, `--wide-dark`, `--stacked-light
 - **Committee name**: "Friends of Shakedia Jones" is now in "Paid for by" and the donation legal line. Confirm it matches the ISBE filing once registered.
 - **Donate link.** Set `DONATE_URL` in `src/data/campaign.js`. Until then every Donate button goes to `/join/#donate`, which says online giving opens soon.
 - **Campaign email and social accounts.** Set `EMAIL` and `SOCIALS` in `src/data/campaign.js`. Social icons stay hidden while empty.
-- **Sign-up forms.** Live: both post into the campaign's Google Forms (see "Sign-up forms" below). Contact info stays off the site at the campaign's request, so `EMAIL` stays empty.
+- **Sign-up forms.** Live: both post into the campaign's Google Forms (see "Sign-up forms" below). The campaign email (`EMAIL`) is shown in the footer; phone numbers stay off the site at the campaign's request.
 - **Plan commitments** on `/plan/` are a draft. The candidate should approve every line.
 - **The D60 job.** She is Waukegan Public Schools' Family and Community Engagement Manager. The site mentions it. Check conflict-of-interest and incompatibility rules for an alderperson who works for the school district.
 - **Photos.** Ask for a recent solo portrait. The hero uses the July 2024 dedication photo. Do not use the Getty relay photo unless it is licensed.
