@@ -114,8 +114,8 @@
       "register": "Register or check your registration",
       "mail": "Request a mail ballot",
       "polling": "Find your polling place",
-      "clerk_link": "Lake County Clerk: register and find your polling place",
-      "newtab_note": "Opens the Clerk's website in a new tab."
+      "clerk_link": "Lake County Clerk: check your registration (Voter Power)",
+      "newtab_note": "Opens the Clerk's Voter Power lookup in a new tab."
     },
     "share": {
       "label": "Spread the word",

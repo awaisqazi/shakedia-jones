@@ -1,6 +1,7 @@
 ---
 // Before you vote: the primary first (the date that matters), the general election second,
-// and one card that sends readers to the Lake County Clerk. No registration deadlines printed:
+// and one card that sends readers to the Lake County Clerk's Voter Power registration lookup
+// (href swapped to the Clerk's Spanish page via ui.clerk_url). No registration deadlines printed:
 // the Clerk keeps those current.
 import Star from '../ui/Star.astro';
 import { COUNTY_CLERK_URL } from '../../data/campaign.js';
@@ -42,11 +43,11 @@ const tasks = [
         <ul class="star-list byv-tasks">
           {tasks.map((t) => <li data-i18n={`join.vote.${t.k}`}>{t.text}</li>)}
         </ul>
-        <a href={COUNTY_CLERK_URL} class="btn btn-primary byv-go" target="_blank" rel="noopener">
-          <span data-i18n="join.vote.clerk_link">Lake County Clerk: register and find your polling place</span>
+        <a href={COUNTY_CLERK_URL} class="btn btn-primary byv-go" target="_blank" rel="noopener" data-i18n-attr="href:ui.clerk_url">
+          <span data-i18n="join.vote.clerk_link">Lake County Clerk: check your registration (Voter Power)</span>
           <span class="visually-hidden" data-i18n="ui.newtab">(opens in a new tab)</span>
         </a>
-        <p class="byv-newtab" aria-hidden="true" data-i18n="join.vote.newtab_note">Opens the Clerk's website in a new tab.</p>
+        <p class="byv-newtab" aria-hidden="true" data-i18n="join.vote.newtab_note">Opens the Clerk's Voter Power lookup in a new tab.</p>
       </article>
     </div>
   </div>

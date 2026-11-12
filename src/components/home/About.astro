@@ -5,9 +5,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const facts = [
   { value: '17', key: 'titles', label: 'individual Illinois state titles in high school track' },
   { value: '2', key: 'wj', label: 'World Junior gold medals for Team USA, 1998' },
-  { value: '2000', key: 'oly', label: 'U.S. Olympic Team, Sydney (4x100m relay pool)' },
+  { value: '2000', key: 'oly', label: 'U.S. Olympic Team, Sydney' },
   { value: '2', key: 'ncaa', label: 'NCAA team titles with UCLA' },
-  { value: '600+', key: 'fly', label: 'young people helped through FLY (her 2024 count)', count: 600, suffix: '+' },
+  { value: '600+', key: 'fly', label: 'young people helped through FLY', count: 600, suffix: '+' },
   { value: '2014', key: 'founded', label: 'the year she founded Furthering the Lives of Youth (FLY)' },
 ];
 ---
@@ -20,7 +20,7 @@ const facts = [
     <article class="card-gold about-card animate-in">
       <h2 class="card-gold-head about-head" id="about-title" data-i18n="home.about.title">About Shakedia</h2>
       <div class="about-body">
-        <p class="about-intro" data-i18n="home.about.intro">Born and raised in the 1st Ward of Waukegan, Shakedia graduated from Waukegan High School in 1997, ran for UCLA and Team USA, and came home in 2013 to work for Waukegan's kids.</p>
+        <p class="about-intro" data-i18n="home.about.intro">Born and raised in the 1st Ward of Waukegan, Shakedia graduated from Waukegan High School in 1997, ran for UCLA and Team USA, and came home in 2013 to work for Waukegan's kids. She holds a B.A. in Sociology from UCLA and an MBA from Keller Graduate School of Management.</p>
 
         <ul class="facts">
           {facts.map((f) => (
@@ -42,6 +42,8 @@ const facts = [
 
 <style>
   .about { position: relative; overflow: hidden; padding-bottom: var(--space-xl); }
+  /* Priorities sits above and fades to purple-deep; start from that shade so the seam doesn't show. */
+  .about.bg-purple { background: linear-gradient(180deg, var(--purple-deep) 0%, var(--purple) 55%); }
   .about-sky :global(.as) { position: absolute; opacity: 0.85; }
   .about-sky :global(.as-1) { width: 28px; height: 28px; top: 9%; left: 6%; }
   .about-sky :global(.as-2) { width: 16px; height: 16px; top: 16%; left: 10%; opacity: 0.6; }

@@ -40,7 +40,7 @@ const socials = SOCIALS.filter((s) => s.href);
               {n === 1 && <Star class="date-star" />}
               <span class:list={['date-when', { 'date-big': n === 1 }]} data-i18n={`footer.when_${n}`}>{en.footer[`when_${n}` as keyof typeof en.footer]}</span>
               {n === 3
-                ? <a href={COUNTY_CLERK_URL} target="_blank" rel="noopener" class="date-link"><span data-i18n="footer.date_3">{en.footer.date_3}</span><span class="visually-hidden" data-i18n="ui.newtab">(opens in a new tab)</span></a>
+                ? <a href={COUNTY_CLERK_URL} target="_blank" rel="noopener" class="date-link" data-i18n-attr="href:ui.clerk_url"><span data-i18n="footer.date_3">{en.footer.date_3}</span><span class="visually-hidden" data-i18n="ui.newtab">(opens in a new tab)</span></a>
                 : <span data-i18n={`footer.date_${n}`}>{en.footer[`date_${n}` as keyof typeof en.footer]}</span>}
             </li>
           ))}

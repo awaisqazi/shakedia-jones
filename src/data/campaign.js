@@ -30,5 +30,7 @@ export const donateHref = (base) => DONATE_URL || `${base}/join/#donate`;
 export const isExternalDonate = () => Boolean(DONATE_URL);
 export const canDonate = () => Boolean(DONATE_URL);
 
-export const COUNTY_CLERK_URL = 'https://www.lakecountyil.gov/2365/Elections';
+// Lake County Clerk's Voter Power registration lookup. Keep in sync with ui.clerk_url in
+// src/i18n/parts/shared.en.json (es points at the Clerk's Spanish page). /2365/Elections is dead.
+export const COUNTY_CLERK_URL = 'https://www.lakecountyil.gov/351/Voter-Power-for-Registered-Voters';
 export const WARD = '1st'; // TO CONFIRM with the campaign (inferred from city ward GIS for her block)
